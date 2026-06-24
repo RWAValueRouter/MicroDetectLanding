@@ -15,7 +15,11 @@ export const metadata: Metadata = {
     "大坝安全监测",
     "非接触式在线监测",
     "国产化替代"
-  ]
+  ],
+  icons: {
+    icon: [{ url: "/favicon.png", sizes: "64x64", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
+  }
 };
 
 export default function RootLayout({
