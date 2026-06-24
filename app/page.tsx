@@ -3,13 +3,24 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
-const navItems = [
+type Lang = "zh" | "en";
+
+const navItemsByLang: Record<Lang, Array<{ label: string; href: string }>> = {
+  zh: [
   { label: "技术优势", href: "#technology" },
   { label: "产品矩阵", href: "#products" },
   { label: "解决方案", href: "#architecture" },
   { label: "应用场景", href: "#applications" },
   { label: "联系咨询", href: "#contact" }
-];
+  ],
+  en: [
+    { label: "Technology", href: "#technology" },
+    { label: "Products", href: "#products" },
+    { label: "Solutions", href: "#architecture" },
+    { label: "Applications", href: "#applications" },
+    { label: "Contact", href: "#contact" }
+  ]
+};
 
 const contactEmail = "luoxi23vr@gmail.com";
 
@@ -18,14 +29,14 @@ const heroSlides = [
     src: "/hero/monitoring-bridges.png",
     alt: "毫米波雷达桥梁结构健康监测示意图",
     eyebrow: "Bridge Radar",
-    label: "结构健康监测",
+    label: { zh: "结构健康监测", en: "Structural health monitoring" },
     status: "ONLINE"
   },
   {
     src: "/hero/liquid-level.png",
     alt: "毫米波雷达非接触式液位监测示意图",
     eyebrow: "Liquid Level",
-    label: "非接触式液位监测",
+    label: { zh: "非接触式液位监测", en: "Non-contact liquid level monitoring" },
     status: "LIVE"
   }
 ];
@@ -202,6 +213,314 @@ const values = [
   ["易落地", "设备、供电、通信、平台与告警可成套配置。"]
 ];
 
+const painPointsEn = [
+  {
+    title: "Risky manual inspection",
+    text: "Waterways, bridge undersides, steep slopes, heat and corrosive sites make manual inspection slow and unsafe.",
+    tag: "Field Risk"
+  },
+  {
+    title: "High maintenance sensors",
+    text: "Contact sensors are prone to adhesion, blockage, wear and corrosion in harsh operating environments.",
+    tag: "Maintenance"
+  },
+  {
+    title: "Optical systems are limited",
+    text: "Fog, dust, low light, night operation and water reflections can reduce measurement stability.",
+    tag: "Low Robustness"
+  },
+  {
+    title: "Disconnected single points",
+    text: "Scattered data makes it harder to identify trends and trigger timely early warnings.",
+    tag: "Weak Warning"
+  }
+];
+
+const productLinesEn = [
+  {
+    title: "Water Monitoring",
+    series: "Millimeter-wave radar flow velocity meter",
+    models: "AR-FV100",
+    problem: "Online flow velocity monitoring for rivers, canals, drainage channels and bridge culverts",
+    customers: "Water resources, utilities, flood control, irrigation districts, transport hydrology",
+    href: "#water-industrial"
+  },
+  {
+    title: "Industrial Process Monitoring",
+    series: "Industrial radar level instruments",
+    models: "AR-LS100 / AR-LS200 / AR-LS300 / AR-SL300",
+    problem: "Liquid level, material level and inventory monitoring for tanks, reservoirs, silos and bins",
+    customers: "Chemical, coal, cement, power, steel and process industries",
+    href: "#water-industrial"
+  },
+  {
+    title: "Structural Safety Monitoring",
+    series: "Structural monitoring radar",
+    models: "SR-I100 / SR-M200 / SR-P300",
+    problem: "Displacement and deformation monitoring for bridges, dams, slopes, tunnels and foundation pits",
+    customers: "Transport, water infrastructure, urban assets, geohazard prevention, infrastructure O&M",
+    href: "#structure"
+  }
+];
+
+const selectorItemsEn = [
+  ["River, canal or drainage flow velocity", "AR-FV100 Flow Radar"],
+  ["Standard liquid/material level monitoring", "AR-LS100 Standard Level Radar"],
+  ["PLC/DCS integration or explosion-proof sites", "AR-LS200 Industrial Explosion-proof Radar"],
+  ["High-accuracy metering or import replacement", "AR-LS300 High-accuracy Metering Radar"],
+  ["Short-range structural displacement", "SR-I100 Integrated Short-range Radar"],
+  ["Bridge girder or tunnel local deformation", "SR-M200 Mid-range MIMO Radar"],
+  ["Long-span bridges, dams or slope early warning", "SR-P300 Long-range Phased-array Radar"]
+];
+
+const industrialProductsEn = [
+  {
+    name: "AR-FV100",
+    title: "Millimeter-wave Radar Flow Meter",
+    image: "/product/ar-fv100-flow-radar.jpeg",
+    intro:
+      "A non-contact surface velocity monitoring device for rivers, canals, drainage channels and bridge culverts. It can be installed on banks, bridges, brackets, shaft openings or canal edges.",
+    stats: ["0-20 m/s velocity range", "±0.2 m/s accuracy", "0.5-30 m range", "IP68 protection"],
+    scenarios: ["Flash flood warning", "Urban drainage", "Irrigation metering", "Bridge hydrology"]
+  },
+  {
+    name: "AR-LS100",
+    title: "Standard Level Radar",
+    image: "/product/ar-ls-industrial-level-radar.jpeg",
+    intro:
+      "Designed for standard tanks, clean-water reservoirs and general silos, with simple communication, controlled cost and easy installation.",
+    stats: ["RS485 Modbus", "±5 mm", "Standard sites", "Cost-effective deployment"],
+    scenarios: ["Clean-water tanks", "Standard tanks", "General silos", "Utility monitoring"]
+  },
+  {
+    name: "AR-LS200",
+    title: "Industrial Explosion-proof Level Radar",
+    image: "/product/ar-ls-industrial-level-radar.jpeg",
+    intro:
+      "For coal, chemical tanks, enclosed drainage networks and other industrial sites with explosion-proof requirements. Supports 4-20mA + HART.",
+    stats: ["4-20mA + HART", "Explosion-proof option", "IP67", "Industrial interfaces"],
+    scenarios: ["Coal silos", "Chemical tanks", "Enclosed networks", "Industrial parks"]
+  },
+  {
+    name: "AR-LS300",
+    title: "High-accuracy Metering Level Radar",
+    image: "/product/ar-ls-industrial-level-radar.jpeg",
+    intro:
+      "For fine-chemical reactors, high-value raw material tanks and high-accuracy inventory metering scenarios requiring stable performance.",
+    stats: ["±1 mm level measurement", "Stable full-range output", "Process control", "Import replacement"],
+    scenarios: ["Fine chemicals", "Critical tanks", "High-accuracy silos", "Inventory metering"]
+  }
+];
+
+const structureProductsEn = [
+  {
+    name: "SR-I100",
+    title: "Integrated Short-range Radar",
+    image: "/product/sr-i100-structure-radar.png",
+    distance: "0-10 m",
+    intro: "For expansion joints, bridge bearings, foundation pits, indoor tunnels and short-range structural displacement monitoring.",
+    capability: "Laboratory stable-condition displacement recognition down to the 0.05 mm level"
+  },
+  {
+    name: "SR-M200",
+    title: "Mid-range MIMO Monitoring Radar",
+    image: "/product/sr-i100-structure-radar.png",
+    distance: "10-60 m",
+    intro: "For bridge girder deflection, urban viaduct displacement, industrial structures and local tunnel deformation monitoring.",
+    capability: "Laboratory stable-condition displacement recognition down to the 0.03 mm level"
+  },
+  {
+    name: "SR-P300",
+    title: "Long-range Phased-array Radar",
+    image: "/product/sr-p300-phased-array-radar.png",
+    distance: "60-300 m",
+    intro: "For long-span bridges, dams, high-risk slopes, heritage bridges and long tunnels requiring long-term safety early warning.",
+    capability: "Laboratory stable-condition displacement recognition down to the 0.01 mm level"
+  }
+];
+
+const architectureLayersEn = [
+  ["Sensing Layer", "Flow radar / Level radar / Industrial level radar / Structural monitoring radar"],
+  ["Transmission Layer", "RS485 / HART / 4G/5G / LoRa / NB-IoT"],
+  ["Platform Layer", "Data acquisition / Trend analysis / Threshold management / Reports / Device management"],
+  ["Application Layer", "Flood warning / Bridge safety / Industrial metering / Slopes and dams / Emergency command"]
+];
+
+const applicationsEn = [
+  {
+    name: "Hydrology / Flash Flood Warning",
+    deploy: "Mountain streams, small watershed sections, bridge culverts and drainage control points",
+    monitor: "Flow velocity, level changes, trend shifts and abnormal surges",
+    product: "AR-FV100 with optional level radar and wireless communication modules",
+    delivery: "Radar terminal + solar power + 4G/5G communication + platform warning + on-site alarm"
+  },
+  {
+    name: "Industrial Silo / Tank Level Monitoring",
+    deploy: "Coal silos, cement warehouses, coke bins, powder silos, chemical tanks and reactor interfaces",
+    monitor: "Material level, liquid level, inventory changes, full/empty status and abnormal fluctuations",
+    product: "AR-LS100/200/300 or AR-SL300 depending on safety and accuracy requirements",
+    delivery: "Radar terminal + industrial flange + 4-20mA/HART or RS485 + PLC/DCS/industrial gateway"
+  },
+  {
+    name: "Bridge Structural Deformation Monitoring",
+    deploy: "Bridge undersides, bankside brackets, mid-span points, expansion joints and bearing locations",
+    monitor: "Girder deflection, bearing displacement, expansion joint change, long-term trends and sudden shifts",
+    product: "SR-I100 / SR-M200 / SR-P300",
+    delivery: "Structural radar + independent support + wireless communication + cloud platform + threshold warning + reports"
+  },
+  {
+    name: "Dam / Slope Geohazard Warning",
+    deploy: "Dam crests, dam slopes, opposite-slope observation points, roadside slopes and high-risk landslide areas",
+    monitor: "Dam settlement, slope sliding, displacement trends and rainy-season abnormal changes",
+    product: "SR-P300 with optional video verification and on-site alarm",
+    delivery: "Long-range structural radar + solar power + 4G/5G communication + warning platform + on-site alarm"
+  }
+];
+
+const valuesEn = [
+  ["Lower Cost", "Reduce manual inspection and site maintenance in high-risk environments."],
+  ["Higher Efficiency", "Automated acquisition, multi-site management, trend curves and report output."],
+  ["Stronger Safety", "Identify flow surges, level exceedance and structural displacement anomalies earlier."],
+  ["Domestic Control", "Localized hardware and self-developed algorithms improve supply and service responsiveness."],
+  ["Easy Deployment", "Devices, power, communication, platform and alarms can be configured as one solution."]
+];
+
+const quickConditionsByLang: Record<Lang, string[]> = {
+  zh: ["监测对象", "安装距离与视线", "目标反射条件", "复杂环境", "通信与供电", "平台对接"],
+  en: ["Monitoring target", "Distance and line of sight", "Target reflection", "Harsh environment", "Power and communication", "Platform integration"]
+};
+
+const copy = {
+  zh: {
+    companyShort: "析微探物",
+    ctaSmall: "获取方案",
+    badges: ["非接触式监测", "7x24 小时在线", "全栈自研", "国产化替代", "多场景一体交付"],
+    heroEyebrow: "析微探物 · Millimeter Wave Radar",
+    heroTitle: "毫米波雷达全域高精度监测系统",
+    heroSubtitle: "面向水利水文、交通基建、工业自动化与结构安全的非接触式在线监测方案。",
+    heroText: "重庆析微探物科技有限公司以自主毫米波感知技术，提供从现场采集到平台预警的一体化监测能力。",
+    primaryCta: "获取行业解决方案",
+    secondaryCta: "查看产品矩阵",
+    painEyebrow: "Field Pain",
+    painTitle: "复杂现场，需要比人工巡检更连续的感知能力",
+    painText: "在涉水、粉尘、高空和远距离场景中，稳定的数据连续性决定预警质量。",
+    techTitle: "用毫米波雷达，穿透复杂环境的不确定性",
+    techText: "主动发射电磁波并接收目标回波，利用距离、速度、多普勒和相位信息，实现对水面流速、液位/物位高度、结构微小形变等参数的非接触式感知。",
+    liveTrend: "多参数连续监测",
+    allDay: "7x24 在线",
+    compareHeads: ["对比维度", "毫米波雷达", "激光雷达", "可见光视觉"],
+    compareRows: [
+      ["探测方式", "距离/速度/相位", "光学测距", "图像识别"],
+      ["环境适应性", "雨雾粉尘更强", "受强光影响", "依赖光照"],
+      ["微小变化识别", "毫米级识别", "偏距离测量", "量化有限"],
+      ["长期运维", "非接触低维护", "镜头需清洁", "需补光维护"],
+      ["工程距离", "近中远覆盖", "复杂环境下降", "更适合近距"]
+    ],
+    productsTitle: "三大产品线，覆盖水域、工业与结构安全监测",
+    productsText: "覆盖流速、液位、物位、料位和结构形变等核心监测对象。",
+    fieldLabel: "适用领域",
+    selectorTitle: "根据监测对象，快速匹配产品方案",
+    selectorBadge: "快速选型",
+    conditionsTitle: "选型前确认现场条件",
+    waterTitle: "非接触式水流速、液位、物位与料位在线监测",
+    waterText: "面向水利水文、市政排水、农业灌溉、公路桥涵、工业储罐、料仓与筒仓计量等场景。",
+    disclaimer: "关键指标以产品版本、现场工况和技术协议为准。",
+    structureTitle: "远距离、非接触、多点位结构形变监测",
+    structureText: "面向公路桥梁、城市高架桥、隧道、水库大坝、山体边坡、建筑基坑和老旧病害建筑等长期在线监测场景。",
+    structureEffects: ["实时持续采集", "长期形变曲线", "异常趋势预警", "多项目云端管理"],
+    structureDisclaimer: "工程测量精度以现场安装、目标反射条件、标定方案和验收协议为准。",
+    architectureTitle: "从现场感知到平台预警的一体化闭环",
+    architectureText: "设备、通信、平台与告警联动，支撑长期在线运行和多站点统一管理。",
+    architectureSummary: "从单点监测设备到行业级智能预警系统，构建“感知 - 传输 - 分析 - 预警”的完整闭环。",
+    appsTitle: "面向真实现场的成套应用方案",
+    appsText: "覆盖水利防汛、工业计量、桥梁养护和地灾预警等关键场景。",
+    appLabels: ["部署位置", "监测内容", "推荐产品", "交付组合"],
+    valueTitle: "从单点采集，到主动预警",
+    contactTitle: "让监测更智能，让预警更及时，让管理更高效",
+    contactText: "留下监测对象、现场环境和平台接口要求，析微探物将尽快与您联系。",
+    contactBadges: ["前端感知", "远程传输", "平台分析", "异常预警"],
+    formName: "姓名",
+    formCompany: "公司/单位",
+    formContact: "手机或邮箱",
+    formScene: "关注场景",
+    formMessage: "项目需求",
+    formPlaceholder: "监测对象、项目地区、预计部署数量、平台接口要求等",
+    sceneOptions: ["水域监测", "工业过程监测", "结构安全监测", "整体解决方案", "其他"],
+    submit: "提交需求",
+    submitting: "正在提交...",
+    formDefault: "填写信息后，析微探物将尽快与您联系。",
+    formRequired: "请填写姓名、公司/单位和联系方式。",
+    formSuccess: "提交成功，析微探物将尽快与您联系。",
+    formFallback: "请完成提交，析微探物将尽快与您联系。",
+    formError: "提交失败，请稍后重试或直接联系析微探物。",
+    footer: "重庆析微探物科技有限公司 · 以非接触式高精度感知，守护水利安全、交通安全与工业安全。"
+  },
+  en: {
+    companyShort: "MicroDetect",
+    ctaSmall: "Get Proposal",
+    badges: ["Non-contact", "24/7 Online", "Full-stack R&D", "Domestic Alternative", "Turnkey Delivery"],
+    heroEyebrow: "MicroDetect · Millimeter Wave Radar",
+    heroTitle: "Millimeter-wave Radar Monitoring",
+    heroSubtitle: "Non-contact online monitoring for water, infrastructure, industrial process and structural safety.",
+    heroText: "Chongqing MicroDetect Technology delivers field sensing, data transmission and platform warnings through self-developed mmWave radar technology.",
+    primaryCta: "Get Industry Solution",
+    secondaryCta: "View Product Matrix",
+    painEyebrow: "Field Pain",
+    painTitle: "Complex sites need continuous sensing beyond manual inspection",
+    painText: "In water, dust, high-altitude and long-distance environments, data continuity determines warning quality.",
+    techTitle: "Millimeter-wave radar reduces uncertainty in harsh environments",
+    techText: "By transmitting electromagnetic waves and receiving target echoes, radar uses distance, velocity, Doppler and phase information to sense flow velocity, liquid/material level and subtle structural deformation without contact.",
+    liveTrend: "Continuous Multi-parameter Monitoring",
+    allDay: "24/7 Online",
+    compareHeads: ["Dimension", "mmWave Radar", "LiDAR", "Vision"],
+    compareRows: [
+      ["Sensing Method", "Distance / Velocity / Phase", "Optical ranging", "Image recognition"],
+      ["Environment", "Stronger in fog and dust", "Sensitive to light", "Lighting dependent"],
+      ["Small Change", "Millimeter-level recognition", "Distance focused", "Limited quantification"],
+      ["Maintenance", "Non-contact, low maintenance", "Lens cleaning", "Lighting and lens upkeep"],
+      ["Range", "Near, mid and long range", "Drops in harsh sites", "Better for short range"]
+    ],
+    productsTitle: "Three product lines for water, industrial and structural monitoring",
+    productsText: "Covering flow velocity, liquid level, material level, inventory level and structural deformation.",
+    fieldLabel: "Industries",
+    selectorTitle: "Match products by monitoring target",
+    selectorBadge: "Quick Selection",
+    conditionsTitle: "Confirm site conditions before selection",
+    waterTitle: "Non-contact flow, liquid level, material level and inventory monitoring",
+    waterText: "For hydrology, municipal drainage, irrigation, bridge culverts, industrial tanks, silos and bin metering.",
+    disclaimer: "Key specifications depend on product version, site conditions and technical agreement.",
+    structureTitle: "Long-range, non-contact, multi-point structural deformation monitoring",
+    structureText: "For highway bridges, urban viaducts, tunnels, dams, slopes, foundation pits and aging buildings.",
+    structureEffects: ["Continuous acquisition", "Long-term deformation curves", "Anomaly trend warning", "Cloud-based multi-project management"],
+    structureDisclaimer: "Engineering accuracy depends on installation, target reflection, calibration and acceptance agreement.",
+    architectureTitle: "An integrated loop from field sensing to platform warning",
+    architectureText: "Devices, communication, platform and alarms work together for long-term online operation and multi-site management.",
+    architectureSummary: "From single-point devices to industry-grade warning systems: sensing - transmission - analysis - warning.",
+    appsTitle: "Turnkey solutions for real operating sites",
+    appsText: "For flood warning, industrial metering, bridge maintenance and geohazard prevention.",
+    appLabels: ["Deployment", "Monitoring", "Recommended Product", "Delivery Package"],
+    valueTitle: "From data capture to proactive warning",
+    contactTitle: "Smarter monitoring, faster warning, more efficient management",
+    contactText: "Tell us your target, site conditions and platform requirements. MicroDetect will contact you shortly.",
+    contactBadges: ["Field Sensing", "Remote Transmission", "Platform Analytics", "Early Warning"],
+    formName: "Name",
+    formCompany: "Company / Organization",
+    formContact: "Phone or Email",
+    formScene: "Scenario",
+    formMessage: "Project Needs",
+    formPlaceholder: "Monitoring target, project location, expected quantity, platform interface requirements, etc.",
+    sceneOptions: ["Water Monitoring", "Industrial Process Monitoring", "Structural Safety Monitoring", "Integrated Solution", "Other"],
+    submit: "Submit Inquiry",
+    submitting: "Submitting...",
+    formDefault: "After submission, MicroDetect will contact you shortly.",
+    formRequired: "Please enter your name, organization and contact information.",
+    formSuccess: "Submitted successfully. MicroDetect will contact you shortly.",
+    formFallback: "Please complete the submission. MicroDetect will contact you shortly.",
+    formError: "Submission failed. Please try again later or contact MicroDetect directly.",
+    footer: "Chongqing MicroDetect Technology Co., Ltd. · Non-contact high-precision sensing for water, transport and industrial safety."
+  }
+};
+
 type ContactForm = {
   name: string;
   company: string;
@@ -236,7 +555,7 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-function RadarVisual() {
+function RadarVisual({ lang }: { lang: Lang }) {
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
@@ -272,7 +591,7 @@ function RadarVisual() {
       <div className="relative flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-slate-400">{currentSlide.eyebrow}</p>
-          <p className="mt-1 font-semibold text-white">{currentSlide.label}</p>
+          <p className="mt-1 font-semibold text-white">{currentSlide.label[lang]}</p>
         </div>
         <div className="flex items-center gap-3">
           <span className="rounded-full bg-cyan/10 px-3 py-1 font-mono text-sm font-semibold text-cyan">
@@ -283,7 +602,7 @@ function RadarVisual() {
               <button
                 key={slide.src}
                 type="button"
-                aria-label={`显示${slide.label}`}
+                aria-label={lang === "zh" ? `显示${slide.label.zh}` : `Show ${slide.label.en}`}
                 onClick={() => setActiveSlide(index)}
                 className={`h-2 rounded-full transition-all ${
                   activeSlide === index ? "w-7 bg-cyan" : "w-2 bg-cyan/25 hover:bg-cyan/45"
@@ -297,15 +616,15 @@ function RadarVisual() {
   );
 }
 
-function WaveCard() {
+function WaveCard({ title, status }: { title: string; status: string }) {
   return (
     <div className="hud-card rounded-3xl p-6">
       <div className="mb-5 flex items-center justify-between">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.24em] text-cyan">Live Trend</p>
-          <h3 className="mt-2 text-xl font-semibold">多参数连续监测</h3>
+          <h3 className="mt-2 text-xl font-semibold">{title}</h3>
         </div>
-        <span className="rounded-full bg-mint/10 px-3 py-1 text-sm text-mint">7x24 在线</span>
+        <span className="rounded-full bg-mint/10 px-3 py-1 text-sm text-mint">{status}</span>
       </div>
       <svg viewBox="0 0 480 170" className="h-40 w-full" role="img" aria-label="实时监测曲线">
         <defs>
@@ -332,6 +651,7 @@ function WaveCard() {
 }
 
 export default function Home() {
+  const [lang, setLang] = useState<Lang>("zh");
   const [industrialIndex, setIndustrialIndex] = useState(0);
   const [structureIndex, setStructureIndex] = useState(2);
   const [applicationIndex, setApplicationIndex] = useState(0);
@@ -339,20 +659,52 @@ export default function Home() {
     name: "",
     company: "",
     contact: "",
-    scene: "水域监测",
+    scene: copy.zh.sceneOptions[0],
     message: ""
   });
   const [formStatus, setFormStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const currentIndustrial = industrialProducts[industrialIndex];
-  const currentStructure = structureProducts[structureIndex];
-  const currentApplication = applications[applicationIndex];
+  useEffect(() => {
+    const urlLang = new URLSearchParams(window.location.search).get("lang");
+    if (urlLang === "en" || urlLang === "zh") {
+      setLang(urlLang);
+      setContactForm((current) => ({
+        ...current,
+        scene: copy[urlLang].sceneOptions[0]
+      }));
+    }
+  }, []);
 
-  const quickConditions = useMemo(
-    () => ["监测对象", "安装距离与视线", "目标反射条件", "复杂环境", "通信与供电", "平台对接"],
-    []
-  );
+  const t = copy[lang];
+  const navItems = navItemsByLang[lang];
+  const localizedPainPoints = lang === "zh" ? painPoints : painPointsEn;
+  const localizedProductLines = lang === "zh" ? productLines : productLinesEn;
+  const localizedSelectorItems = lang === "zh" ? selectorItems : selectorItemsEn;
+  const localizedIndustrialProducts = lang === "zh" ? industrialProducts : industrialProductsEn;
+  const localizedStructureProducts = lang === "zh" ? structureProducts : structureProductsEn;
+  const localizedArchitectureLayers = lang === "zh" ? architectureLayers : architectureLayersEn;
+  const localizedApplications = lang === "zh" ? applications : applicationsEn;
+  const localizedValues = lang === "zh" ? values : valuesEn;
+  const textWrapClass = lang === "zh" ? "cjk-wrap" : "";
+
+  const currentIndustrial = localizedIndustrialProducts[industrialIndex];
+  const currentStructure = localizedStructureProducts[structureIndex];
+  const currentApplication = localizedApplications[applicationIndex];
+
+  const quickConditions = useMemo(() => quickConditionsByLang[lang], [lang]);
+
+  function switchLanguage(nextLang: Lang) {
+    setLang(nextLang);
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", nextLang);
+    window.history.replaceState(null, "", url.toString());
+    setContactForm((current) => ({
+      ...current,
+      scene: copy[nextLang].sceneOptions[0]
+    }));
+    setFormStatus("");
+  }
 
   function updateContactForm(field: keyof ContactForm, value: string) {
     setContactForm((current) => ({ ...current, [field]: value }));
@@ -384,7 +736,7 @@ export default function Home() {
     event.preventDefault();
 
     if (!contactForm.name.trim() || !contactForm.company.trim() || !contactForm.contact.trim()) {
-      setFormStatus("请填写姓名、公司/单位和联系方式。");
+      setFormStatus(t.formRequired);
       return;
     }
 
@@ -402,21 +754,21 @@ export default function Home() {
       const result = (await response.json()) as { ok?: boolean; fallback?: boolean; message?: string };
 
       if (response.ok && result.ok) {
-        setFormStatus("提交成功，析微探物将尽快与您联系。");
-        setContactForm({ name: "", company: "", contact: "", scene: "水域监测", message: "" });
+        setFormStatus(t.formSuccess);
+        setContactForm({ name: "", company: "", contact: "", scene: t.sceneOptions[0], message: "" });
         return;
       }
 
       if (result.fallback) {
         window.location.href = createMailtoUrl(contactForm);
-        setFormStatus("请完成提交，析微探物将尽快与您联系。");
+        setFormStatus(t.formFallback);
         return;
       }
 
-      setFormStatus("提交失败，请稍后重试或直接联系析微探物。");
+      setFormStatus(t.formError);
     } catch {
       window.location.href = createMailtoUrl(contactForm);
-      setFormStatus("请完成提交，析微探物将尽快与您联系。");
+      setFormStatus(t.formFallback);
     } finally {
       setIsSubmitting(false);
     }
@@ -434,7 +786,7 @@ export default function Home() {
             <span className="relative h-10 w-24 overflow-hidden rounded-xl border border-cyan/15 bg-white shadow-sm">
               <Image src="/logo/md.jpg" alt="析微探物 Logo" fill sizes="96px" className="object-cover" priority />
             </span>
-            <span className="text-sm font-semibold text-white md:text-base">析微探物</span>
+            <span className="text-sm font-semibold text-white md:text-base">{t.companyShort}</span>
           </a>
           <div className="hidden items-center gap-7 md:flex">
             {navItems.map((item) => (
@@ -443,11 +795,25 @@ export default function Home() {
               </a>
             ))}
           </div>
+          <div className="ml-auto mr-3 flex rounded-full border border-cyan/20 bg-white/70 p-1 shadow-sm md:ml-0">
+            {(["zh", "en"] as const).map((item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => switchLanguage(item)}
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                  lang === item ? "bg-cyan text-white" : "text-cyan hover:bg-cyan/10"
+                }`}
+              >
+                {item === "zh" ? "中文" : "EN"}
+              </button>
+            ))}
+          </div>
           <a
             href="#contact"
             className="scan-glow hidden rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan transition hover:border-cyan hover:bg-cyan/15 sm:inline-block"
           >
-            获取方案
+            {t.ctaSmall}
           </a>
         </nav>
       </header>
@@ -456,48 +822,48 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="min-w-0">
             <div className="mb-6 flex max-w-[22rem] flex-wrap gap-3 sm:max-w-none">
-              {["非接触式监测", "7x24 小时在线", "全栈自研", "国产化替代", "多场景一体交付"].map((item) => (
+              {t.badges.map((item) => (
                 <Badge key={item}>{item}</Badge>
               ))}
             </div>
-            <p className="font-mono text-sm uppercase tracking-[0.28em] text-mint">析微探物 · Millimeter Wave Radar</p>
-            <h1 className="cjk-wrap mt-5 max-w-[21rem] text-[2.35rem] font-semibold leading-[1.12] text-white sm:max-w-4xl sm:text-5xl md:text-7xl">
-              毫米波雷达全域高精度监测系统
+            <p className="font-mono text-sm uppercase tracking-[0.28em] text-mint">{t.heroEyebrow}</p>
+            <h1 className={`${textWrapClass} mt-5 max-w-[21rem] text-[2.35rem] font-semibold leading-[1.12] text-white sm:max-w-4xl sm:text-5xl md:text-7xl`}>
+              {t.heroTitle}
             </h1>
-            <p className="cjk-wrap mt-6 max-w-[21rem] text-lg leading-8 text-slate-200 sm:max-w-2xl sm:text-xl sm:leading-9">
-              面向水利水文、交通基建、工业自动化与结构安全的非接触式在线监测方案。
+            <p className={`${textWrapClass} mt-6 max-w-[21rem] text-lg leading-8 text-slate-200 sm:max-w-2xl sm:text-xl sm:leading-9`}>
+              {t.heroSubtitle}
             </p>
-            <p className="cjk-wrap mt-5 max-w-[21rem] text-base leading-8 text-slate-400 sm:max-w-2xl">
-              重庆析微探物科技有限公司以自主毫米波感知技术，提供从现场采集到平台预警的一体化监测能力。
+            <p className={`${textWrapClass} mt-5 max-w-[21rem] text-base leading-8 text-slate-400 sm:max-w-2xl`}>
+              {t.heroText}
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <a
                 href="#contact"
                 className="scan-glow rounded-full bg-cyan px-7 py-4 text-center font-semibold text-ink shadow-glow transition hover:bg-mint"
               >
-                获取行业解决方案
+                {t.primaryCta}
               </a>
               <a
                 href="#products"
                 className="rounded-full border border-white/15 px-7 py-4 text-center font-semibold text-white transition hover:border-mint/60 hover:text-mint"
               >
-                查看产品矩阵
+                {t.secondaryCta}
               </a>
             </div>
           </div>
-          <RadarVisual />
+          <RadarVisual lang={lang} />
         </div>
       </section>
 
       <section className="relative z-10 px-5 py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Field Pain"
-            title="复杂现场，需要比人工巡检更连续的感知能力"
-            text="在涉水、粉尘、高空和远距离场景中，稳定的数据连续性决定预警质量。"
+            eyebrow={t.painEyebrow}
+            title={t.painTitle}
+            text={t.painText}
           />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {painPoints.map((point) => (
+            {localizedPainPoints.map((point) => (
               <article key={point.title} className="hud-card scan-glow rounded-3xl p-6">
                 <span className="rounded-full bg-amber/10 px-3 py-1 text-sm text-amber">{point.tag}</span>
                 <h3 className="mt-6 text-xl font-semibold text-white">{point.title}</h3>
@@ -514,25 +880,19 @@ export default function Home() {
           <div>
             <SectionHeading
               eyebrow="Technology"
-              title="用毫米波雷达，穿透复杂环境的不确定性"
-              text="主动发射电磁波并接收目标回波，利用距离、速度、多普勒和相位信息，实现对水面流速、液位/物位高度、结构微小形变等参数的非接触式感知。"
+              title={t.techTitle}
+              text={t.techText}
             />
-            <WaveCard />
+            <WaveCard title={t.liveTrend} status={t.allDay} />
           </div>
           <div className="hud-card rounded-3xl p-5 md:p-7">
             <div className="grid grid-cols-[1.2fr_1fr_1fr_1fr] gap-2 text-sm">
-              {["对比维度", "毫米波雷达", "激光雷达", "可见光视觉"].map((head) => (
+              {t.compareHeads.map((head) => (
                 <div key={head} className="rounded-2xl bg-white/5 p-3 font-semibold text-white">
                   {head}
                 </div>
               ))}
-              {[
-                ["探测方式", "距离/速度/相位", "光学测距", "图像识别"],
-                ["环境适应性", "雨雾粉尘更强", "受强光影响", "依赖光照"],
-                ["微小变化识别", "毫米级识别", "偏距离测量", "量化有限"],
-                ["长期运维", "非接触低维护", "镜头需清洁", "需补光维护"],
-                ["工程距离", "近中远覆盖", "复杂环境下降", "更适合近距"]
-              ].map((row) =>
+              {t.compareRows.map((row) =>
                 row.map((cell, index) => (
                   <div
                     key={`${row[0]}-${cell}`}
@@ -553,11 +913,11 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Product System"
-            title="三大产品线，覆盖水域、工业与结构安全监测"
-            text="覆盖流速、液位、物位、料位和结构形变等核心监测对象。"
+            title={t.productsTitle}
+            text={t.productsText}
           />
           <div className="grid gap-5 lg:grid-cols-3">
-            {productLines.map((line) => (
+            {localizedProductLines.map((line) => (
               <a key={line.title} href={line.href} className="hud-card scan-glow group rounded-3xl p-7 transition hover:-translate-y-1">
                 <p className="font-mono text-sm text-cyan">{line.series}</p>
                 <h3 className="mt-4 text-3xl font-semibold text-white">{line.title}</h3>
@@ -565,7 +925,7 @@ export default function Home() {
                   {line.models}
                 </p>
                 <p className="mt-5 leading-7 text-slate-300">{line.problem}</p>
-                <p className="mt-4 text-sm text-slate-500">适用领域：{line.customers}</p>
+                <p className="mt-4 text-sm text-slate-500">{t.fieldLabel}: {line.customers}</p>
               </a>
             ))}
           </div>
@@ -575,12 +935,12 @@ export default function Home() {
               <div className="mb-6 flex items-end justify-between gap-4">
                 <div>
                   <p className="font-mono text-sm uppercase tracking-[0.24em] text-cyan">Selector</p>
-                  <h3 className="mt-2 text-2xl font-semibold">根据监测对象，快速匹配产品方案</h3>
+                  <h3 className="mt-2 text-2xl font-semibold">{t.selectorTitle}</h3>
                 </div>
-                <span className="hidden rounded-full bg-white/5 px-4 py-2 text-sm text-slate-300 md:inline">快速选型</span>
+                <span className="hidden rounded-full bg-white/5 px-4 py-2 text-sm text-slate-300 md:inline">{t.selectorBadge}</span>
               </div>
               <div className="grid gap-3">
-                {selectorItems.map(([need, product], index) => (
+                {localizedSelectorItems.map(([need, product], index) => (
                   <div key={need} className="grid gap-3 rounded-2xl border border-white/10 bg-black/20 p-4 md:grid-cols-[2rem_1fr_0.9fr]">
                     <span className="font-mono text-cyan">{String(index + 1).padStart(2, "0")}</span>
                     <span className="text-slate-300">{need}</span>
@@ -590,7 +950,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hud-card rounded-3xl p-6 md:p-8">
-              <h3 className="text-2xl font-semibold">选型前确认现场条件</h3>
+              <h3 className="text-2xl font-semibold">{t.conditionsTitle}</h3>
               <div className="mt-6 grid gap-3">
                 {quickConditions.map((condition) => (
                   <div key={condition} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
@@ -608,8 +968,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Water & Industrial"
-            title="非接触式水流速、液位、物位与料位在线监测"
-            text="面向水利水文、市政排水、农业灌溉、公路桥涵、工业储罐、料仓与筒仓计量等场景。"
+            title={t.waterTitle}
+            text={t.waterText}
           />
           <div className="hud-card grid gap-8 rounded-[32px] p-5 md:p-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="rounded-3xl border border-white/10 bg-black/25 p-6">
@@ -626,7 +986,7 @@ export default function Home() {
             </div>
             <div>
               <div className="mb-6 flex flex-wrap gap-3">
-                {industrialProducts.map((product, index) => (
+                {localizedIndustrialProducts.map((product, index) => (
                   <button
                     key={product.name}
                     onClick={() => setIndustrialIndex(index)}
@@ -658,7 +1018,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="mt-6 rounded-2xl border border-amber/20 bg-amber/10 p-4 text-sm leading-6 text-amber">
-                关键指标以产品版本、现场工况和技术协议为准。
+                {t.disclaimer}
               </p>
             </div>
           </div>
@@ -669,11 +1029,11 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Structure Safety"
-            title="远距离、非接触、多点位结构形变监测"
-            text="面向公路桥梁、城市高架桥、隧道、水库大坝、山体边坡、建筑基坑和老旧病害建筑等长期在线监测场景。"
+            title={t.structureTitle}
+            text={t.structureText}
           />
           <div className="grid gap-5 lg:grid-cols-3">
-            {structureProducts.map((product, index) => (
+            {localizedStructureProducts.map((product, index) => (
               <button
                 key={product.name}
                 onClick={() => setStructureIndex(index)}
@@ -707,14 +1067,16 @@ export default function Home() {
               <h3 className="mt-3 text-4xl font-semibold">{currentStructure.title}</h3>
               <p className="mt-5 leading-8 text-slate-300">{currentStructure.intro}</p>
               <div className="mt-7 grid gap-3 md:grid-cols-2">
-                {["实时持续采集", "长期形变曲线", "异常趋势预警", "多项目云端管理"].map((item) => (
+                {t.structureEffects.map((item) => (
                   <div key={item} className="rounded-2xl border border-white/10 bg-black/20 p-4 text-slate-300">
                     {item}
                   </div>
                 ))}
               </div>
               <p className="mt-6 rounded-2xl border border-amber/20 bg-amber/10 p-4 text-sm leading-6 text-amber">
-                {currentStructure.capability}；工程测量精度以现场安装、目标反射条件、标定方案和验收协议为准。
+                {currentStructure.capability}
+                {lang === "zh" ? "；" : "; "}
+                {t.structureDisclaimer}
               </p>
             </div>
           </div>
@@ -725,11 +1087,11 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Solution Architecture"
-            title="从现场感知到平台预警的一体化闭环"
-            text="设备、通信、平台与告警联动，支撑长期在线运行和多站点统一管理。"
+            title={t.architectureTitle}
+            text={t.architectureText}
           />
           <div className="grid gap-5 md:grid-cols-4">
-            {architectureLayers.map(([layer, desc], index) => (
+            {localizedArchitectureLayers.map(([layer, desc], index) => (
               <div key={layer} className="hud-card relative rounded-3xl p-6">
                 <span className="font-mono text-sm text-cyan">0{index + 1}</span>
                 <h3 className="mt-4 text-2xl font-semibold">{layer}</h3>
@@ -741,7 +1103,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-8 rounded-[32px] border border-cyan/20 bg-cyan/10 p-6 text-center text-lg font-semibold text-cyan">
-            从单点监测设备到行业级智能预警系统，构建“感知 - 传输 - 分析 - 预警”的完整闭环。
+            {t.architectureSummary}
           </div>
         </div>
       </section>
@@ -750,12 +1112,12 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Applications"
-            title="面向真实现场的成套应用方案"
-            text="覆盖水利防汛、工业计量、桥梁养护和地灾预警等关键场景。"
+            title={t.appsTitle}
+            text={t.appsText}
           />
           <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
             <div className="grid gap-3">
-              {applications.map((app, index) => (
+              {localizedApplications.map((app, index) => (
                 <button
                   key={app.name}
                   onClick={() => setApplicationIndex(index)}
@@ -774,10 +1136,10 @@ export default function Home() {
               <h3 className="mt-3 text-3xl font-semibold">{currentApplication.name}</h3>
               <div className="mt-7 grid gap-4 md:grid-cols-2">
                 {[
-                  ["部署位置", currentApplication.deploy],
-                  ["监测内容", currentApplication.monitor],
-                  ["推荐产品", currentApplication.product],
-                  ["交付组合", currentApplication.delivery]
+                  [t.appLabels[0], currentApplication.deploy],
+                  [t.appLabels[1], currentApplication.monitor],
+                  [t.appLabels[2], currentApplication.product],
+                  [t.appLabels[3], currentApplication.delivery]
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-2xl border border-white/10 bg-black/20 p-5">
                     <p className="font-mono text-sm text-cyan">{label}</p>
@@ -794,10 +1156,10 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Customer Value"
-            title="从单点采集，到主动预警"
+            title={t.valueTitle}
           />
           <div className="grid gap-4 md:grid-cols-5">
-            {values.map(([title, text]) => (
+            {localizedValues.map(([title, text]) => (
               <div key={title} className="hud-card rounded-3xl p-6">
                 <h3 className="text-2xl font-semibold text-white">{title}</h3>
                 <p className="mt-4 text-sm leading-7 text-slate-400">{text}</p>
@@ -811,14 +1173,12 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-8 rounded-[36px] border border-cyan/20 bg-[linear-gradient(135deg,rgba(109,40,217,0.14),rgba(167,139,250,0.12),rgba(255,255,255,0.9))] p-6 shadow-glow md:p-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="self-center">
             <p className="font-mono text-sm uppercase tracking-[0.28em] text-cyan">Get Proposal</p>
-            <h2 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-6xl">
-              让监测更智能，让预警更及时，让管理更高效
-            </h2>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-6xl">{t.contactTitle}</h2>
             <p className="mt-6 leading-8 text-slate-300">
-              留下监测对象、现场环境和平台接口要求，析微探物将尽快与您联系。
+              {t.contactText}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["前端感知", "远程传输", "平台分析", "异常预警"].map((item) => (
+              {t.contactBadges.map((item) => (
                 <Badge key={item}>{item}</Badge>
               ))}
             </div>
@@ -826,7 +1186,7 @@ export default function Home() {
           <form className="hud-card rounded-3xl p-5 md:p-7" onSubmit={handleContactSubmit}>
             <div className="grid gap-4 md:grid-cols-2">
               <label className="grid gap-2 text-sm text-slate-300">
-                姓名
+                {t.formName}
                 <input
                   value={contactForm.name}
                   onChange={(event) => updateContactForm("name", event.target.value)}
@@ -834,7 +1194,7 @@ export default function Home() {
                 />
               </label>
               <label className="grid gap-2 text-sm text-slate-300">
-                公司/单位
+                {t.formCompany}
                 <input
                   value={contactForm.company}
                   onChange={(event) => updateContactForm("company", event.target.value)}
@@ -842,7 +1202,7 @@ export default function Home() {
                 />
               </label>
               <label className="grid gap-2 text-sm text-slate-300">
-                手机或邮箱
+                {t.formContact}
                 <input
                   value={contactForm.contact}
                   onChange={(event) => updateContactForm("contact", event.target.value)}
@@ -850,27 +1210,25 @@ export default function Home() {
                 />
               </label>
               <label className="grid gap-2 text-sm text-slate-300">
-                关注场景
+                {t.formScene}
                 <select
                   value={contactForm.scene}
                   onChange={(event) => updateContactForm("scene", event.target.value)}
                   className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-cyan"
                 >
-                  <option>水域监测</option>
-                  <option>工业过程监测</option>
-                  <option>结构安全监测</option>
-                  <option>整体解决方案</option>
-                  <option>其他</option>
+                  {t.sceneOptions.map((option) => (
+                    <option key={option}>{option}</option>
+                  ))}
                 </select>
               </label>
               <label className="grid gap-2 text-sm text-slate-300 md:col-span-2">
-                项目需求
+                {t.formMessage}
                 <textarea
                   rows={4}
                   value={contactForm.message}
                   onChange={(event) => updateContactForm("message", event.target.value)}
                   className="resize-none rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-cyan"
-                  placeholder="监测对象、项目地区、预计部署数量、平台接口要求等"
+                  placeholder={t.formPlaceholder}
                 />
               </label>
             </div>
@@ -879,18 +1237,18 @@ export default function Home() {
               disabled={isSubmitting}
               className="scan-glow mt-5 w-full rounded-full bg-mint px-6 py-4 font-semibold text-ink transition hover:bg-cyan disabled:cursor-wait disabled:opacity-70"
             >
-              {isSubmitting ? "正在提交..." : "提交需求"}
+              {isSubmitting ? t.submitting : t.submit}
             </button>
             <p className={`mt-4 text-center text-sm leading-6 ${formStatus ? "text-mint" : "text-slate-400"}`}>
-              {formStatus || "填写信息后，析微探物将尽快与您联系。"}
+              {formStatus || t.formDefault}
             </p>
           </form>
         </div>
       </section>
 
       <footer className="relative z-10 border-t border-white/10 px-5 py-10 text-center text-sm text-slate-500">
-        <p>重庆析微探物科技有限公司 · 以非接触式高精度感知，守护水利安全、交通安全与工业安全。</p>
-        <p className="mt-3">关键指标以产品版本、现场工况和技术协议为准。</p>
+        <p>{t.footer}</p>
+        <p className="mt-3">{t.disclaimer}</p>
       </footer>
     </main>
   );
