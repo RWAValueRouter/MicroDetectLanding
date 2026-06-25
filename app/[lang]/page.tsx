@@ -17,6 +17,49 @@ function isSupportedLang(lang: string): lang is Lang {
   return supportedLangs.includes(lang as Lang);
 }
 
+const reloadAfterBrowserBackScript = `
+(function () {
+  var reloadKey = "microdetect:landing-back-reloaded";
+  var navigation;
+
+  try {
+    navigation = window.performance && window.performance.getEntriesByType
+      ? window.performance.getEntriesByType("navigation")[0]
+      : null;
+  } catch (error) {
+    navigation = null;
+  }
+
+  if (!navigation || navigation.type !== "back_forward") {
+    try {
+      window.sessionStorage.removeItem(reloadKey);
+    } catch (error) {}
+  }
+
+  function reloadOnceAfterBack() {
+    try {
+      if (window.sessionStorage.getItem(reloadKey) === "1") {
+        return;
+      }
+
+      window.sessionStorage.setItem(reloadKey, "1");
+    } catch (error) {}
+
+    window.location.reload();
+  }
+
+  if (navigation && navigation.type === "back_forward") {
+    reloadOnceAfterBack();
+  }
+
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+      reloadOnceAfterBack();
+    }
+  });
+})();
+`;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
 
@@ -36,6 +79,7 @@ export default async function LocalizedPage({ params }: PageProps) {
 
   return (
     <>
+      <script dangerouslySetInnerHTML={{ __html: reloadAfterBrowserBackScript }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

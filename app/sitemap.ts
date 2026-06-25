@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllInsights } from "../lib/insights";
+import { getSeoPagePath, seoPages } from "../lib/seo-pages";
 import { absoluteUrl, localizedAlternates, localizedPath, supportedLangs } from "./seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -19,6 +20,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const insights = await getAllInsights();
+  const seoDetailPages: MetadataRoute.Sitemap = seoPages.flatMap((page) => [
+    {
+      url: absoluteUrl(getSeoPagePath(page, "zh")),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: page.kind === "products" ? 0.85 : 0.8,
+      alternates: {
+        languages: {
+          "zh-CN": absoluteUrl(getSeoPagePath(page, "zh")),
+          en: absoluteUrl(getSeoPagePath(page, "en")),
+          "x-default": absoluteUrl(getSeoPagePath(page, "zh"))
+        }
+      }
+    },
+    {
+      url: absoluteUrl(getSeoPagePath(page, "en")),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: page.kind === "products" ? 0.8 : 0.75,
+      alternates: {
+        languages: {
+          "zh-CN": absoluteUrl(getSeoPagePath(page, "zh")),
+          en: absoluteUrl(getSeoPagePath(page, "en")),
+          "x-default": absoluteUrl(getSeoPagePath(page, "zh"))
+        }
+      }
+    }
+  ]);
+
   const insightPages: MetadataRoute.Sitemap = [
     {
       url: absoluteUrl("/insights"),
@@ -34,5 +64,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   ];
 
-  return [...localizedPages, ...insightPages];
+  return [...localizedPages, ...seoDetailPages, ...insightPages];
 }

@@ -73,7 +73,7 @@ const productLines = [
     models: "AR-FV100",
     problem: "河道、渠道、排水渠、桥涵断面水流速在线监测",
     customers: "水利、水务、防汛、灌区、交通水文",
-    href: "#water-industrial"
+    href: "/zh/products/radar-flow-meter"
   },
   {
     title: "工业过程监测",
@@ -81,7 +81,7 @@ const productLines = [
     models: "AR-LS100 / AR-LS200 / AR-LS300 / AR-SL300",
     problem: "储罐、清水池、料仓、筒仓液位/物位/料位监测",
     customers: "化工、煤炭、水泥、电力、钢铁",
-    href: "#water-industrial"
+    href: "/zh/products/radar-level-meter"
   },
   {
     title: "结构安全监测",
@@ -89,7 +89,7 @@ const productLines = [
     models: "SR-I100 / SR-M200 / SR-P300",
     problem: "桥梁、大坝、边坡、隧道、基坑形变与位移监测",
     customers: "交通、水利、城建、地灾防控、基础设施运维",
-    href: "#structure"
+    href: "/zh/solutions/bridge-monitoring"
   }
 ];
 
@@ -245,7 +245,7 @@ const productLinesEn = [
     models: "AR-FV100",
     problem: "Online flow velocity monitoring for rivers, canals, drainage channels and bridge culverts",
     customers: "Water resources, utilities, flood control, irrigation districts, transport hydrology",
-    href: "#water-industrial"
+    href: "/en/products/radar-flow-meter"
   },
   {
     title: "Industrial Process Monitoring",
@@ -253,7 +253,7 @@ const productLinesEn = [
     models: "AR-LS100 / AR-LS200 / AR-LS300 / AR-SL300",
     problem: "Liquid level, material level and inventory monitoring for tanks, reservoirs, silos and bins",
     customers: "Chemical, coal, cement, power, steel and process industries",
-    href: "#water-industrial"
+    href: "/en/products/radar-level-meter"
   },
   {
     title: "Structural Safety Monitoring",
@@ -261,7 +261,7 @@ const productLinesEn = [
     models: "SR-I100 / SR-M200 / SR-P300",
     problem: "Displacement and deformation monitoring for bridges, dams, slopes, tunnels and foundation pits",
     customers: "Transport, water infrastructure, urban assets, geohazard prevention, infrastructure O&M",
-    href: "#structure"
+    href: "/en/solutions/bridge-monitoring"
   }
 ];
 
@@ -378,6 +378,21 @@ const applicationsEn = [
     delivery: "Long-range structural radar + solar power + 4G/5G communication + warning platform + on-site alarm"
   }
 ];
+
+const applicationDetailPathsByLang: Record<Lang, string[]> = {
+  zh: [
+    "/zh/solutions/flood-warning",
+    "/zh/solutions/industrial-level-monitoring",
+    "/zh/solutions/bridge-monitoring",
+    "/zh/solutions/dam-slope-monitoring"
+  ],
+  en: [
+    "/en/solutions/flood-warning",
+    "/en/solutions/industrial-level-monitoring",
+    "/en/solutions/bridge-monitoring",
+    "/en/solutions/dam-slope-monitoring"
+  ]
+};
 
 const valuesEn = [
   ["Lower Cost", "Reduce manual inspection and site maintenance in high-risk environments."],
@@ -682,6 +697,7 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
   const currentIndustrial = localizedIndustrialProducts[industrialIndex];
   const currentStructure = localizedStructureProducts[structureIndex];
   const currentApplication = localizedApplications[applicationIndex];
+  const currentApplicationDetailPath = applicationDetailPathsByLang[lang][applicationIndex];
 
   const quickConditions = useMemo(() => quickConditionsByLang[lang], [lang]);
 
@@ -904,7 +920,11 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
           />
           <div className="grid gap-5 lg:grid-cols-3">
             {localizedProductLines.map((line) => (
-              <a key={line.title} href={line.href} className="hud-card scan-glow group rounded-3xl p-7 transition hover:-translate-y-1">
+              <a
+                key={line.title}
+                href={line.href}
+                className="hud-card scan-glow group rounded-3xl p-7 transition hover:-translate-y-1"
+              >
                 <p className="font-mono text-sm text-cyan">{line.series}</p>
                 <h3 className="mt-4 text-3xl font-semibold text-white">{line.title}</h3>
                 <p className="mt-5 rounded-2xl border border-mint/20 bg-mint/10 p-4 font-mono text-sm text-mint">
@@ -1105,6 +1125,7 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
             <div className="grid gap-3">
               {localizedApplications.map((app, index) => (
                 <button
+                  type="button"
                   key={app.name}
                   onClick={() => setApplicationIndex(index)}
                   className={`rounded-2xl border p-4 text-left transition ${
@@ -1117,9 +1138,19 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
                 </button>
               ))}
             </div>
-            <div className="hud-card rounded-[32px] p-6 md:p-8">
+            <a
+              key={`${lang}-${applicationIndex}`}
+              href={currentApplicationDetailPath}
+              className="hud-card group block rounded-[32px] p-6 transition hover:-translate-y-1 hover:border-cyan/45 md:p-8"
+              aria-label={lang === "zh" ? `查看${currentApplication.name}详情` : `View ${currentApplication.name} details`}
+            >
               <p className="font-mono text-sm uppercase tracking-[0.24em] text-mint">Scenario</p>
-              <h3 className="mt-3 text-3xl font-semibold">{currentApplication.name}</h3>
+              <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <h3 className="text-3xl font-semibold">{currentApplication.name}</h3>
+                <span className="text-sm font-semibold text-cyan opacity-80 transition group-hover:opacity-100">
+                  {lang === "zh" ? "查看方案" : "View solution"}
+                </span>
+              </div>
               <div className="mt-7 grid gap-4 md:grid-cols-2">
                 {[
                   [t.appLabels[0], currentApplication.deploy],
@@ -1133,7 +1164,7 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
                   </div>
                 ))}
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
