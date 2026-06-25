@@ -3,3 +3,5 @@ node_modules
 .env*.local
 .DS_Store
 landing_*_check*.png
+insight*_desktop_check.png
+insights_desktop_check.png

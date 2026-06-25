@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next";
+import { getAllInsights } from "../lib/insights";
 import { absoluteUrl, localizedAlternates, localizedPath, supportedLangs } from "./seo";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
   const alternates = localizedAlternates();
 
-  return supportedLangs.map((lang) => ({
+  const localizedPages = supportedLangs.map((lang) => ({
     url: absoluteUrl(localizedPath(lang)),
     lastModified,
-    changeFrequency: "weekly",
+    changeFrequency: "weekly" as const,
     priority: lang === "zh" ? 1 : 0.9,
     alternates: {
       languages: Object.fromEntries(
@@ -16,4 +17,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       )
     }
   }));
+
+  const insights = await getAllInsights();
+  const insightPages: MetadataRoute.Sitemap = [
+    {
+      url: absoluteUrl("/insights"),
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.8
+    },
+    ...insights.map((insight) => ({
+      url: absoluteUrl(`/insights/${insight.slug}`),
+      lastModified: new Date(insight.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.7
+    }))
+  ];
+
+  return [...localizedPages, ...insightPages];
 }

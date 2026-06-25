@@ -4,7 +4,7 @@ export type Lang = "zh" | "en";
 
 export const supportedLangs: Lang[] = ["zh", "en"];
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.microdetect.xyz").replace(/\/$/, "");
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://microdetect.xyz").replace(/\/$/, "");
 
 export const defaultLang: Lang = "zh";
 

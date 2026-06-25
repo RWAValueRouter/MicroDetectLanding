@@ -11,6 +11,7 @@ const navItemsByLang: Record<Lang, Array<{ label: string; href: string }>> = {
   { label: "产品矩阵", href: "#products" },
   { label: "解决方案", href: "#architecture" },
   { label: "应用场景", href: "#applications" },
+  { label: "行业洞察", href: "/insights" },
   { label: "联系咨询", href: "#contact" }
   ],
   en: [
@@ -18,6 +19,7 @@ const navItemsByLang: Record<Lang, Array<{ label: string; href: string }>> = {
     { label: "Products", href: "#products" },
     { label: "Solutions", href: "#architecture" },
     { label: "Applications", href: "#applications" },
+    { label: "Insights", href: "/insights" },
     { label: "Contact", href: "#contact" }
   ]
 };
