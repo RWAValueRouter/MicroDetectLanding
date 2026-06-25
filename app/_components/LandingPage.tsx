@@ -650,8 +650,8 @@ function WaveCard({ title, status }: { title: string; status: string }) {
   );
 }
 
-export default function Home() {
-  const [lang, setLang] = useState<Lang>("zh");
+export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang }) {
+  const [lang, setLang] = useState<Lang>(initialLang);
   const [industrialIndex, setIndustrialIndex] = useState(0);
   const [structureIndex, setStructureIndex] = useState(2);
   const [applicationIndex, setApplicationIndex] = useState(0);
@@ -659,22 +659,11 @@ export default function Home() {
     name: "",
     company: "",
     contact: "",
-    scene: copy.zh.sceneOptions[0],
+    scene: copy[initialLang].sceneOptions[0],
     message: ""
   });
   const [formStatus, setFormStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    const urlLang = new URLSearchParams(window.location.search).get("lang");
-    if (urlLang === "en" || urlLang === "zh") {
-      setLang(urlLang);
-      setContactForm((current) => ({
-        ...current,
-        scene: copy[urlLang].sceneOptions[0]
-      }));
-    }
-  }, []);
 
   const t = copy[lang];
   const navItems = navItemsByLang[lang];
@@ -695,15 +684,10 @@ export default function Home() {
   const quickConditions = useMemo(() => quickConditionsByLang[lang], [lang]);
 
   function switchLanguage(nextLang: Lang) {
-    setLang(nextLang);
     const url = new URL(window.location.href);
-    url.searchParams.set("lang", nextLang);
-    window.history.replaceState(null, "", url.toString());
-    setContactForm((current) => ({
-      ...current,
-      scene: copy[nextLang].sceneOptions[0]
-    }));
-    setFormStatus("");
+    url.pathname = `/${nextLang}`;
+    url.search = "";
+    window.location.href = url.toString();
   }
 
   function updateContactForm(field: keyof ContactForm, value: string) {
