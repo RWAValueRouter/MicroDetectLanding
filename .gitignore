@@ -1,5 +1,6 @@
 node_modules
 .next
+.pnpm-store
 .env*.local
 .DS_Store
 landing_*_check*.png
