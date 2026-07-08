@@ -257,5 +257,9 @@
       "enTitle": "Building from a single sensor to a complete online monitoring system",
       "status": "pending"
     }
-  ]
+  ],
+  "coverImageRequired": true,
+  "coverImageDirectory": "public/insights",
+  "coverImageMetaField": "coverImage",
+  "coverImageWorkflow": "For every newly generated MDX article, create a matching PNG cover image in public/insights and add coverImage: \"/insights/<image-name>.png\" to the exported meta object."
 }
