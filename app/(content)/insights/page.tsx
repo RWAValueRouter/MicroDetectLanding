@@ -51,7 +51,8 @@ export default async function InsightsPage() {
       headline: insight.title,
       description: insight.description,
       datePublished: insight.date,
-      url: absoluteUrl(`/insights/${insight.slug}`)
+      url: absoluteUrl(`/insights/${insight.slug}`),
+      image: absoluteUrl(insight.coverImage)
     }))
   };
 
@@ -108,8 +109,18 @@ export default async function InsightsPage() {
       </section>
 
       <section className="relative z-10 mx-auto mt-14 grid max-w-7xl gap-5 md:grid-cols-2">
-        {insights.map((insight) => (
+        {insights.map((insight, index) => (
           <article key={insight.slug} className="hud-card scan-glow rounded-[28px] p-6 transition hover:-translate-y-1">
+            <div className="relative mb-6 aspect-[16/9] overflow-hidden rounded-3xl border border-cyan/15 bg-white">
+              <Image
+                src={insight.coverImage}
+                alt={insight.title}
+                fill
+                priority={index === 0}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
             <div className="flex flex-wrap items-center gap-3 text-sm">
               <span className="rounded-full bg-cyan/10 px-3 py-1 font-medium text-cyan">{insight.category}</span>
               <time className="text-slate-500" dateTime={insight.date}>

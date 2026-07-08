@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         tags: insight.meta.tags,
         images: [
           {
-            url: "/hero/monitoring-bridges.png",
+            url: insight.meta.coverImage,
             width: 1672,
             height: 941,
             alt: insight.meta.title
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         card: "summary_large_image",
         title: insight.meta.title,
         description: insight.meta.description,
-        images: ["/hero/monitoring-bridges.png"]
+        images: [insight.meta.coverImage]
       }
     };
   } catch {
@@ -92,7 +92,7 @@ export default async function InsightArticlePage({ params }: PageProps) {
     },
     mainEntityOfPage: articleUrl,
     url: articleUrl,
-    image: absoluteUrl("/hero/monitoring-bridges.png"),
+    image: absoluteUrl(meta.coverImage),
     inLanguage: "zh-CN"
   };
 
@@ -152,7 +152,7 @@ export default async function InsightArticlePage({ params }: PageProps) {
         </div>
         <div className="mt-10 overflow-hidden rounded-[32px] border border-cyan/15">
           <Image
-            src="/hero/monitoring-bridges.png"
+            src={meta.coverImage}
             alt={meta.title}
             width={1672}
             height={941}

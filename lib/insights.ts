@@ -5,6 +5,7 @@ import type { ComponentType } from "react";
 export type InsightMeta = {
   title: string;
   description: string;
+  coverImage: string;
   date: string;
   category: string;
   tags: string[];
