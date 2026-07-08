@@ -1,0 +1,261 @@
+{
+  "program": "MicroDetectLanding bilingual insights article plan",
+  "repo": "https://github.com/RWAValueRouter/MicroDetectLanding.git",
+  "targetTotalMdxFiles": 36,
+  "weeklyBatchSize": 2,
+  "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
+  "contentDirectory": "content/insights",
+  "updatedAt": "2026-07-08",
+  "completedFiles": [
+    {
+      "topicId": 1,
+      "language": "zh-CN",
+      "file": "mmwave-radar-non-contact-monitoring.mdx",
+      "title": "毫米波雷达为什么适合复杂现场的非接触式在线监测",
+      "completedAt": "2026-06-24"
+    },
+    {
+      "topicId": 2,
+      "language": "zh-CN",
+      "file": "ar-fv100-radar-flow-velocity-meter.mdx",
+      "title": "AR-FV100 毫米波雷达水流速计：非接触式水面流速在线监测方案",
+      "completedAt": "2026-06-24"
+    },
+    {
+      "topicId": 3,
+      "language": "zh-CN",
+      "file": "mmwave-radar-integrated-online-monitoring-system.mdx",
+      "title": "毫米波雷达全域高精度监测系统：从前端感知到平台预警",
+      "completedAt": "2026-06-25"
+    },
+    {
+      "topicId": 4,
+      "language": "zh-CN",
+      "file": "does-radar-flow-velocity-meter-need-contact-water-surface.mdx",
+      "title": "雷达水流速计需要接触水面吗？非接触式流速监测说明",
+      "completedAt": "2026-07-08"
+    }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "zhTitle": "毫米波雷达为什么适合复杂现场的非接触式在线监测",
+      "enTitle": "Why millimeter-wave radar is suitable for non-contact monitoring in complex field environments",
+      "status": "partial",
+      "notes": "Chinese file exists; English counterpart not created yet. Treat as completed for forward-only weekly scheduling unless explicitly backfilling English articles."
+    },
+    {
+      "id": 2,
+      "zhTitle": "AR-FV100 毫米波雷达水流速计非接触式水面流速在线监测方案",
+      "enTitle": "AR-FV100 millimeter-wave radar flow velocity meter for non-contact surface velocity monitoring",
+      "status": "partial",
+      "notes": "Chinese file exists; English counterpart not created yet. Treat as completed for forward-only weekly scheduling unless explicitly backfilling English articles."
+    },
+    {
+      "id": 3,
+      "zhTitle": "毫米波雷达全域高精度监测系统从前端感知到平台预警",
+      "enTitle": "Full-domain millimeter-wave radar monitoring systems from sensing to platform alerts",
+      "status": "partial",
+      "notes": "Chinese file exists; English counterpart not created yet. Treat as completed for forward-only weekly scheduling unless explicitly backfilling English articles."
+    },
+    {
+      "id": 4,
+      "zhTitle": "雷达水流速计需要接触水面吗",
+      "enTitle": "Does a radar flow velocity meter need to contact the water surface",
+      "status": "partial",
+      "notes": "Chinese file exists; English counterpart not created yet. Treat as completed for forward-only weekly scheduling unless explicitly backfilling English articles."
+    },
+    {
+      "id": 5,
+      "zhTitle": "毫米波雷达可以在雨天使用吗",
+      "enTitle": "Can millimeter-wave radar be used in rainy conditions",
+      "status": "pending"
+    },
+    {
+      "id": 6,
+      "zhTitle": "毫米波雷达能测泥沙水流吗",
+      "enTitle": "Can millimeter-wave radar measure sediment-laden flow",
+      "status": "pending"
+    },
+    {
+      "id": 7,
+      "zhTitle": "雷达液位计能测粉料吗",
+      "enTitle": "Can radar level meters measure powders and bulk solids",
+      "status": "pending"
+    },
+    {
+      "id": 8,
+      "zhTitle": "雷达物位计会受粉尘影响吗",
+      "enTitle": "Does dust affect radar level measurement in silos and warehouses",
+      "status": "pending"
+    },
+    {
+      "id": 9,
+      "zhTitle": "HART 协议在工业液位计中的作用",
+      "enTitle": "The role of HART protocol in industrial radar level meters",
+      "status": "pending"
+    },
+    {
+      "id": 10,
+      "zhTitle": "IP67 和 IP68 防护等级有什么区别",
+      "enTitle": "IP67 vs IP68 protection ratings for outdoor radar monitoring devices",
+      "status": "pending"
+    },
+    {
+      "id": 11,
+      "zhTitle": "防爆雷达液位计选型需要注意什么",
+      "enTitle": "How to select explosion-proof radar level meters",
+      "status": "pending"
+    },
+    {
+      "id": 12,
+      "zhTitle": "结构监测雷达能测桥梁挠度吗",
+      "enTitle": "Can structural monitoring radar measure bridge deflection",
+      "status": "pending"
+    },
+    {
+      "id": 13,
+      "zhTitle": "边坡位移监测雷达需要安装反射板吗",
+      "enTitle": "Does slope displacement radar require reflectors",
+      "status": "pending"
+    },
+    {
+      "id": 14,
+      "zhTitle": "太阳能供电能否支持长期无人值守雷达监测",
+      "enTitle": "Can solar power support long-term unattended radar monitoring stations",
+      "status": "pending"
+    },
+    {
+      "id": 15,
+      "zhTitle": "雷达监测数据如何接入云平台",
+      "enTitle": "How radar monitoring data connects to cloud platforms",
+      "status": "pending"
+    },
+    {
+      "id": 16,
+      "zhTitle": "河道流速和水位为什么要联合监测",
+      "enTitle": "Why river velocity and water level should be monitored together",
+      "status": "pending"
+    },
+    {
+      "id": 17,
+      "zhTitle": "城市排水监测如何选择非接触式雷达设备",
+      "enTitle": "Choosing non-contact radar devices for urban drainage monitoring",
+      "status": "pending"
+    },
+    {
+      "id": 18,
+      "zhTitle": "山洪预警项目中雷达水流速计如何部署",
+      "enTitle": "Deploying radar flow velocity meters for flash flood warning projects",
+      "status": "pending"
+    },
+    {
+      "id": 19,
+      "zhTitle": "灌溉渠道流量计量为什么需要在线流速监测",
+      "enTitle": "Why irrigation canal flow metering needs online velocity monitoring",
+      "status": "pending"
+    },
+    {
+      "id": 20,
+      "zhTitle": "桥涵水文监测中雷达流速计的安装要点",
+      "enTitle": "Installation points for radar velocity meters in bridge and culvert hydrology",
+      "status": "pending"
+    },
+    {
+      "id": 21,
+      "zhTitle": "工业储罐液位监测为什么选择雷达液位计",
+      "enTitle": "Why choose radar level meters for industrial tank level monitoring",
+      "status": "pending"
+    },
+    {
+      "id": 22,
+      "zhTitle": "化工储罐雷达液位计如何考虑防腐与防爆",
+      "enTitle": "Corrosion and explosion-proof considerations for radar level meters in chemical tanks",
+      "status": "pending"
+    },
+    {
+      "id": 23,
+      "zhTitle": "料仓和筒仓物位监测的雷达方案",
+      "enTitle": "Radar solutions for silo and bin level monitoring",
+      "status": "pending"
+    },
+    {
+      "id": 24,
+      "zhTitle": "雷达物位计与超声波物位计有什么区别",
+      "enTitle": "Radar level meters vs ultrasonic level meters",
+      "status": "pending"
+    },
+    {
+      "id": 25,
+      "zhTitle": "4-20mA、RS485、Modbus 在雷达监测中的区别",
+      "enTitle": "4-20mA, RS485, and Modbus in radar monitoring systems",
+      "status": "pending"
+    },
+    {
+      "id": 26,
+      "zhTitle": "雷达监测设备如何进行现场安装验收",
+      "enTitle": "Field installation acceptance checklist for radar monitoring devices",
+      "status": "pending"
+    },
+    {
+      "id": 27,
+      "zhTitle": "长期无人值守监测站如何降低维护成本",
+      "enTitle": "Reducing maintenance cost for long-term unattended monitoring stations",
+      "status": "pending"
+    },
+    {
+      "id": 28,
+      "zhTitle": "雷达监测系统如何设置阈值预警",
+      "enTitle": "How to configure threshold alerts in radar monitoring systems",
+      "status": "pending"
+    },
+    {
+      "id": 29,
+      "zhTitle": "多站点水文监测平台需要哪些数据能力",
+      "enTitle": "Data capabilities needed for multi-site hydrological monitoring platforms",
+      "status": "pending"
+    },
+    {
+      "id": 30,
+      "zhTitle": "雷达结构监测适用于哪些基础设施场景",
+      "enTitle": "Infrastructure scenarios suitable for radar structural monitoring",
+      "status": "pending"
+    },
+    {
+      "id": 31,
+      "zhTitle": "大坝和边坡监测为什么需要位移趋势数据",
+      "enTitle": "Why dam and slope monitoring needs displacement trend data",
+      "status": "pending"
+    },
+    {
+      "id": 32,
+      "zhTitle": "隧道和基坑变形监测中的非接触式雷达价值",
+      "enTitle": "Value of non-contact radar in tunnel and foundation pit deformation monitoring",
+      "status": "pending"
+    },
+    {
+      "id": 33,
+      "zhTitle": "复杂现场雷达设备选型前需要确认哪些条件",
+      "enTitle": "Site conditions to confirm before selecting radar devices for complex environments",
+      "status": "pending"
+    },
+    {
+      "id": 34,
+      "zhTitle": "雷达监测项目如何规划供电、通信和平台",
+      "enTitle": "Planning power, communication, and platform integration for radar monitoring projects",
+      "status": "pending"
+    },
+    {
+      "id": 35,
+      "zhTitle": "雷达水流速计、水位计和雨量计如何组合应用",
+      "enTitle": "Combining radar velocity meters, level meters, and rain gauges",
+      "status": "pending"
+    },
+    {
+      "id": 36,
+      "zhTitle": "从单台传感器到在线监测系统的建设路径",
+      "enTitle": "Building from a single sensor to a complete online monitoring system",
+      "status": "pending"
+    }
+  ]
+}
