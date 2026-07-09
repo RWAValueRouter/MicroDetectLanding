@@ -1,0 +1,132 @@
+export const meta = {
+  title: "Can Millimeter-Wave Radar Be Used in Rainy Conditions? Practical Guidance for Water Monitoring",
+  description:
+    "Can millimeter-wave radar work in rain for river velocity, water level, drainage, and flood warning projects? This guide explains rain effects, installation requirements, and selection points.",
+  coverImage: "/insights/en-can-mmwave-radar-be-used-in-rainy-conditions.png",
+  date: "2026-07-09",
+  category: "FAQ",
+  tags: ["millimeter-wave radar", "rainy conditions", "radar flow velocity meter", "hydrological monitoring", "drainage monitoring", "flood warning"],
+  readingTime: "About 8 min read",
+};
+
+# Can Millimeter-Wave Radar Be Used in Rainy Conditions? Practical Guidance for Water Monitoring
+
+Rain is not an edge case for hydrological monitoring. In river channels, drainage networks, flash-flood valleys, irrigation canals, and reservoir discharge points, the most important measurements are often needed during rainfall. That is why project teams often ask a practical question before selecting sensors: **can millimeter-wave radar be used in rainy conditions?**
+
+In most outdoor monitoring applications, the answer is yes. Millimeter-wave radar can be used in rain when the device is properly selected, installed, protected, and integrated into a monitoring system. Radar velocity meters and radar level sensors are typically mounted above the water surface on a bridge, pole, bracket, gantry, or channel wall. They do not need to be immersed in the water, which makes them suitable for flood events and other conditions where manual contact measurement is unsafe or impractical.
+
+However, “usable in rain” does not mean rain has no effect. Heavy rainfall, wind, waves, floating debris, turbulent surface patterns, and unstable mounting structures can all influence signal quality and data interpretation. A reliable project treats rain performance as an engineering problem: choose the right measurement point, keep the radar view clear, protect power and communication, and validate data with water level, rainfall, and site context.
+
+## Why radar is useful during rainfall
+
+Millimeter-wave radar is a non-contact sensing method. A radar flow velocity meter estimates surface velocity from the Doppler shift of the returned signal. A radar level sensor measures distance to the water surface and converts it into level. In both cases, the instrument can remain above the channel or river, reducing exposure to sediment, weeds, corrosive water, floating objects, and impact forces.
+
+That non-contact configuration is especially valuable in rainy or flood-prone scenarios:
+
+- flash-flood warning sections in mountainous valleys;
+- urban drainage channels, culverts, pump-station forebays, and outfalls;
+- medium and small river monitoring sites near bridges;
+- irrigation canals and open-channel water distribution projects;
+- reservoir spillways, gates, and flood-discharge structures;
+- unattended stations that combine velocity, level, rainfall, video, and cloud alerts.
+
+The sensor does not need a technician to enter the water during a storm. It can continue collecting data while the site is unsafe for manual inspection, provided the installation and supporting systems are designed for outdoor service.
+
+## How rain can affect radar measurements
+
+Rain affects a monitoring site in several ways. Some effects are related to the radar signal path; others are caused by changes in the water surface or by mechanical and electrical conditions around the sensor.
+
+| Rain-related factor | Possible effect | Practical response |
+| --- | --- | --- |
+| Light to moderate rain | Measurements usually remain usable | Monitor data continuity and trends |
+| Heavy rain or storm cells | Surface texture, splashing, waves, and turbulence increase | Compare velocity with level, rainfall, and historical behavior |
+| Wind with rain | Brackets may vibrate; water surface may become rougher | Use rigid mounting and avoid long unsupported arms |
+| Floating debris or foam | Short-term abnormal returns may occur | Aim at a representative flow area and apply filtering rules |
+| Rising water level | The radar-to-water distance and measurement footprint change | Confirm the full high-to-low water range during design |
+| Wet connectors or poor cable sealing | Communication failures or intermittent power issues | Use suitable enclosure, glands, grounding, and surge protection |
+
+For a radar velocity meter, rain droplets and storm runoff can make the water surface more complex. During heavy flood flow, the target area may include waves, foam, debris, or local backflow. The result is not necessarily a complete loss of measurement, but the data may require quality checks and outlier handling.
+
+## Installation matters more than the brochure claim
+
+A device may be rated for outdoor use, but poor installation can still create poor data. Rainy-condition performance depends heavily on where and how the radar is mounted.
+
+### Aim at a representative water surface
+
+The radar beam should point to a stable, visible, and hydraulically meaningful area. Avoid bank-side dead water, bridge-pier eddies, gate turbulence, sharp bends, and locations where floating debris accumulates. In a channel or river cross section, choose a point that represents the main flow as closely as possible.
+
+### Keep the radar view clear
+
+Railings, bridge beams, cables, trees, temporary construction items, and other sensors can obstruct the radar footprint. A site that looks clear at low water may become problematic during a storm when water level rises or debris collects. Check the radar view across the expected operating water range.
+
+### Use a rigid mounting structure
+
+Wind and rain often occur together. If a pole, bracket, or horizontal arm moves, the radar angle changes and the measurement may drift. Use a strong bracket, stable foundation, reliable fasteners, and proper cable routing. For unattended stations, mechanical stability is just as important as the sensor specification.
+
+### Integrate level and rainfall data
+
+Velocity during a rain event is best interpreted together with water level and rainfall intensity. For flood warning or drainage operation, the recommended architecture is not a single sensor in isolation. It is a system: radar velocity, radar level, rain gauge, site geometry, power, communication, and a platform that can evaluate thresholds and trends.
+
+## What to check when selecting a radar flow velocity meter for rain
+
+For devices such as the AR-FV100 millimeter-wave radar flow velocity meter, project teams should check whether the site conditions match the measurement range, installation height, output requirements, and protection needs. Typical parameters referenced for this class of equipment include 24 GHz operation, 0–20 m/s velocity range, ±0.2 m/s velocity accuracy, 0.5–30 m measurement distance, 7–28 V DC supply, IP68 protection, and project-configurable RS485, RS232, or 4–20 mA outputs.
+
+These values should not be read as a substitute for site engineering. They are starting points for checking fit.
+
+| Selection item | Rainy-condition question |
+| --- | --- |
+| Velocity range | Could flood velocity exceed the device range? |
+| Measurement distance | Is the sensor-to-water distance valid at both low and high water levels? |
+| Protection rating | Are enclosure, connectors, cable glands, and junction boxes suitable for long-term rain exposure? |
+| Output interface | Can the sensor connect to the RTU, PLC, data logger, or cloud gateway used on site? |
+| Power budget | Can solar and battery capacity support consecutive cloudy or rainy days? |
+| Data strategy | Are there rules for outlier filtering, quality flags, threshold alarms, and remote diagnostics? |
+
+For permanent stations, also review lightning protection, grounding, surge protection, cable routing, condensation control, and maintenance access. Rain performance is not only about the sensor head.
+
+## When should a site be tested more carefully?
+
+Millimeter-wave radar is well suited to many rainy outdoor sites, but some situations deserve extra evaluation or pilot testing.
+
+1. **Extreme flood peaks**: water surface turbulence, floating debris, foam, and backflow may become severe.
+2. **Narrow culverts or box channels**: walls, ceilings, pipes, and limited mounting angles can interfere with the radar view.
+3. **Very smooth or highly broken water surfaces**: either insufficient surface texture or excessive disturbance can reduce stability.
+4. **Temporary or weak mounting points**: wind and vibration can change the radar angle during storms.
+5. **Remote solar-powered stations**: consecutive rainy days may reduce charging and expose weaknesses in the power budget.
+6. **Sites with frequent maintenance obstacles**: vegetation, construction material, or sediment deposits may change the measurement area over time.
+
+These conditions do not automatically rule out radar. They simply mean the design should include site survey, mounting drawings, field testing, and data validation before relying on the station for operational decisions.
+
+## Recommended system design for rainy monitoring projects
+
+A robust rainy-condition monitoring station is usually a combination of sensing, structure, power, communication, and software.
+
+- **Sensors**: radar flow velocity meter, radar level sensor, rain gauge, and optional camera or water-quality sensor.
+- **Structure**: pole, bridge bracket, cross-arm, protective enclosure, grounding, and cable protection.
+- **Power and communication**: mains power where available; solar plus battery for remote sites; 4G, NB-IoT, LoRa, wired Ethernet, or other telemetry methods depending on the project.
+- **Platform**: real-time curves, threshold alarms, historical reports, device status, remote configuration, and API integration.
+- **Operation**: pre-rainy-season inspection, periodic cleaning of the surrounding area, abnormal data review, and spare parts planning.
+
+This system approach is especially important for flood warning. A velocity reading is useful, but it becomes more valuable when combined with water level, rainfall, cross-section information, and alert logic.
+
+## Practical answers to common questions
+
+### Can radar velocity meters still measure flow during rain?
+
+Usually yes. Light and moderate rain typically do not prevent non-contact radar velocity measurement. Heavy rain can make the water surface more complex, so the system should use proper installation, filtering, and cross-checks with level and rainfall data.
+
+### Does heavy rain make millimeter-wave radar fail completely?
+
+Not necessarily. Heavy rain more often causes variable signal quality, short-term outliers, or more difficult interpretation rather than a simple on/off failure. Extreme events should still be validated at the site level.
+
+### Is a radar sensor alone enough for flood warning?
+
+For serious flood warning or drainage control, a single velocity sensor is usually not enough. Combine velocity with water level, rainfall, site geometry, power reliability, telemetry, and platform alarms.
+
+### Does the sensor need a rain shield?
+
+It depends on the device design and installation environment. A shield or cover must not block the radar beam, create dripping directly in front of the antenna, or trap condensation. Outdoor-rated enclosures, cable sealing, and proper mounting are often more important than a simple cover.
+
+### What is the biggest risk in rainy installations?
+
+The biggest risks are often mechanical and system-level: unstable brackets, blocked radar view, weak solar power design, wet connectors, poor grounding, and lack of data-quality checks. Addressing these details usually improves rainy-condition performance more than changing only the sensor model.

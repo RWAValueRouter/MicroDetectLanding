@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-07-08",
+  "updatedAt": "2026-07-09",
   "completedFiles": [
     {
       "topicId": 1,
@@ -34,6 +34,22 @@
       "file": "does-radar-flow-velocity-meter-need-contact-water-surface.mdx",
       "title": "雷达水流速计需要接触水面吗？非接触式流速监测说明",
       "completedAt": "2026-07-08"
+    },
+    {
+      "topicId": 5,
+      "language": "zh-CN",
+      "file": "mmwave-radar-rainy-conditions.mdx",
+      "title": "毫米波雷达可以在雨天使用吗？雨天水流速与水位监测说明",
+      "completedAt": "2026-07-09",
+      "coverImage": "/insights/mmwave-radar-rainy-conditions.png"
+    },
+    {
+      "topicId": 5,
+      "language": "en",
+      "file": "en-can-mmwave-radar-be-used-in-rainy-conditions.mdx",
+      "title": "Can Millimeter-Wave Radar Be Used in Rainy Conditions? Practical Guidance for Water Monitoring",
+      "completedAt": "2026-07-09",
+      "coverImage": "/insights/en-can-mmwave-radar-be-used-in-rainy-conditions.png"
     }
   ],
   "topics": [
@@ -69,7 +85,12 @@
       "id": 5,
       "zhTitle": "毫米波雷达可以在雨天使用吗",
       "enTitle": "Can millimeter-wave radar be used in rainy conditions",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "mmwave-radar-rainy-conditions.mdx",
+      "zhCoverImage": "/insights/mmwave-radar-rainy-conditions.png",
+      "enFile": "en-can-mmwave-radar-be-used-in-rainy-conditions.mdx",
+      "enCoverImage": "/insights/en-can-mmwave-radar-be-used-in-rainy-conditions.png",
+      "completedAt": "2026-07-09"
     },
     {
       "id": 6,
