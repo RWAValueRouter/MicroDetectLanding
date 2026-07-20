@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-07-09",
+  "updatedAt": "2026-07-20",
   "completedFiles": [
     {
       "topicId": 1,
@@ -50,6 +50,22 @@
       "title": "Can Millimeter-Wave Radar Be Used in Rainy Conditions? Practical Guidance for Water Monitoring",
       "completedAt": "2026-07-09",
       "coverImage": "/insights/en-can-mmwave-radar-be-used-in-rainy-conditions.png"
+    },
+    {
+      "topicId": 6,
+      "language": "zh-CN",
+      "file": "mmwave-radar-sediment-laden-flow.mdx",
+      "title": "毫米波雷达能测泥沙水流吗？含沙河道流速监测的适用条件与部署要点",
+      "completedAt": "2026-07-20",
+      "coverImage": "/insights/mmwave-radar-sediment-laden-flow.png"
+    },
+    {
+      "topicId": 6,
+      "language": "en",
+      "file": "en-can-mmwave-radar-measure-sediment-laden-flow.mdx",
+      "title": "Can Millimeter-Wave Radar Measure Sediment-Laden Flow? A Practical Guide to River Velocity Monitoring",
+      "completedAt": "2026-07-20",
+      "coverImage": "/insights/en-can-mmwave-radar-measure-sediment-laden-flow.png"
     }
   ],
   "topics": [
@@ -96,7 +112,12 @@
       "id": 6,
       "zhTitle": "毫米波雷达能测泥沙水流吗",
       "enTitle": "Can millimeter-wave radar measure sediment-laden flow",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "mmwave-radar-sediment-laden-flow.mdx",
+      "zhCoverImage": "/insights/mmwave-radar-sediment-laden-flow.png",
+      "enFile": "en-can-mmwave-radar-measure-sediment-laden-flow.mdx",
+      "enCoverImage": "/insights/en-can-mmwave-radar-measure-sediment-laden-flow.png",
+      "completedAt": "2026-07-20"
     },
     {
       "id": 7,
