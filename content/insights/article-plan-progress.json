@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-07-20",
+  "updatedAt": "2026-07-23",
   "completedFiles": [
     {
       "topicId": 1,
@@ -66,6 +66,22 @@
       "title": "Can Millimeter-Wave Radar Measure Sediment-Laden Flow? A Practical Guide to River Velocity Monitoring",
       "completedAt": "2026-07-20",
       "coverImage": "/insights/en-can-mmwave-radar-measure-sediment-laden-flow.png"
+    },
+    {
+      "topicId": 7,
+      "language": "en",
+      "file": "en-can-radar-level-meters-measure-powders-and-bulk-solids.mdx",
+      "title": "Can Radar Level Meters Measure Powders and Bulk Solids? Selection and Installation Guide",
+      "completedAt": "2026-07-23",
+      "coverImage": "/insights/en-can-radar-level-meters-measure-powders-and-bulk-solids.png"
+    },
+    {
+      "topicId": 7,
+      "language": "zh-CN",
+      "file": "radar-level-meter-powders-bulk-solids.mdx",
+      "title": "雷达液位计能测粉料吗？粉体与散装固体物位监测的选型和安装要点",
+      "completedAt": "2026-07-23",
+      "coverImage": "/insights/radar-level-meter-powders-bulk-solids.png"
     }
   ],
   "topics": [
@@ -123,7 +139,12 @@
       "id": 7,
       "zhTitle": "雷达液位计能测粉料吗",
       "enTitle": "Can radar level meters measure powders and bulk solids",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "radar-level-meter-powders-bulk-solids.mdx",
+      "zhCoverImage": "/insights/radar-level-meter-powders-bulk-solids.png",
+      "enFile": "en-can-radar-level-meters-measure-powders-and-bulk-solids.mdx",
+      "enCoverImage": "/insights/en-can-radar-level-meters-measure-powders-and-bulk-solids.png",
+      "completedAt": "2026-07-23"
     },
     {
       "id": 8,
