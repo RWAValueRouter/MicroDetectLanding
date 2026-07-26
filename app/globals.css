@@ -26,10 +26,7 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 16% 8%, rgba(109, 40, 217, 0.14), transparent 28rem),
-    radial-gradient(circle at 86% 12%, rgba(167, 139, 250, 0.2), transparent 30rem),
-    linear-gradient(180deg, #ffffff 0%, #f8f5ff 48%, #ffffff 100%);
+  background: #ffffff;
   color: #18122b;
   font-family: Inter, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
 }
@@ -78,18 +75,15 @@ body {
 }
 
 .hud-card {
-  border: 1px solid rgba(109, 40, 217, 0.14);
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 245, 255, 0.9)),
-    linear-gradient(90deg, rgba(109, 40, 217, 0.08), rgba(167, 139, 250, 0.08));
-  box-shadow: 0 22px 70px rgba(69, 39, 160, 0.12), inset 0 1px rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(18px);
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.06);
 }
 
 .grid-plane {
   background-image:
-    linear-gradient(rgba(109, 40, 217, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(109, 40, 217, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(148, 163, 184, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.16) 1px, transparent 1px);
   background-size: 52px 52px;
   mask-image: linear-gradient(to bottom, transparent, black 15%, black 70%, transparent);
 }
@@ -135,6 +129,10 @@ body {
 
 .scan-glow:hover::after {
   transform: translateX(130%);
+}
+
+[class*="rounded-"] {
+  border-radius: 0 !important;
 }
 
 .cjk-wrap {

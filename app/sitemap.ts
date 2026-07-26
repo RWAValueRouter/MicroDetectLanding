@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { caseStudies, getCasePath } from "../lib/cases";
 import { getAllInsights } from "../lib/insights";
 import { getSeoPagePath, seoPages } from "../lib/seo-pages";
 import { absoluteUrl, localizedAlternates, localizedPath, supportedLangs } from "./seo";
@@ -20,6 +21,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const insights = await getAllInsights();
+  const productIndexPages: MetadataRoute.Sitemap = [
+    {
+      url: absoluteUrl("/zh/products"),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+      alternates: { languages: { "zh-CN": absoluteUrl("/zh/products"), en: absoluteUrl("/en/products"), "x-default": absoluteUrl("/zh/products") } }
+    },
+    {
+      url: absoluteUrl("/en/products"),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.84,
+      alternates: { languages: { "zh-CN": absoluteUrl("/zh/products"), en: absoluteUrl("/en/products"), "x-default": absoluteUrl("/zh/products") } }
+    }
+  ];
   const seoDetailPages: MetadataRoute.Sitemap = seoPages.flatMap((page) => [
     {
       url: absoluteUrl(getSeoPagePath(page, "zh")),
@@ -64,5 +81,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   ];
 
-  return [...localizedPages, ...seoDetailPages, ...insightPages];
+  const caseIndexPages: MetadataRoute.Sitemap = [
+    {
+      url: absoluteUrl("/zh/cases"),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.82,
+      alternates: { languages: { "zh-CN": absoluteUrl("/zh/cases"), en: absoluteUrl("/en/cases"), "x-default": absoluteUrl("/zh/cases") } }
+    },
+    {
+      url: absoluteUrl("/en/cases"),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.76,
+      alternates: { languages: { "zh-CN": absoluteUrl("/zh/cases"), en: absoluteUrl("/en/cases"), "x-default": absoluteUrl("/zh/cases") } }
+    }
+  ];
+
+  const casePages: MetadataRoute.Sitemap = caseStudies.flatMap((caseStudy) => [
+    {
+      url: absoluteUrl(getCasePath(caseStudy, "zh")),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.78,
+      alternates: { languages: { "zh-CN": absoluteUrl(getCasePath(caseStudy, "zh")), en: absoluteUrl(getCasePath(caseStudy, "en")), "x-default": absoluteUrl(getCasePath(caseStudy, "zh")) } }
+    },
+    {
+      url: absoluteUrl(getCasePath(caseStudy, "en")),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.73,
+      alternates: { languages: { "zh-CN": absoluteUrl(getCasePath(caseStudy, "zh")), en: absoluteUrl(getCasePath(caseStudy, "en")), "x-default": absoluteUrl(getCasePath(caseStudy, "zh")) } }
+    }
+  ]);
+
+  return [...localizedPages, ...productIndexPages, ...seoDetailPages, ...insightPages, ...caseIndexPages, ...casePages];
 }

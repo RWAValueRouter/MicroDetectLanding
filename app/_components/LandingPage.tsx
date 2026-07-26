@@ -2,25 +2,24 @@
 
 import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { caseStudies, getCasePath } from "../../lib/cases";
 
 type Lang = "zh" | "en";
 
 const navItemsByLang: Record<Lang, Array<{ label: string; href: string }>> = {
   zh: [
-  { label: "技术优势", href: "#technology" },
-  { label: "产品矩阵", href: "#products" },
-  { label: "解决方案", href: "#architecture" },
-  { label: "应用场景", href: "#applications" },
-  { label: "行业洞察", href: "/insights" },
-  { label: "联系咨询", href: "#contact" }
+    { label: "产品矩阵", href: "/zh/products" },
+    { label: "系统能力", href: "#capability" },
+    { label: "解决方案", href: "#applications" },
+    { label: "工程案例", href: "/zh/cases" },
+    { label: "行业洞察", href: "/insights" }
   ],
   en: [
-    { label: "Technology", href: "#technology" },
-    { label: "Products", href: "#products" },
-    { label: "Solutions", href: "#architecture" },
-    { label: "Applications", href: "#applications" },
-    { label: "Insights", href: "/insights" },
-    { label: "Contact", href: "#contact" }
+    { label: "Products", href: "/en/products" },
+    { label: "Capabilities", href: "#capability" },
+    { label: "Solutions", href: "#applications" },
+    { label: "Case Studies", href: "/en/cases" },
+    { label: "Insights", href: "/insights" }
   ]
 };
 
@@ -40,29 +39,6 @@ const heroSlides = [
     eyebrow: "Liquid Level",
     label: { zh: "非接触式液位监测", en: "Non-contact liquid level monitoring" },
     status: "LIVE"
-  }
-];
-
-const painPoints = [
-  {
-    title: "人工巡检风险高",
-    text: "涉水、桥下、高边坡、高温腐蚀等场景危险，响应不及时。",
-    tag: "现场风险"
-  },
-  {
-    title: "接触式设备维护难",
-    text: "易受粘附、堵塞、磨损、腐蚀影响，维护频次高。",
-    tag: "高维护"
-  },
-  {
-    title: "光学设备受环境限制",
-    text: "雨雾、粉尘、弱光、黑夜、水面反光会影响稳定性。",
-    tag: "弱适应"
-  },
-  {
-    title: "单点设备难以闭环",
-    text: "数据分散，难以及时形成趋势判断与风险预警。",
-    tag: "难预警"
   }
 ];
 
@@ -94,86 +70,9 @@ const productLines = [
 ];
 
 const selectorItems = [
-  ["测河道/渠道/排水渠流速", "AR-FV100 水流速计"],
-  ["普通液位/物位，预算敏感", "AR-LS100 标准监测型"],
-  ["接入 PLC/DCS 或有防爆要求", "AR-LS200 防爆工业型"],
-  ["高精度计量或进口替代", "AR-LS300 高精度计量型"],
-  ["短距离结构位移监测", "SR-I100 近距离一体化雷达"],
-  ["桥梁梁体/隧道局部形变", "SR-M200 中距离 MIMO 雷达"],
-  ["大跨径桥梁/大坝/边坡远距离预警", "SR-P300 远距离相控阵雷达"]
-];
-
-const industrialProducts = [
-  {
-    name: "AR-FV100",
-    title: "毫米波雷达水流速计",
-    image: "/product/ar-fv100-flow-radar.jpeg",
-    intro:
-      "面向河道、渠道、排水渠、桥涵断面的非接触式水面流速在线监测设备，可安装在岸边、桥梁、支架、管渠井口或渠道边缘。",
-    stats: ["0-20 m/s 流速范围", "±0.2 m/s 测量精度", "0.5-30 m 测量距离", "IP68 防护能力"],
-    scenarios: ["山洪预警", "城市排水", "灌区计量", "桥涵水文"]
-  },
-  {
-    name: "AR-LS100",
-    title: "标准监测型物/液位计",
-    image: "/product/ar-ls-industrial-level-radar.jpeg",
-    intro:
-      "适用于普通工业储罐、清水池和一般料仓，通信简单、成本可控、安装便捷。",
-    stats: ["RS485 Modbus", "±5 mm", "普通环境", "低成本部署"],
-    scenarios: ["清水池", "普通储罐", "一般料仓", "水务监测"]
-  },
-  {
-    name: "AR-LS200",
-    title: "防爆工业型物/液位计",
-    image: "/product/ar-ls-industrial-level-radar.jpeg",
-    intro:
-      "面向煤矿、化工储罐、密闭排水管网等存在防爆要求的工业场景，支持 4-20mA + HART。",
-    stats: ["4-20mA + HART", "可适配防爆版本", "IP67", "工业接口兼容"],
-    scenarios: ["煤矿料仓", "化工储罐", "密闭管网", "工业园区"]
-  },
-  {
-    name: "AR-LS300",
-    title: "高精度计量型物/液位计",
-    image: "/product/ar-ls-industrial-level-radar.jpeg",
-    intro:
-      "面向精细化工反应釜、高价值原料储罐和高精度料仓库存计量等关键场景，适合国产化替代项目。",
-    stats: ["±1 mm 级测量", "全量程稳定", "关键工艺控制", "进口替代"],
-    scenarios: ["精细化工", "关键储罐", "高精度料仓", "库存计量"]
-  }
-];
-
-const structureProducts = [
-  {
-    name: "SR-I100",
-    title: "近距离多参数一体化雷达",
-    image: "/product/sr-i100-structure-radar.png",
-    distance: "0-10 m",
-    intro: "适用于桥梁伸缩缝、桥梁支座、建筑基坑、室内隧道、普通城市桥梁等短距离位移与形变监测。",
-    capability: "实验室稳定条件下可达 0.05 mm 级位移识别能力"
-  },
-  {
-    name: "SR-M200",
-    title: "中距离 MIMO 监测雷达",
-    image: "/product/sr-i100-structure-radar.png",
-    distance: "10-60 m",
-    intro: "面向桥梁梁体挠度、城市高架桥结构位移、工业厂区构筑物形变和隧道局部变形的长期在线监测。",
-    capability: "实验室稳定条件下可达 0.03 mm 级位移识别能力"
-  },
-  {
-    name: "SR-P300",
-    title: "远距离相控阵雷达",
-    image: "/product/sr-p300-phased-array-radar.png",
-    distance: "60-300 m",
-    intro: "适用于大跨径桥梁、水库大坝、高危边坡、重点文物桥梁和超长隧道等关键结构的长期在线安全预警。",
-    capability: "实验室稳定条件下可达 0.01 mm 级位移识别能力"
-  }
-];
-
-const architectureLayers = [
-  ["感知层", "水流速计 / 液位雷达 / 工业物液位计 / 结构监测雷达"],
-  ["传输层", "RS485 / HART / 4G/5G / LoRa / NB-IoT"],
-  ["平台层", "数据采集 / 趋势分析 / 阈值管理 / 报表输出 / 设备管理"],
-  ["应用层", "防汛预警 / 桥梁安全 / 工业计量 / 边坡大坝 / 应急指挥"]
+  ["水流速与水文监测", "AR-FV100 水流速计"],
+  ["液位、物位与料位监测", "AR-LS 工业雷达系列"],
+  ["桥梁、大坝、边坡等结构监测", "SR-I100 / SR-M200 / SR-P300"]
 ];
 
 const applications = [
@@ -204,37 +103,13 @@ const applications = [
     monitor: "坝体沉降、坝坡滑移、边坡位移、长期趋势、雨季异常变化",
     product: "SR-P300，必要时配合视频复核和现场声光告警",
     delivery: "远距离结构雷达 + 太阳能供电 + 4G/5G 通信 + 边坡/大坝预警平台 + 现场告警"
-  }
-];
-
-const values = [
-  ["降成本", "减少人工巡检与现场维护，降低高风险场景作业成本。"],
-  ["提效率", "自动采集、多站点集中管理，支持历史曲线与报表输出。"],
-  ["强安全", "提前识别流速突增、液位超限和结构位移异常。"],
-  ["促国产化", "核心硬件国产化，算法自主研发，供货与服务响应更可控。"],
-  ["易落地", "设备、供电、通信、平台与告警可成套配置。"]
-];
-
-const painPointsEn = [
-  {
-    title: "Risky manual inspection",
-    text: "Waterways, bridge undersides, steep slopes, heat and corrosive sites make manual inspection slow and unsafe.",
-    tag: "Field Risk"
   },
   {
-    title: "High maintenance sensors",
-    text: "Contact sensors are prone to adhesion, blockage, wear and corrosion in harsh operating environments.",
-    tag: "Maintenance"
-  },
-  {
-    title: "Optical systems are limited",
-    text: "Fog, dust, low light, night operation and water reflections can reduce measurement stability.",
-    tag: "Low Robustness"
-  },
-  {
-    title: "Disconnected single points",
-    text: "Scattered data makes it harder to identify trends and trigger timely early warnings.",
-    tag: "Weak Warning"
+    name: "交通基础设施全天候感知",
+    deploy: "道路、隧道、桥梁与交通运行关键节点",
+    monitor: "目标距离、速度、方向与异常变化",
+    product: "毫米波雷达感知设备，可选配边缘计算与视频复核",
+    delivery: "雷达感知设备 + 边缘计算单元 + 视频复核 + 通信系统 + 交通管理平台"
   }
 ];
 
@@ -266,86 +141,9 @@ const productLinesEn = [
 ];
 
 const selectorItemsEn = [
-  ["River, canal or drainage flow velocity", "AR-FV100 Flow Radar"],
-  ["Standard liquid/material level monitoring", "AR-LS100 Standard Level Radar"],
-  ["PLC/DCS integration or explosion-proof sites", "AR-LS200 Industrial Explosion-proof Radar"],
-  ["High-accuracy metering or import replacement", "AR-LS300 High-accuracy Metering Radar"],
-  ["Short-range structural displacement", "SR-I100 Integrated Short-range Radar"],
-  ["Bridge girder or tunnel local deformation", "SR-M200 Mid-range MIMO Radar"],
-  ["Long-span bridges, dams or slope early warning", "SR-P300 Long-range Phased-array Radar"]
-];
-
-const industrialProductsEn = [
-  {
-    name: "AR-FV100",
-    title: "Millimeter-wave Radar Flow Meter",
-    image: "/product/ar-fv100-flow-radar.jpeg",
-    intro:
-      "A non-contact surface velocity monitoring device for rivers, canals, drainage channels and bridge culverts. It can be installed on banks, bridges, brackets, shaft openings or canal edges.",
-    stats: ["0-20 m/s velocity range", "±0.2 m/s accuracy", "0.5-30 m range", "IP68 protection"],
-    scenarios: ["Flash flood warning", "Urban drainage", "Irrigation metering", "Bridge hydrology"]
-  },
-  {
-    name: "AR-LS100",
-    title: "Standard Level Radar",
-    image: "/product/ar-ls-industrial-level-radar.jpeg",
-    intro:
-      "Designed for standard tanks, clean-water reservoirs and general silos, with simple communication, controlled cost and easy installation.",
-    stats: ["RS485 Modbus", "±5 mm", "Standard sites", "Cost-effective deployment"],
-    scenarios: ["Clean-water tanks", "Standard tanks", "General silos", "Utility monitoring"]
-  },
-  {
-    name: "AR-LS200",
-    title: "Industrial Explosion-proof Level Radar",
-    image: "/product/ar-ls-industrial-level-radar.jpeg",
-    intro:
-      "For coal, chemical tanks, enclosed drainage networks and other industrial sites with explosion-proof requirements. Supports 4-20mA + HART.",
-    stats: ["4-20mA + HART", "Explosion-proof option", "IP67", "Industrial interfaces"],
-    scenarios: ["Coal silos", "Chemical tanks", "Enclosed networks", "Industrial parks"]
-  },
-  {
-    name: "AR-LS300",
-    title: "High-accuracy Metering Level Radar",
-    image: "/product/ar-ls-industrial-level-radar.jpeg",
-    intro:
-      "For fine-chemical reactors, high-value raw material tanks and high-accuracy inventory metering scenarios requiring stable performance.",
-    stats: ["±1 mm level measurement", "Stable full-range output", "Process control", "Import replacement"],
-    scenarios: ["Fine chemicals", "Critical tanks", "High-accuracy silos", "Inventory metering"]
-  }
-];
-
-const structureProductsEn = [
-  {
-    name: "SR-I100",
-    title: "Integrated Short-range Radar",
-    image: "/product/sr-i100-structure-radar.png",
-    distance: "0-10 m",
-    intro: "For expansion joints, bridge bearings, foundation pits, indoor tunnels and short-range structural displacement monitoring.",
-    capability: "Laboratory stable-condition displacement recognition down to the 0.05 mm level"
-  },
-  {
-    name: "SR-M200",
-    title: "Mid-range MIMO Monitoring Radar",
-    image: "/product/sr-i100-structure-radar.png",
-    distance: "10-60 m",
-    intro: "For bridge girder deflection, urban viaduct displacement, industrial structures and local tunnel deformation monitoring.",
-    capability: "Laboratory stable-condition displacement recognition down to the 0.03 mm level"
-  },
-  {
-    name: "SR-P300",
-    title: "Long-range Phased-array Radar",
-    image: "/product/sr-p300-phased-array-radar.png",
-    distance: "60-300 m",
-    intro: "For long-span bridges, dams, high-risk slopes, heritage bridges and long tunnels requiring long-term safety early warning.",
-    capability: "Laboratory stable-condition displacement recognition down to the 0.01 mm level"
-  }
-];
-
-const architectureLayersEn = [
-  ["Sensing Layer", "Flow radar / Level radar / Industrial level radar / Structural monitoring radar"],
-  ["Transmission Layer", "RS485 / HART / 4G/5G / LoRa / NB-IoT"],
-  ["Platform Layer", "Data acquisition / Trend analysis / Threshold management / Reports / Device management"],
-  ["Application Layer", "Flood warning / Bridge safety / Industrial metering / Slopes and dams / Emergency command"]
+  ["Water flow and hydrology", "AR-FV100 Flow Radar"],
+  ["Liquid, material and inventory level", "AR-LS Industrial Radar Series"],
+  ["Bridges, dams, slopes and structural safety", "SR-I100 / SR-M200 / SR-P300"]
 ];
 
 const applicationsEn = [
@@ -376,6 +174,13 @@ const applicationsEn = [
     monitor: "Dam settlement, slope sliding, displacement trends and rainy-season abnormal changes",
     product: "SR-P300 with optional video verification and on-site alarm",
     delivery: "Long-range structural radar + solar power + 4G/5G communication + warning platform + on-site alarm"
+  },
+  {
+    name: "All-weather Transport Infrastructure Sensing",
+    deploy: "Roads, tunnels, bridges and key transport-operation nodes",
+    monitor: "Target range, speed, direction and abnormal change",
+    product: "mmWave sensing equipment with optional edge computing and video review",
+    delivery: "Radar sensing + edge unit + video review + communication system + traffic management platform"
   }
 ];
 
@@ -384,27 +189,55 @@ const applicationDetailPathsByLang: Record<Lang, string[]> = {
     "/zh/solutions/flood-warning",
     "/zh/solutions/industrial-level-monitoring",
     "/zh/solutions/bridge-monitoring",
-    "/zh/solutions/dam-slope-monitoring"
+    "/zh/solutions/dam-slope-monitoring",
+    "/zh/solutions/transport-infrastructure-sensing"
   ],
   en: [
     "/en/solutions/flood-warning",
     "/en/solutions/industrial-level-monitoring",
     "/en/solutions/bridge-monitoring",
-    "/en/solutions/dam-slope-monitoring"
+    "/en/solutions/dam-slope-monitoring",
+    "/en/solutions/transport-infrastructure-sensing"
   ]
 };
 
-const valuesEn = [
-  ["Lower Cost", "Reduce manual inspection and site maintenance in high-risk environments."],
-  ["Higher Efficiency", "Automated acquisition, multi-site management, trend curves and report output."],
-  ["Stronger Safety", "Identify flow surges, level exceedance and structural displacement anomalies earlier."],
-  ["Domestic Control", "Localized hardware and self-developed algorithms improve supply and service responsiveness."],
-  ["Easy Deployment", "Devices, power, communication, platform and alarms can be configured as one solution."]
-];
+const capabilityLayersByLang: Record<Lang, Array<[string, string]>> = {
+  zh: [
+    ["现场感知", "流速、液位、物位与结构形变等关键参数采集"],
+    ["边缘处理", "滤波、目标提取、异常识别、本地缓存与状态诊断"],
+    ["多制式传输", "RS485、HART、4-20mA、以太网、4G/5G、LoRa、NB-IoT"],
+    ["平台分析", "实时监测、趋势曲线、阈值告警、报表与设备管理"],
+    ["远程运维", "配置下发、算法升级、视频复核与服务响应"]
+  ],
+  en: [
+    ["Field Sensing", "Capture flow velocity, level, material level and structural deformation."],
+    ["Edge Processing", "Filtering, target extraction, anomaly detection, local caching and device diagnostics."],
+    ["Flexible Transmission", "RS485, HART, 4-20mA, Ethernet, 4G/5G, LoRa and NB-IoT."],
+    ["Platform Analytics", "Real-time monitoring, trends, alerts, reports and device management."],
+    ["Remote O&M", "Configuration, algorithm updates, video review and service response."]
+  ]
+};
+
+const deliveryStepsByLang: Record<Lang, Array<[string, string]>> = {
+  zh: [
+    ["现场勘察", "确认监测对象、安装、供电、通信与环境干扰。"],
+    ["方案设计", "确定设备型号、布点位置、通信方式和平台功能。"],
+    ["安装调试", "完成支架、设备、供电通信与参数标定。"],
+    ["平台验证", "接入实时数据、趋势图、告警规则和报表。"],
+    ["持续运维", "远程诊断、算法升级、故障响应与服务报告。"]
+  ],
+  en: [
+    ["Site Survey", "Confirm targets, mounting, power, communications and interference."],
+    ["Solution Design", "Define models, monitoring points, transmission and platform functions."],
+    ["Installation and Calibration", "Deploy mounting, devices, power, communications and parameter calibration."],
+    ["Platform Validation", "Connect real-time data, trends, alerts and reports."],
+    ["Ongoing O&M", "Remote diagnostics, algorithm updates, response and service reporting."]
+  ]
+};
 
 const quickConditionsByLang: Record<Lang, string[]> = {
-  zh: ["监测对象", "安装距离与视线", "目标反射条件", "复杂环境", "通信与供电", "平台对接"],
-  en: ["Monitoring target", "Distance and line of sight", "Target reflection", "Harsh environment", "Power and communication", "Platform integration"]
+  zh: ["监测对象与量程", "安装距离与视线", "环境、供电与通信", "已有平台或 PLC/DCS 接口"],
+  en: ["Target and measurement range", "Distance and line of sight", "Environment, power and communication", "Existing platform or PLC/DCS interface"]
 };
 
 const copy = {
@@ -418,6 +251,9 @@ const copy = {
     heroText: "重庆析微探物科技有限公司以自主毫米波感知技术，提供从现场采集到平台预警的一体化监测能力。",
     primaryCta: "获取行业解决方案",
     secondaryCta: "查看产品矩阵",
+    audienceEyebrow: "Who We Serve",
+    audienceTitle: "为真实工程现场提供可交付的监测能力",
+    audienceText: "面向业主、运维单位、设计院、集成商与科研伙伴，匹配不同现场条件与系统接口。",
     painEyebrow: "Field Pain",
     painTitle: "复杂现场，需要比人工巡检更连续的感知能力",
     painText: "在涉水、粉尘、高空和远距离场景中，稳定的数据连续性决定预警质量。",
@@ -449,10 +285,17 @@ const copy = {
     architectureTitle: "从现场感知到平台预警的一体化闭环",
     architectureText: "设备、通信、平台与告警联动，支撑长期在线运行和多站点统一管理。",
     architectureSummary: "从单点监测设备到行业级智能预警系统，构建“感知 - 传输 - 分析 - 预警”的完整闭环。",
+    capabilityTitle: "端、边、云协同，让数据真正进入业务",
+    capabilityText: "从现场采集到平台预警与远程运维，按工程条件灵活组合设备、通信、平台和服务。",
     appsTitle: "面向真实现场的成套应用方案",
     appsText: "覆盖水利防汛、工业计量、桥梁养护和地灾预警等关键场景。",
     appLabels: ["部署位置", "监测内容", "推荐产品", "交付组合"],
     valueTitle: "从单点采集，到主动预警",
+    casesTitle: "真实项目，验证真实能力",
+    casesText: "从桥梁挠度到河道水位流速，查看毫米波雷达在现场部署、数据接入和长期运行中的实践。",
+    casesLink: "查看全部工程案例",
+    deliveryTitle: "从勘察到运维，完成工程交付闭环",
+    deliveryText: "不止提供设备，也协助完成选型、安装、平台接入、数据验证和后续运维。",
     contactTitle: "让监测更智能，让预警更及时，让管理更高效",
     contactText: "留下监测对象、现场环境和平台接口要求，析微探物将尽快与您联系。",
     contactBadges: ["前端感知", "远程传输", "平台分析", "异常预警"],
@@ -482,6 +325,9 @@ const copy = {
     heroText: "Chongqing MicroDetect Technology delivers field sensing, data transmission and platform warnings through self-developed mmWave radar technology.",
     primaryCta: "Get Industry Solution",
     secondaryCta: "View Product Matrix",
+    audienceEyebrow: "Who We Serve",
+    audienceTitle: "Deployable monitoring for real operating sites",
+    audienceText: "For asset owners, operators, design firms, integration partners and research organizations with different site and system requirements.",
     painEyebrow: "Field Pain",
     painTitle: "Complex sites need continuous sensing beyond manual inspection",
     painText: "In water, dust, high-altitude and long-distance environments, data continuity determines warning quality.",
@@ -513,10 +359,17 @@ const copy = {
     architectureTitle: "An integrated loop from field sensing to platform warning",
     architectureText: "Devices, communication, platform and alarms work together for long-term online operation and multi-site management.",
     architectureSummary: "From single-point devices to industry-grade warning systems: sensing - transmission - analysis - warning.",
+    capabilityTitle: "Field, edge and cloud capability that puts data to work",
+    capabilityText: "Combine sensing, communication, analytics and service around the constraints of each project site.",
     appsTitle: "Turnkey solutions for real operating sites",
     appsText: "For flood warning, industrial metering, bridge maintenance and geohazard prevention.",
     appLabels: ["Deployment", "Monitoring", "Recommended Product", "Delivery Package"],
     valueTitle: "From data capture to proactive warning",
+    casesTitle: "Real projects, proven capabilities",
+    casesText: "Explore practical deployments of mmWave radar for bridge deflection and online water level and flow monitoring.",
+    casesLink: "View all case studies",
+    deliveryTitle: "A delivery loop from survey to operation",
+    deliveryText: "Beyond equipment supply: selection, installation, platform connection, data validation and ongoing O&M.",
     contactTitle: "Smarter monitoring, faster warning, more efficient management",
     contactText: "Tell us your target, site conditions and platform requirements. MicroDetect will contact you shortly.",
     contactBadges: ["Field Sensing", "Remote Transmission", "Platform Analytics", "Early Warning"],
@@ -587,8 +440,6 @@ function RadarVisual({ lang }: { lang: Lang }) {
 
   return (
     <div className="hud-card relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[32px] p-2 shadow-glow">
-      <div className="absolute -left-16 -top-16 h-48 w-48 rounded-full bg-cyan/20 blur-3xl" />
-      <div className="absolute -bottom-20 right-6 h-52 w-52 rounded-full bg-mint/20 blur-3xl" />
       <div className="relative aspect-[16/9] overflow-hidden rounded-[26px] border border-cyan/15 bg-white">
         {heroSlides.map((slide, index) => (
           <Image
@@ -669,8 +520,6 @@ function WaveCard({ title, status }: { title: string; status: string }) {
 
 export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang }) {
   const [lang, setLang] = useState<Lang>(initialLang);
-  const [industrialIndex, setIndustrialIndex] = useState(0);
-  const [structureIndex, setStructureIndex] = useState(2);
   const [applicationIndex, setApplicationIndex] = useState(0);
   const [contactForm, setContactForm] = useState<ContactForm>({
     name: "",
@@ -684,20 +533,16 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
 
   const t = copy[lang];
   const navItems = navItemsByLang[lang];
-  const localizedPainPoints = lang === "zh" ? painPoints : painPointsEn;
   const localizedProductLines = lang === "zh" ? productLines : productLinesEn;
   const localizedSelectorItems = lang === "zh" ? selectorItems : selectorItemsEn;
-  const localizedIndustrialProducts = lang === "zh" ? industrialProducts : industrialProductsEn;
-  const localizedStructureProducts = lang === "zh" ? structureProducts : structureProductsEn;
-  const localizedArchitectureLayers = lang === "zh" ? architectureLayers : architectureLayersEn;
   const localizedApplications = lang === "zh" ? applications : applicationsEn;
-  const localizedValues = lang === "zh" ? values : valuesEn;
+  const localizedCapabilityLayers = capabilityLayersByLang[lang];
+  const localizedDeliverySteps = deliveryStepsByLang[lang];
   const textWrapClass = lang === "zh" ? "cjk-wrap" : "";
 
-  const currentIndustrial = localizedIndustrialProducts[industrialIndex];
-  const currentStructure = localizedStructureProducts[structureIndex];
   const currentApplication = localizedApplications[applicationIndex];
   const currentApplicationDetailPath = applicationDetailPathsByLang[lang][applicationIndex];
+  const featuredCases = [caseStudies[0], caseStudies[1], caseStudies[3]];
 
   const quickConditions = useMemo(() => quickConditionsByLang[lang], [lang]);
 
@@ -857,60 +702,6 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
         </div>
       </section>
 
-      <section className="relative z-10 px-5 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow={t.painEyebrow}
-            title={t.painTitle}
-            text={t.painText}
-          />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {localizedPainPoints.map((point) => (
-              <article key={point.title} className="hud-card scan-glow rounded-3xl p-6">
-                <span className="rounded-full bg-amber/10 px-3 py-1 text-sm text-amber">{point.tag}</span>
-                <h3 className="mt-6 text-xl font-semibold text-white">{point.title}</h3>
-                <p className="mt-4 leading-7 text-slate-400">{point.text}</p>
-                <div className="mt-8 h-24 rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(109,40,217,0.12),transparent_45%),linear-gradient(45deg,transparent_42%,rgba(139,92,246,0.18)_43%,transparent_47%)]" />
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="technology" className="relative z-10 px-5 py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <div>
-            <SectionHeading
-              eyebrow="Technology"
-              title={t.techTitle}
-              text={t.techText}
-            />
-            <WaveCard title={t.liveTrend} status={t.allDay} />
-          </div>
-          <div className="hud-card rounded-3xl p-5 md:p-7">
-            <div className="grid grid-cols-[1.2fr_1fr_1fr_1fr] gap-2 text-sm">
-              {t.compareHeads.map((head) => (
-                <div key={head} className="rounded-2xl bg-white/5 p-3 font-semibold text-white">
-                  {head}
-                </div>
-              ))}
-              {t.compareRows.map((row) =>
-                row.map((cell, index) => (
-                  <div
-                    key={`${row[0]}-${cell}`}
-                    className={`rounded-2xl border border-white/10 p-3 ${
-                      index === 1 ? "bg-cyan/10 text-cyan" : "bg-black/20 text-slate-300"
-                    }`}
-                  >
-                    {cell}
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="products" className="relative z-10 px-5 py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
@@ -970,146 +761,30 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
         </div>
       </section>
 
-      <section id="water-industrial" className="relative z-10 px-5 py-20">
+      <section id="capability" className="relative z-10 px-5 py-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Water & Industrial"
-            title={t.waterTitle}
-            text={t.waterText}
-          />
-          <div className="hud-card grid gap-8 rounded-[32px] p-5 md:p-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="rounded-3xl border border-white/10 bg-black/25 p-6">
-              <div className="relative mx-auto flex h-80 max-w-sm items-center justify-center">
-                <div className="absolute inset-0 rounded-full bg-cyan/10 blur-3xl" />
-                <Image
-                  src={currentIndustrial.image}
-                  alt={currentIndustrial.title}
-                  width={620}
-                  height={649}
-                  className="relative max-h-72 w-auto object-contain drop-shadow-[0_24px_70px_rgba(109,40,217,0.16)]"
-                />
-              </div>
-            </div>
-            <div>
-              <div className="mb-6 flex flex-wrap gap-3">
-                {localizedIndustrialProducts.map((product, index) => (
-                  <button
-                    key={product.name}
-                    onClick={() => setIndustrialIndex(index)}
-                    className={`rounded-full px-4 py-2 font-mono text-sm transition ${
-                      industrialIndex === index
-                        ? "bg-cyan text-ink"
-                        : "border border-white/10 bg-white/[0.03] text-slate-300 hover:border-cyan/50 hover:text-cyan"
-                    }`}
-                  >
-                    {product.name}
-                  </button>
-                ))}
-              </div>
-              <p className="font-mono text-sm uppercase tracking-[0.24em] text-mint">{currentIndustrial.name}</p>
-              <h3 className="mt-3 text-3xl font-semibold">{currentIndustrial.title}</h3>
-              <p className="mt-5 leading-8 text-slate-300">{currentIndustrial.intro}</p>
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {currentIndustrial.stats.map((stat) => (
-                  <div key={stat} className="rounded-2xl border border-cyan/15 bg-cyan/10 p-4 font-mono text-sm text-cyan">
-                    {stat}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {currentIndustrial.scenarios.map((scenario) => (
-                  <span key={scenario} className="rounded-full bg-white/5 px-3 py-1 text-sm text-slate-300">
-                    {scenario}
-                  </span>
-                ))}
-              </div>
-              <p className="mt-6 rounded-2xl border border-amber/20 bg-amber/10 p-4 text-sm leading-6 text-amber">
-                {t.disclaimer}
-              </p>
-            </div>
+          <SectionHeading eyebrow="Engineering Capability" title={t.capabilityTitle} text={t.capabilityText} />
+          <div className="grid gap-4 md:grid-cols-5">
+            {localizedCapabilityLayers.map(([title, text], index) => (
+              <article key={title} className="hud-card relative rounded-3xl p-6">
+                <p className="font-mono text-sm text-mint">0{index + 1}</p>
+                <h3 className="mt-5 text-2xl font-semibold text-white">{title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-400">{text}</p>
+                {index < localizedCapabilityLayers.length - 1 ? <span className="absolute -right-3 top-1/2 hidden h-px w-6 bg-cyan/50 md:block" /> : null}
+              </article>
+            ))}
           </div>
-        </div>
-      </section>
-
-      <section id="structure" className="relative z-10 px-5 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Structure Safety"
-            title={t.structureTitle}
-            text={t.structureText}
-          />
-          <div className="grid gap-5 lg:grid-cols-3">
-            {localizedStructureProducts.map((product, index) => (
-              <button
-                key={product.name}
-                onClick={() => setStructureIndex(index)}
-                className={`hud-card rounded-3xl p-6 text-left transition hover:-translate-y-1 ${
-                  structureIndex === index ? "border-cyan/60 shadow-glow" : ""
-                }`}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="font-mono text-cyan">{product.name}</p>
-                    <h3 className="mt-2 text-2xl font-semibold text-white">{product.title}</h3>
-                  </div>
-                  <span className="rounded-full bg-mint/10 px-3 py-1 font-mono text-sm text-mint">{product.distance}</span>
+          <div className="mt-8 border-t border-white/10 pt-8">
+            <p className="text-center text-sm font-semibold text-cyan">{t.deliveryTitle}</p>
+            <div className="mt-5 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-5">
+              {localizedDeliverySteps.map(([title, text], index) => (
+                <div key={title} className="bg-white/70 p-4">
+                  <span className="font-mono text-xs text-mint">0{index + 1}</span>
+                  <p className="mt-3 font-semibold text-white">{title}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{text}</p>
                 </div>
-                <p className="mt-5 leading-7 text-slate-400">{product.intro}</p>
-              </button>
-            ))}
-          </div>
-          <div className="mt-8 grid gap-8 rounded-[32px] border border-white/10 bg-white/[0.03] p-5 md:p-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="flex items-center justify-center rounded-3xl bg-black/25 p-8">
-              <Image
-                src={currentStructure.image}
-                alt={currentStructure.title}
-                width={653}
-                height={583}
-                className="max-h-80 w-auto object-contain drop-shadow-[0_28px_70px_rgba(109,40,217,0.16)]"
-              />
+              ))}
             </div>
-            <div className="self-center">
-              <p className="font-mono text-sm uppercase tracking-[0.24em] text-cyan">{currentStructure.name}</p>
-              <h3 className="mt-3 text-4xl font-semibold">{currentStructure.title}</h3>
-              <p className="mt-5 leading-8 text-slate-300">{currentStructure.intro}</p>
-              <div className="mt-7 grid gap-3 md:grid-cols-2">
-                {t.structureEffects.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-black/20 p-4 text-slate-300">
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 rounded-2xl border border-amber/20 bg-amber/10 p-4 text-sm leading-6 text-amber">
-                {currentStructure.capability}
-                {lang === "zh" ? "；" : "; "}
-                {t.structureDisclaimer}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="architecture" className="relative z-10 px-5 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Solution Architecture"
-            title={t.architectureTitle}
-            text={t.architectureText}
-          />
-          <div className="grid gap-5 md:grid-cols-4">
-            {localizedArchitectureLayers.map(([layer, desc], index) => (
-              <div key={layer} className="hud-card relative rounded-3xl p-6">
-                <span className="font-mono text-sm text-cyan">0{index + 1}</span>
-                <h3 className="mt-4 text-2xl font-semibold">{layer}</h3>
-                <p className="mt-4 leading-7 text-slate-400">{desc}</p>
-                {index < architectureLayers.length - 1 ? (
-                  <div className="absolute -right-4 top-1/2 hidden h-px w-8 bg-cyan/50 md:block" />
-                ) : null}
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 rounded-[32px] border border-cyan/20 bg-cyan/10 p-6 text-center text-lg font-semibold text-cyan">
-            {t.architectureSummary}
           </div>
         </div>
       </section>
@@ -1169,25 +844,34 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
         </div>
       </section>
 
-      <section className="relative z-10 px-5 py-20">
+      <section id="cases" className="relative z-10 px-5 py-20">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Customer Value"
-            title={t.valueTitle}
-          />
-          <div className="grid gap-4 md:grid-cols-5">
-            {localizedValues.map(([title, text]) => (
-              <div key={title} className="hud-card rounded-3xl p-6">
-                <h3 className="text-2xl font-semibold text-white">{title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-400">{text}</p>
-              </div>
-            ))}
+          <SectionHeading eyebrow="Case Studies" title={t.casesTitle} text={t.casesText} />
+          <div className="grid gap-5 md:grid-cols-2">
+            {featuredCases.map((caseStudy) => {
+              const caseContent = caseStudy[lang];
+              return (
+                <a key={caseStudy.slug} href={getCasePath(caseStudy, lang)} className="hud-card scan-glow group overflow-hidden rounded-[28px] p-3 transition hover:-translate-y-1 hover:border-cyan/45">
+                  <div className="relative aspect-[16/9] overflow-hidden rounded-[22px] bg-white">
+                    <Image src={caseStudy.image} alt={caseContent.title} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-[1.03]" />
+                  </div>
+                  <div className="p-4 pb-3">
+                    <p className="font-mono text-sm text-cyan">{caseContent.category}</p>
+                    <h3 className="mt-3 text-2xl font-semibold leading-tight text-white">{caseContent.title}</h3>
+                    <p className="mt-3 line-clamp-2 text-sm leading-7 text-slate-400">{caseContent.summary}</p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+          <div className="mt-8 text-center">
+            <a href={`/${lang}/cases`} className="inline-flex rounded-full border border-cyan/30 bg-cyan/10 px-6 py-3 font-semibold text-cyan transition hover:bg-cyan hover:text-ink">{t.casesLink}</a>
           </div>
         </div>
       </section>
 
       <section id="contact" className="relative z-10 px-5 py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 rounded-[36px] border border-cyan/20 bg-[linear-gradient(135deg,rgba(109,40,217,0.14),rgba(167,139,250,0.12),rgba(255,255,255,0.9))] p-6 shadow-glow md:p-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mx-auto grid max-w-7xl gap-8 border border-cyan/20 bg-white p-6 shadow-glow md:p-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="self-center">
             <p className="font-mono text-sm uppercase tracking-[0.28em] text-cyan">Get Proposal</p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-6xl">{t.contactTitle}</h2>

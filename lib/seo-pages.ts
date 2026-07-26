@@ -6,6 +6,7 @@ export type SeoPage = {
   kind: SeoPageKind;
   slug: string;
   image: string;
+  gallery?: string[];
   productModels: string[];
   zh: SeoPageContent;
   en: SeoPageContent;
@@ -38,6 +39,7 @@ export const seoPages: SeoPage[] = [
     kind: "products",
     slug: "radar-flow-meter",
     image: "/product/ar-fv100-flow-radar.jpeg",
+    gallery: ["/brochure/ar-fv100-device.png", "/brochure/ar-fv100-installation.png", "/brochure/drainage-installation-wide.jpeg"],
     productModels: ["AR-FV100"],
     zh: {
       eyebrow: "产品页面",
@@ -62,13 +64,20 @@ export const seoPages: SeoPage[] = [
         {
           title: "数据与预警",
           body: "系统可持续采集流速变化和异常突增趋势，并通过 4G/5G、LoRa 或 NB-IoT 接入水利、防汛或城市排水平台。"
+        },
+        {
+          title: "水位流速一体化监测",
+          body: "AR-FV100 可与水位监测设备、太阳能供电、无线通信和平台预警组合部署，适合河道、渠道、桥涵断面和城市内涝点的无人值守监测。"
         }
       ],
       specs: [
         { label: "推荐型号", value: "AR-FV100" },
         { label: "监测对象", value: "水面流速、流速趋势、异常突增" },
-        { label: "典型范围", value: "0-20 m/s，具体以产品版本和现场工况为准" },
-        { label: "交付组合", value: "雷达终端 + 供电 + 通信 + 平台预警" }
+        { label: "雷达频段", value: "24 GHz，具体以项目配置为准" },
+        { label: "流速范围与精度", value: "0-20 m/s；±0.2 m/s，具体以现场工况为准" },
+        { label: "测量距离", value: "0.5-30 m" },
+        { label: "接口与供电", value: "RS485 / RS232 / 4-20mA；7-28 V DC" },
+        { label: "防护与交付", value: "IP68；雷达终端 + 供电 + 通信 + 平台预警" }
       ],
       applications: ["山洪预警", "城市排水", "灌区计量", "桥涵水文"],
       ctaTitle: "需要评估水流速监测方案？",
@@ -97,13 +106,20 @@ export const seoPages: SeoPage[] = [
         {
           title: "Data and Warning",
           body: "Continuous velocity trends and abnormal surges can be transmitted through 4G/5G, LoRa or NB-IoT to flood control, water resources or drainage platforms."
+        },
+        {
+          title: "Integrated Level and Flow Monitoring",
+          body: "AR-FV100 can be deployed with level sensing, solar power, wireless communication and platform alerts for unattended monitoring at rivers, canals, culverts and urban flood-risk sites."
         }
       ],
       specs: [
         { label: "Recommended Model", value: "AR-FV100" },
         { label: "Monitoring Target", value: "Surface velocity, velocity trend and abnormal surge" },
-        { label: "Typical Range", value: "0-20 m/s, subject to product version and site conditions" },
-        { label: "Delivery Package", value: "Radar terminal + power + communication + platform warning" }
+        { label: "Radar Band", value: "24 GHz, subject to project configuration" },
+        { label: "Velocity Range and Accuracy", value: "0-20 m/s; ±0.2 m/s, subject to site conditions" },
+        { label: "Measurement Distance", value: "0.5-30 m" },
+        { label: "Interfaces and Power", value: "RS485 / RS232 / 4-20mA; 7-28 V DC" },
+        { label: "Protection and Delivery", value: "IP68; radar terminal + power + communication + platform warning" }
       ],
       applications: ["Flash flood warning", "Urban drainage", "Irrigation metering", "Bridge hydrology"],
       ctaTitle: "Need a flow monitoring assessment?",
@@ -114,6 +130,7 @@ export const seoPages: SeoPage[] = [
     kind: "products",
     slug: "radar-level-meter",
     image: "/product/ar-ls-industrial-level-radar.jpeg",
+    gallery: ["/brochure/industrial-level-radar-device.png", "/brochure/industrial-level-installation.png"],
     productModels: ["AR-LS100", "AR-LS200", "AR-LS300", "AR-SL300"],
     zh: {
       eyebrow: "产品页面",
@@ -190,6 +207,7 @@ export const seoPages: SeoPage[] = [
     kind: "solutions",
     slug: "bridge-monitoring",
     image: "/hero/monitoring-bridges.png",
+    gallery: ["/brochure/bridge-monitoring-principle.png", "/brochure/bridge-monitoring-point-layout.jpeg", "/brochure/bridge-monitoring-platform.png", "/brochure/bridge-radar-installation.jpeg", "/brochure/bridge-radar-field-installation.jpeg"],
     productModels: ["SR-I100", "SR-M200", "SR-P300"],
     zh: {
       eyebrow: "解决方案",
@@ -264,8 +282,62 @@ export const seoPages: SeoPage[] = [
   },
   {
     kind: "solutions",
+    slug: "transport-infrastructure-sensing",
+    image: "/cases/tunnel-field-installation.jpeg",
+    gallery: ["/brochure/tunnel-radar-installation.jpeg", "/brochure/tunnel-field-survey.jpeg"],
+    productModels: ["SR-M200", "SR-P300"],
+    zh: {
+      eyebrow: "解决方案",
+      title: "交通基础设施全天候感知",
+      description: "面向道路、隧道和桥梁运行环境的毫米波雷达感知方案，可对目标距离、速度、方向和异常变化进行全天候在线感知，并可联动视频与交通平台。",
+      keywords: ["交通毫米波雷达", "道路交通感知", "隧道监测", "桥梁运行监测", "雷视融合"],
+      badge: "交通基础设施",
+      intro: "毫米波雷达可作为交通基础设施现场感知单元，与边缘计算、视频复核、通信系统和交通管理平台协同工作，提升复杂环境下的事件识别与响应效率。",
+      bullets: ["全天候目标感知", "距离、速度与方向识别", "可选配边缘计算和视频复核", "支持交通管理平台接入"],
+      sections: [
+        { title: "适用位置", body: "适用于道路、隧道、桥梁和交通运行关键节点等需要长期在线感知的现场。", items: ["道路运行节点", "隧道出入口", "桥梁关键区域", "交通事件高发点"] },
+        { title: "雷视与边缘协同", body: "雷达可持续输出目标距离、速度、方向和异常变化，视频模块用于现场复核，边缘计算单元可按规则完成本地处理与联动。" },
+        { title: "系统接入", body: "可通过有线或无线通信接入客户已有交通管理平台、物联网平台或第三方业务系统，降低现有系统改造成本。" }
+      ],
+      specs: [
+        { label: "推荐产品", value: "SR-M200 / SR-P300，按观测距离与目标数量选择" },
+        { label: "监测对象", value: "目标距离、速度、方向、异常变化" },
+        { label: "系统组合", value: "雷达 + 边缘计算 + 视频复核 + 通信 + 平台" },
+        { label: "平台接入", value: "交通管理平台、物联网平台或第三方业务系统" }
+      ],
+      applications: ["道路运行监测", "隧道事件感知", "桥梁运行辅助监测", "交通应急联动"],
+      ctaTitle: "需要交通基础设施感知方案？",
+      ctaText: "提供现场距离、目标类型、供电通信条件和现有平台接口，我们可以协助完成设备与系统配置。"
+    },
+    en: {
+      eyebrow: "Solution",
+      title: "All-weather Transport Infrastructure Sensing",
+      description: "A mmWave radar sensing solution for roads, tunnels and bridges that detects target range, speed, direction and abnormal changes in all weather, with optional video and traffic-platform integration.",
+      keywords: ["traffic mmwave radar", "road sensing", "tunnel monitoring", "bridge operation monitoring", "radar video fusion"],
+      badge: "Transport Infrastructure",
+      intro: "mmWave radar can act as a field sensing unit for transport infrastructure, working with edge computing, video review, communications and traffic management platforms to improve event recognition and response in complex environments.",
+      bullets: ["All-weather target sensing", "Range, speed and direction recognition", "Optional edge computing and video review", "Traffic platform integration"],
+      sections: [
+        { title: "Deployment Sites", body: "For roads, tunnels, bridges and other transport-operation nodes that require long-term online sensing.", items: ["Road operation nodes", "Tunnel portals", "Bridge key areas", "High-incident zones"] },
+        { title: "Radar, Video and Edge", body: "Radar continuously outputs target range, speed, direction and abnormal changes. Video supports field review, while edge units can process local rules and integrations." },
+        { title: "System Integration", body: "Wired or wireless communication can connect to existing traffic management platforms, IoT platforms or third-party systems, reducing integration effort." }
+      ],
+      specs: [
+        { label: "Recommended Products", value: "SR-M200 / SR-P300, selected by observation range and target count" },
+        { label: "Monitoring", value: "Target range, speed, direction and abnormal change" },
+        { label: "System Package", value: "Radar + edge computing + video review + communication + platform" },
+        { label: "Integration", value: "Traffic management, IoT or third-party business platforms" }
+      ],
+      applications: ["Road operation monitoring", "Tunnel event sensing", "Bridge operation support", "Traffic emergency linkage"],
+      ctaTitle: "Need a transport sensing solution?",
+      ctaText: "Share the observation distance, target types, power and communication conditions, and platform interfaces for system configuration."
+    }
+  },
+  {
+    kind: "solutions",
     slug: "flood-warning",
     image: "/hero/liquid-level.png",
+    gallery: ["/brochure/ar-fv100-installation.png", "/brochure/drainage-installation-wide.jpeg", "/brochure/drainage-installation-portrait.jpeg"],
     productModels: ["AR-FV100"],
     zh: {
       eyebrow: "解决方案",
@@ -342,6 +414,7 @@ export const seoPages: SeoPage[] = [
     kind: "solutions",
     slug: "industrial-level-monitoring",
     image: "/product/ar-ls-industrial-level-radar.jpeg",
+    gallery: ["/brochure/industrial-level-radar-device.png", "/brochure/industrial-level-installation.png"],
     productModels: ["AR-LS100", "AR-LS200", "AR-LS300", "AR-SL300"],
     zh: {
       eyebrow: "解决方案",
@@ -418,6 +491,7 @@ export const seoPages: SeoPage[] = [
     kind: "solutions",
     slug: "dam-slope-monitoring",
     image: "/product/sr-p300-phased-array-radar.png",
+    gallery: ["/brochure/structural-radar-sr-p300.png", "/brochure/bridge-monitoring-principle.png"],
     productModels: ["SR-P300"],
     zh: {
       eyebrow: "解决方案",
@@ -491,6 +565,102 @@ export const seoPages: SeoPage[] = [
     }
   }
 ];
+
+const standaloneProductPages: SeoPage[] = [
+  {
+    kind: "products",
+    slug: "ar-ls100",
+    image: "/brochure/industrial-level-radar-device.png",
+    gallery: ["/brochure/industrial-level-radar-device.png", "/brochure/industrial-level-installation.png"],
+    productModels: ["AR-LS100"],
+    zh: {
+      eyebrow: "产品页面", title: "AR-LS100 标准型工业雷达物/液位计", description: "面向普通储罐、清水池和一般料仓的非接触式液位、物位与料位在线监测设备。", keywords: ["AR-LS100", "雷达液位计", "标准型物位计"], badge: "标准监测型", intro: "AR-LS100 适用于无防爆要求的常规工业环境，以 RS485 Modbus 接入方式支持成本可控、安装便捷的长期在线监测。", bullets: ["常规液位与物位监测", "RS485 Modbus", "±5 mm 级精度", "IP67 防护"], sections: [{ title: "适用工况", body: "适合普通工业储罐、清水池、一般料仓和水务监测等无爆炸风险场景。", items: ["清水池", "普通储罐", "一般料仓", "水务监测"] }, { title: "部署与接入", body: "设备安装于储罐或料仓顶部，通过 RS485 Modbus 对接 PLC、工业网关或远程管理平台。" }, { title: "选型提示", body: "适用于预算敏感、强调易部署的常规监测项目；防爆、HART 或更高精度要求请选用 AR-LS200 或 AR-LS300。" }], specs: [{ label: "产品型号", value: "AR-LS100" }, { label: "版本定位", value: "常规液位 / 物位在线监测" }, { label: "通信输出", value: "RS485 Modbus" }, { label: "测量精度", value: "±5 mm，具体以项目配置和现场工况为准" }, { label: "防护等级", value: "IP67" }, { label: "防爆能力", value: "无防爆认证" }, { label: "典型场景", value: "清水池、普通储罐、普通料仓" }], applications: ["清水池", "普通储罐", "一般料仓", "水务监测"], ctaTitle: "需要常规液位监测方案？", ctaText: "提供介质、量程、安装接口和通信要求，可协助确认 AR-LS100 是否适配。"
+    },
+    en: {
+      eyebrow: "Product Page", title: "AR-LS100 Standard Industrial Radar Level Meter", description: "A non-contact level instrument for standard tanks, reservoirs and general silos.", keywords: ["AR-LS100", "radar level meter", "standard material level radar"], badge: "Standard Monitoring", intro: "AR-LS100 is designed for conventional non-hazardous industrial sites, with RS485 Modbus for cost-controlled and straightforward long-term monitoring.", bullets: ["Standard level monitoring", "RS485 Modbus", "±5 mm accuracy", "IP67 protection"], sections: [{ title: "Suitable Sites", body: "For standard tanks, clean-water reservoirs, general silos and utility monitoring where explosion protection is not required.", items: ["Clean-water reservoirs", "Standard tanks", "General silos", "Utility monitoring"] }, { title: "Deployment and Integration", body: "Mount on the top of a tank or silo and connect to PLCs, industrial gateways or remote platforms through RS485 Modbus." }, { title: "Selection Note", body: "For economical, easy-to-deploy monitoring. Choose AR-LS200 or AR-LS300 when explosion-proof, HART or higher-accuracy capability is required." }], specs: [{ label: "Model", value: "AR-LS100" }, { label: "Positioning", value: "Standard online level and material level monitoring" }, { label: "Output", value: "RS485 Modbus" }, { label: "Accuracy", value: "±5 mm, subject to project configuration and site conditions" }, { label: "Protection", value: "IP67" }, { label: "Explosion Protection", value: "No explosion-proof certification" }, { label: "Typical Sites", value: "Clean-water reservoirs, standard tanks and general silos" }], applications: ["Clean-water reservoirs", "Standard tanks", "General silos", "Utility monitoring"], ctaTitle: "Need a standard level-monitoring solution?", ctaText: "Share the medium, range, mounting interface and communication requirement to confirm AR-LS100 suitability."
+    }
+  },
+  {
+    kind: "products",
+    slug: "ar-ls200",
+    image: "/brochure/industrial-level-radar-device.png",
+    gallery: ["/brochure/industrial-level-radar-device.png", "/brochure/industrial-level-installation.png"],
+    productModels: ["AR-LS200"],
+    zh: {
+      eyebrow: "产品页面", title: "AR-LS200 防爆型工业雷达物/液位计", description: "面向煤矿、化工储罐和密闭管网等危险工业场景的非接触式物/液位监测设备。", keywords: ["AR-LS200", "防爆雷达液位计", "HART 物位计"], badge: "防爆工业型", intro: "AR-LS200 支持 4-20mA + HART 工业标准输出，可按项目适配本安防爆认证版本，用于复杂工业过程监测。", bullets: ["4-20mA + HART", "防爆版本可选", "±5 mm 级精度", "IP67 防护"], sections: [{ title: "适用工况", body: "适用于煤矿料仓、化工储罐、密闭排水管网和有防爆要求的工业园区。", items: ["煤矿料仓", "化工储罐", "密闭管网", "工业园区"] }, { title: "工业系统接入", body: "采用 4-20mA + HART 输出，可对接 PLC、DCS 或工业网关，满足工业现场标准化接入需要。" }, { title: "防爆说明", body: "可按项目适配 Ex ia IIC T6 Gb 等本安防爆认证版本；具体认证状态和防爆等级以产品版本、证书和项目技术协议为准。" }], specs: [{ label: "产品型号", value: "AR-LS200" }, { label: "版本定位", value: "防爆工业场景物 / 液位监测" }, { label: "通信输出", value: "4-20mA + HART" }, { label: "测量精度", value: "±5 mm，具体以项目配置和现场工况为准" }, { label: "防护等级", value: "IP67" }, { label: "防爆能力", value: "可按项目适配 Ex ia IIC T6 Gb 等本安防爆认证版本" }, { label: "典型场景", value: "煤矿料仓、化工储罐、密闭管网" }], applications: ["煤矿料仓", "化工储罐", "密闭管网", "危险工业环境"], ctaTitle: "需要防爆物位监测方案？", ctaText: "提供介质、防爆等级、量程、接口和安装方式，可协助完成型号与认证版本判断。"
+    },
+    en: {
+      eyebrow: "Product Page", title: "AR-LS200 Explosion-proof Industrial Radar Level Meter", description: "A non-contact level instrument for coal, chemical tanks and enclosed networks that require industrial explosion-protection options.", keywords: ["AR-LS200", "explosion-proof radar level meter", "HART level radar"], badge: "Explosion-proof Industrial", intro: "AR-LS200 supports standard 4-20mA + HART output and can be configured with intrinsically safe explosion-proof versions for industrial process monitoring.", bullets: ["4-20mA + HART", "Explosion-proof option", "±5 mm accuracy", "IP67 protection"], sections: [{ title: "Suitable Sites", body: "For coal silos, chemical tanks, enclosed drainage networks and industrial sites with explosion-protection requirements.", items: ["Coal silos", "Chemical tanks", "Enclosed networks", "Industrial parks"] }, { title: "Industrial Integration", body: "Uses 4-20mA + HART for standardized integration with PLCs, DCS systems and industrial gateways." }, { title: "Explosion-protection Note", body: "Versions adaptable to Ex ia IIC T6 Gb and similar intrinsically safe requirements are available by project. Certification status and rating depend on the product version, certificate and agreement." }], specs: [{ label: "Model", value: "AR-LS200" }, { label: "Positioning", value: "Industrial level monitoring for hazardous sites" }, { label: "Output", value: "4-20mA + HART" }, { label: "Accuracy", value: "±5 mm, subject to project configuration and site conditions" }, { label: "Protection", value: "IP67" }, { label: "Explosion Protection", value: "Can be configured for Ex ia IIC T6 Gb and similar requirements" }, { label: "Typical Sites", value: "Coal silos, chemical tanks and enclosed networks" }], applications: ["Coal silos", "Chemical tanks", "Enclosed networks", "Hazardous industrial sites"], ctaTitle: "Need an explosion-proof level-monitoring solution?", ctaText: "Share the medium, required protection rating, range, interface and mounting method for model and certification guidance."
+    }
+  },
+  {
+    kind: "products",
+    slug: "ar-ls300",
+    image: "/brochure/industrial-level-radar-device.png",
+    gallery: ["/brochure/industrial-level-radar-device.png", "/brochure/industrial-level-installation.png"],
+    productModels: ["AR-LS300"],
+    zh: {
+      eyebrow: "产品页面", title: "AR-LS300 高精度型工业雷达物/液位计", description: "面向精细化工、关键储罐与高精度料仓库存计量的高精度非接触式物/液位监测设备。", keywords: ["AR-LS300", "高精度雷达液位计", "库存计量"], badge: "高精度计量型", intro: "AR-LS300 适合关键工艺控制和库存计量场景，提供 4-20mA + HART 输出和全量程稳定的高精度测量能力。", bullets: ["±1 mm 级测量", "30 m 全量程恒定精度", "4-20mA + HART", "IP67 防护"], sections: [{ title: "适用工况", body: "适用于精细化工反应釜、高价值原料储罐、高精度料仓和关键库存计量点。", items: ["精细化工", "关键储罐", "高精度料仓", "库存计量"] }, { title: "计量与控制", body: "高精度输出可支撑关键工艺控制、库存管理和国产化替代项目中的连续数据采集。" }, { title: "工程说明", body: "精度等级、防爆版本和最终测量性能需结合具体产品版本、安装条件、介质特性和现场标定方案确认。" }], specs: [{ label: "产品型号", value: "AR-LS300" }, { label: "版本定位", value: "高精度计量级物 / 液位测量" }, { label: "通信输出", value: "4-20mA + HART" }, { label: "测量精度", value: "±1 mm；30 m 全量程恒定精度，具体以项目配置为准" }, { label: "防护等级", value: "IP67" }, { label: "防爆能力", value: "可按项目适配 Ex ia IIC T6 Gb 等本安防爆认证版本" }, { label: "典型场景", value: "精细化工、关键储罐、高精度料仓" }], applications: ["精细化工", "关键储罐", "高精度料仓", "库存计量"], ctaTitle: "需要高精度计量方案？", ctaText: "提供介质、量程、目标精度、接口与安装条件，可协助评估 AR-LS300 的项目适配性。"
+    },
+    en: {
+      eyebrow: "Product Page", title: "AR-LS300 High-accuracy Industrial Radar Level Meter", description: "A high-accuracy non-contact level instrument for fine chemicals, critical tanks and precision silo inventory measurement.", keywords: ["AR-LS300", "high accuracy radar level meter", "inventory metering"], badge: "High-accuracy Metering", intro: "AR-LS300 is designed for critical process control and inventory metering, with 4-20mA + HART and stable high-accuracy measurement across the range.", bullets: ["±1 mm measurement", "30 m constant full-range accuracy", "4-20mA + HART", "IP67 protection"], sections: [{ title: "Suitable Sites", body: "For fine-chemical reactors, high-value raw-material tanks, high-accuracy silos and critical inventory points.", items: ["Fine chemicals", "Critical tanks", "High-accuracy silos", "Inventory metering"] }, { title: "Metering and Control", body: "High-accuracy output supports continuous data collection for critical process control, inventory management and import-replacement projects." }, { title: "Engineering Note", body: "Accuracy, explosion-protection configuration and final performance depend on product version, installation, medium characteristics and site calibration." }], specs: [{ label: "Model", value: "AR-LS300" }, { label: "Positioning", value: "High-accuracy level and material-level metering" }, { label: "Output", value: "4-20mA + HART" }, { label: "Accuracy", value: "±1 mm; 30 m constant full-range accuracy, subject to project configuration" }, { label: "Protection", value: "IP67" }, { label: "Explosion Protection", value: "Can be configured for Ex ia IIC T6 Gb and similar requirements" }, { label: "Typical Sites", value: "Fine chemicals, critical tanks and high-accuracy silos" }], applications: ["Fine chemicals", "Critical tanks", "High-accuracy silos", "Inventory metering"], ctaTitle: "Need a high-accuracy metering solution?", ctaText: "Share the medium, range, target accuracy, interface and mounting condition to evaluate AR-LS300 suitability."
+    }
+  },
+  {
+    kind: "products",
+    slug: "ar-sl300",
+    image: "/brochure/industrial-level-radar-device.png",
+    gallery: ["/brochure/industrial-level-radar-device.png", "/brochure/industrial-level-installation.png"],
+    productModels: ["AR-SL300"],
+    zh: {
+      eyebrow: "产品页面", title: "AR-SL300 长量程固体物位计", description: "面向煤仓、水泥库、焦仓和粉料仓等固体物料场景的远距离非接触式物位测量设备。", keywords: ["AR-SL300", "固体物位计", "料仓雷达"], badge: "长量程固体物位", intro: "AR-SL300 面向粉料、颗粒料和块状物料的料仓与筒仓高度测量，可与工业接口、网关和远程平台组合部署。", bullets: ["固体料仓测量", "非接触低维护", "工业接口接入", "适应粉尘环境"], sections: [{ title: "适用工况", body: "适用于煤仓、水泥库、焦仓、粉料仓和筒仓等需要远距离料位测量的现场。", items: ["煤仓", "水泥库", "焦仓", "粉料仓"] }, { title: "安装与系统接入", body: "安装在料仓或筒仓顶部，可通过工业接口接入 PLC、DCS 或工业网关，支撑库存变化、满仓和空仓状态监测。" }, { title: "复杂工况", body: "针对粉尘、宽料仓和复杂反射场景，可按目标与安装环境选择适配的射频前端与部署方式。" }], specs: [{ label: "产品型号", value: "AR-SL300" }, { label: "版本定位", value: "固体料仓、筒仓远距离物位测量" }, { label: "监测对象", value: "粉料、颗粒料、块状物料高度与库存变化" }, { label: "通信能力", value: "可按项目配置 RS485、4-20mA + HART 等接口" }, { label: "部署方式", value: "料仓 / 筒仓顶部非接触安装" }, { label: "典型场景", value: "煤仓、水泥库、焦仓、粉料仓" }], applications: ["煤仓", "水泥库", "焦仓", "粉料仓"], ctaTitle: "需要固体料仓物位方案？", ctaText: "提供物料类型、仓体尺寸、安装位置、粉尘情况和接口要求，可协助完成部署建议。"
+    },
+    en: {
+      eyebrow: "Product Page", title: "AR-SL300 Long-range Solid Material Level Meter", description: "A non-contact material-level instrument for coal silos, cement warehouses, coke bins and powder silos.", keywords: ["AR-SL300", "solid material level meter", "silo radar"], badge: "Long-range Solid Level", intro: "AR-SL300 measures powders, granules and bulk solids in silos and bins, with options for industrial interfaces, gateways and remote platforms.", bullets: ["Solid-material silo measurement", "Non-contact, low maintenance", "Industrial integration", "For dusty environments"], sections: [{ title: "Suitable Sites", body: "For coal silos, cement warehouses, coke bins, powder silos and other sites requiring long-range solid-level monitoring.", items: ["Coal silos", "Cement warehouses", "Coke bins", "Powder silos"] }, { title: "Installation and Integration", body: "Mount at the top of a silo or bin and connect to PLC, DCS or industrial gateways for inventory, full and empty status monitoring." }, { title: "Complex Conditions", body: "RF front-end and deployment can be matched to the target and installation environment for dust, wide silos and complex reflections." }], specs: [{ label: "Model", value: "AR-SL300" }, { label: "Positioning", value: "Long-range material level measurement for solid silos and bins" }, { label: "Monitoring Target", value: "Powders, granules, bulk-solid height and inventory change" }, { label: "Interfaces", value: "RS485, 4-20mA + HART and other project-configured options" }, { label: "Deployment", value: "Non-contact mounting on the top of a silo or bin" }, { label: "Typical Sites", value: "Coal silos, cement warehouses, coke bins and powder silos" }], applications: ["Coal silos", "Cement warehouses", "Coke bins", "Powder silos"], ctaTitle: "Need a solid-silo level solution?", ctaText: "Share the material, vessel dimensions, mounting position, dust conditions and interface requirements for deployment guidance."
+    }
+  },
+  {
+    kind: "products",
+    slug: "sr-i100",
+    image: "/brochure/structural-radar-sr-i100.png",
+    gallery: ["/brochure/structural-radar-sr-i100.png", "/brochure/bridge-monitoring-principle.png", "/brochure/bridge-field-survey-portrait.png"],
+    productModels: ["SR-I100"],
+    zh: {
+      eyebrow: "产品页面", title: "SR-I100 近距离多参数一体化雷达", description: "面向桥梁伸缩缝、支座、建筑基坑和室内隧道等 0-10 m 近距离结构位移与形变监测。", keywords: ["SR-I100", "近距离结构监测雷达", "桥梁支座位移监测"], badge: "近距离结构监测", intro: "SR-I100 结构紧凑、集成度高，适合多点位快速布设、短期专项检测和普通结构的长期在线监测。", bullets: ["0-10 m 监测距离", "0.05 mm 级位移识别", "RS485 Modbus", "IP67 防护"], sections: [{ title: "适用工况", body: "适用于桥梁伸缩缝、桥梁支座、建筑基坑、室内隧道和普通城市桥梁等短距离结构监测。", items: ["伸缩缝位移", "支座局部位移", "基坑形变", "隧道局部收敛"] }, { title: "轻量化部署", body: "小型化一体化结构便于独立支撑和多点位快速安装，无需在被测结构上大规模布设接触式传感器。" }, { title: "数据应用", body: "可持续输出关键点位变化和异常趋势，并接入桥梁健康监测平台或项目级云端平台。" }], specs: [{ label: "产品型号", value: "SR-I100" }, { label: "有效监测距离", value: "0-10 m" }, { label: "通信方式", value: "RS485 Modbus" }, { label: "位移识别能力", value: "实验室稳定条件下可达 0.05 mm 级" }, { label: "工程测量精度", value: "以现场安装、目标反射条件、标定方案和验收协议为准" }, { label: "防护等级", value: "IP67" }, { label: "多目标能力", value: "单点 / 少量点位" }], applications: ["桥梁伸缩缝", "桥梁支座", "建筑基坑", "室内隧道"], ctaTitle: "需要近距离结构监测方案？", ctaText: "提供监测对象、安装距离、视线条件和数据接口要求，可协助确认 SR-I100 部署方案。"
+    },
+    en: {
+      eyebrow: "Product Page", title: "SR-I100 Integrated Short-range Structural Radar", description: "For 0-10 m structural displacement and deformation monitoring at expansion joints, bearings, foundation pits and indoor tunnels.", keywords: ["SR-I100", "short range structural radar", "bridge bearing displacement monitoring"], badge: "Short-range Structural Monitoring", intro: "SR-I100 has a compact integrated structure for rapid multi-point deployment, short-term inspections and long-term online monitoring of standard structures.", bullets: ["0-10 m range", "0.05 mm-level displacement recognition", "RS485 Modbus", "IP67 protection"], sections: [{ title: "Suitable Sites", body: "For bridge expansion joints, bearings, foundation pits, indoor tunnels and standard urban bridges.", items: ["Expansion joints", "Bridge bearings", "Foundation pits", "Indoor tunnels"] }, { title: "Lightweight Deployment", body: "The integrated form factor supports independent mounting and rapid multi-point deployment without extensive contact sensors on the target structure." }, { title: "Data Use", body: "Continuously outputs key-point changes and anomaly trends for bridge health platforms or project cloud platforms." }], specs: [{ label: "Model", value: "SR-I100" }, { label: "Effective Range", value: "0-10 m" }, { label: "Communication", value: "RS485 Modbus" }, { label: "Displacement Recognition", value: "Down to the 0.05 mm level under stable laboratory conditions" }, { label: "Engineering Accuracy", value: "Subject to installation, target reflection, calibration and acceptance agreement" }, { label: "Protection", value: "IP67" }, { label: "Multi-target Capability", value: "Single point / limited points" }], applications: ["Bridge expansion joints", "Bridge bearings", "Foundation pits", "Indoor tunnels"], ctaTitle: "Need a short-range structural-monitoring solution?", ctaText: "Share the target, observation distance, line-of-sight conditions and data-interface requirements for SR-I100 deployment guidance."
+    }
+  },
+  {
+    kind: "products",
+    slug: "sr-m200",
+    image: "/brochure/structural-radar-sr-m200.png",
+    gallery: ["/brochure/structural-radar-sr-m200.png", "/brochure/bridge-monitoring-principle.png", "/brochure/bridge-deflection-run-one.png", "/brochure/bridge-deflection-run-two.png"],
+    productModels: ["SR-M200"],
+    zh: {
+      eyebrow: "产品页面", title: "SR-M200 中距离 MIMO 监测雷达", description: "面向桥梁梁体、高架桥、厂区构筑物和隧道局部形变的 10-60 m 多点位在线监测。", keywords: ["SR-M200", "MIMO 监测雷达", "桥梁挠度监测"], badge: "中距离多点位监测", intro: "SR-M200 采用 MIMO 阵列感知方式，在监测精度、覆盖范围和工程部署便利性之间取得平衡。", bullets: ["10-60 m 监测距离", "0.03 mm 级位移识别", "多点位监测", "4-20mA + HART"], sections: [{ title: "适用工况", body: "适用于桥梁梁体跨中挠度、城市高架桥长期安全、厂区构筑物和隧道局部变形监测。", items: ["桥梁跨中挠度", "城市高架桥", "厂区构筑物", "隧道局部变形"] }, { title: "多点位感知", body: "可服务中等距离、多目标、多点位监测任务，适合需要同步观察同一截面多个反射目标的工程测试与长期运行。" }, { title: "系统交付", body: "可组合独立支撑、通信、云平台、阈值预警与报表输出，形成工程化在线监测闭环。" }], specs: [{ label: "产品型号", value: "SR-M200" }, { label: "有效监测距离", value: "10-60 m" }, { label: "通信方式", value: "4-20mA + HART" }, { label: "位移识别能力", value: "实验室稳定条件下可达 0.03 mm 级" }, { label: "工程测量精度", value: "以现场安装、目标反射条件、标定方案和验收协议为准" }, { label: "防护等级", value: "IP67" }, { label: "多目标能力", value: "多点位监测" }], applications: ["桥梁梁体", "城市高架桥", "厂区构筑物", "隧道局部变形"], ctaTitle: "需要中距离多点位监测方案？", ctaText: "提供观测距离、结构类型、目标数量、安装条件和平台要求，可协助完成 SR-M200 配置。"
+    },
+    en: {
+      eyebrow: "Product Page", title: "SR-M200 Mid-range MIMO Monitoring Radar", description: "For 10-60 m multi-point online monitoring of bridge girders, viaducts, industrial structures and local tunnel deformation.", keywords: ["SR-M200", "MIMO monitoring radar", "bridge deflection monitoring"], badge: "Mid-range Multi-point Monitoring", intro: "SR-M200 uses MIMO array sensing to balance monitoring accuracy, coverage and practical engineering deployment.", bullets: ["10-60 m range", "0.03 mm-level displacement recognition", "Multi-point monitoring", "4-20mA + HART"], sections: [{ title: "Suitable Sites", body: "For mid-span bridge deflection, long-term viaduct safety, industrial structures and local tunnel deformation.", items: ["Bridge mid-span deflection", "Urban viaducts", "Industrial structures", "Local tunnel deformation"] }, { title: "Multi-point Sensing", body: "Supports mid-range, multi-target and multi-point work, including synchronized observation of reflective targets across one structural section." }, { title: "System Delivery", body: "Can be combined with independent mounting, communications, cloud platforms, threshold alerts and reports for an engineered online monitoring loop." }], specs: [{ label: "Model", value: "SR-M200" }, { label: "Effective Range", value: "10-60 m" }, { label: "Communication", value: "4-20mA + HART" }, { label: "Displacement Recognition", value: "Down to the 0.03 mm level under stable laboratory conditions" }, { label: "Engineering Accuracy", value: "Subject to installation, target reflection, calibration and acceptance agreement" }, { label: "Protection", value: "IP67" }, { label: "Multi-target Capability", value: "Multi-point monitoring" }], applications: ["Bridge girders", "Urban viaducts", "Industrial structures", "Local tunnel deformation"], ctaTitle: "Need a mid-range multi-point monitoring solution?", ctaText: "Share observation distance, structure type, number of targets, mounting conditions and platform requirements for SR-M200 configuration."
+    }
+  },
+  {
+    kind: "products",
+    slug: "sr-p300",
+    image: "/brochure/structural-radar-sr-p300.png",
+    gallery: ["/brochure/structural-radar-sr-p300.png", "/brochure/bridge-monitoring-principle.png", "/brochure/bridge-monitoring-platform.png", "/brochure/bridge-radar-installation.jpeg"],
+    productModels: ["SR-P300"],
+    zh: {
+      eyebrow: "产品页面", title: "SR-P300 远距离相控阵雷达", description: "面向大跨径桥梁、水库大坝、高危边坡和超长隧道的 60-300 m 远距离结构安全监测与预警。", keywords: ["SR-P300", "相控阵雷达", "远距离结构监测", "边坡监测"], badge: "远距离多目标预警", intro: "SR-P300 支持远距离探测与多目标同步识别，可在单台设备覆盖多个监测点位的情况下持续跟踪结构形变趋势。", bullets: ["60-300 m 监测距离", "0.01 mm 级位移识别", "多目标同步识别", "IP67 防护"], sections: [{ title: "适用工况", body: "适用于大跨径桥梁挠度、水库大坝沉降与滑移、山区高危边坡位移、重点文物桥梁和超长隧道。", items: ["大跨径桥梁", "水库大坝", "高危边坡", "超长隧道"] }, { title: "远距离多目标能力", body: "在单台设备覆盖多个监测点位的条件下，支持结构形变趋势跟踪和异常预警，降低远距离和高风险区域的人工巡检压力。" }, { title: "长期预警闭环", body: "可配合太阳能供电、4G/5G 通信、视频复核、云监测平台和现场告警设备，用于长期无人值守项目。" }], specs: [{ label: "产品型号", value: "SR-P300" }, { label: "有效监测距离", value: "60-300 m" }, { label: "通信方式", value: "4-20mA + HART" }, { label: "位移识别能力", value: "实验室稳定条件下可达 0.01 mm 级" }, { label: "工程测量精度", value: "以现场安装、目标反射条件、标定方案和验收协议为准" }, { label: "防护等级", value: "IP67" }, { label: "多目标能力", value: "多目标同步识别" }], applications: ["大跨径桥梁", "水库大坝", "高危边坡", "超长隧道"], ctaTitle: "需要远距离结构预警方案？", ctaText: "提供结构类型、观测距离、目标数量、安装位置与通信供电条件，可协助完成 SR-P300 方案设计。"
+    },
+    en: {
+      eyebrow: "Product Page", title: "SR-P300 Long-range Phased-array Radar", description: "For 60-300 m structural safety monitoring and warning at long-span bridges, dams, high-risk slopes and long tunnels.", keywords: ["SR-P300", "phased array radar", "long range structural monitoring", "slope monitoring"], badge: "Long-range Multi-target Warning", intro: "SR-P300 supports long-range sensing and synchronized multi-target recognition, tracking structural deformation trends across multiple monitoring points with one device.", bullets: ["60-300 m range", "0.01 mm-level displacement recognition", "Synchronized multi-target sensing", "IP67 protection"], sections: [{ title: "Suitable Sites", body: "For long-span bridge deflection, dam settlement and sliding, high-risk slope displacement, heritage bridges and long tunnels.", items: ["Long-span bridges", "Reservoir dams", "High-risk slopes", "Long tunnels"] }, { title: "Long-range Multi-target Capability", body: "One device can cover multiple points for deformation-trend tracking and anomaly warning, reducing manual inspection pressure in distant or high-risk areas." }, { title: "Long-term Warning Loop", body: "Can work with solar power, 4G/5G, video review, cloud monitoring platforms and on-site alarms for unattended projects." }], specs: [{ label: "Model", value: "SR-P300" }, { label: "Effective Range", value: "60-300 m" }, { label: "Communication", value: "4-20mA + HART" }, { label: "Displacement Recognition", value: "Down to the 0.01 mm level under stable laboratory conditions" }, { label: "Engineering Accuracy", value: "Subject to installation, target reflection, calibration and acceptance agreement" }, { label: "Protection", value: "IP67" }, { label: "Multi-target Capability", value: "Synchronized multi-target recognition" }], applications: ["Long-span bridges", "Reservoir dams", "High-risk slopes", "Long tunnels"], ctaTitle: "Need a long-range structural-warning solution?", ctaText: "Share the structure type, observation distance, number of targets, mounting location, power and communication conditions for SR-P300 solution design."
+    }
+  }
+];
+
+seoPages.push(...standaloneProductPages);
 
 export function getSeoPage(kind: SeoPageKind, slug: string) {
   return seoPages.find((page) => page.kind === kind && page.slug === slug);

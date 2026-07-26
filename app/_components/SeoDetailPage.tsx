@@ -87,14 +87,59 @@ export default function SeoDetailPage({ page, lang }: { page: SeoPage; lang: Lan
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto mt-12 grid max-w-7xl gap-5 md:grid-cols-4">
-        {content.specs.map((spec) => (
-          <div key={spec.label} className="hud-card rounded-3xl p-5">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-cyan">{spec.label}</p>
-            <p className="mt-3 leading-7 text-slate-300">{spec.value}</p>
+      <section className="relative z-10 mx-auto mt-12 max-w-7xl">
+        <div className="mb-5 flex items-baseline justify-between gap-4 border-b border-white/10 pb-4">
+          <div>
+            <p className="font-mono text-sm uppercase tracking-[0.24em] text-cyan">
+              {lang === "zh" ? "Technical Specifications" : "Technical Specifications"}
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold text-white">
+              {lang === "zh" ? "产品规格" : "Product Specifications"}
+            </h2>
           </div>
-        ))}
+          <span className="text-sm text-slate-500">{content.badge}</span>
+        </div>
+        <div className="overflow-x-auto border border-white/10 bg-white">
+          <table className="min-w-full border-collapse text-left">
+            <tbody>
+              {content.specs.map((spec) => (
+                <tr key={spec.label} className="border-b border-slate-200 last:border-b-0">
+                  <th scope="row" className="w-[32%] bg-slate-50 px-5 py-4 font-mono text-sm font-medium text-cyan md:w-[25%]">
+                    {spec.label}
+                  </th>
+                  <td className="px-5 py-4 leading-7 text-slate-300">{spec.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
+
+      {page.gallery?.length ? (
+        <section className="relative z-10 mx-auto mt-16 max-w-7xl">
+          <p className="font-mono text-sm uppercase tracking-[0.24em] text-cyan">
+            {lang === "zh" ? "Product & Field Gallery" : "Product & Field Gallery"}
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold text-white">
+            {lang === "zh" ? "产品与工程资料" : "Product and Field Materials"}
+          </h2>
+          <div className="mt-7 grid gap-5 md:grid-cols-2">
+            {page.gallery.map((image, index) => (
+              <figure key={image} className="hud-card overflow-hidden p-3">
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-50">
+                  <Image
+                    src={image}
+                    alt={`${content.title} ${index + 1}`}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="relative z-10 mx-auto mt-16 grid max-w-7xl gap-6 lg:grid-cols-[1fr_0.75fr]">
         <div className="grid gap-5">
