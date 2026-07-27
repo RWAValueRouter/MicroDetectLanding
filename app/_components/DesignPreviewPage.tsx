@@ -8,8 +8,8 @@ import CaseStudyPage from "./CaseStudyPage";
 import LandingPage from "./LandingPage";
 import ProductDirectory from "./ProductDirectory";
 import SeoDetailPage from "./SeoDetailPage";
-import InsightsPage from "../(content)/insights/page";
-import InsightArticlePage from "../(content)/insights/[slug]/page";
+import InsightsContent from "./InsightsContent";
+import InsightArticleContent from "./InsightArticleContent";
 
 function getLang(lang: string): Lang {
   if (!supportedLangs.includes(lang as Lang)) notFound();
@@ -46,9 +46,9 @@ export async function DesignRoute({ segments, routePrefix }: { segments: string[
   const [first, second, third] = segments;
 
   if (first === "insights") {
-    if (segments.length === 1) return <InsightsPage routePrefix={routePrefix} />;
+    if (segments.length === 1) return <InsightsContent routePrefix={routePrefix} />;
     if (segments.length === 2 && second) {
-      return <InsightArticlePage params={Promise.resolve({ slug: second })} routePrefix={routePrefix} />;
+      return <InsightArticleContent params={Promise.resolve({ slug: second })} routePrefix={routePrefix} />;
     }
     notFound();
   }

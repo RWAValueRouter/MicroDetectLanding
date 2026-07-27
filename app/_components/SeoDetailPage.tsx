@@ -2,15 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Lang } from "../seo";
 import { getSeoPagePath, type SeoPage } from "../../lib/seo-pages";
+import ContentNavigation from "./ContentNavigation";
 
 export default function SeoDetailPage({ page, lang, routePrefix = "" }: { page: SeoPage; lang: Lang; routePrefix?: string }) {
   const content = page[lang];
-  const alternateLang: Lang = lang === "zh" ? "en" : "zh";
-  const alternateLabel = lang === "zh" ? "EN" : "中文";
   const homePath = routePrefix ? `${routePrefix}/${lang}` : lang === "zh" ? "/zh" : "/en";
   const contactPath = `${homePath}#contact`;
   const isProductImage = page.image.includes("/product/");
-  const pagePath = (targetLang: Lang) => routePrefix ? `${routePrefix}/${targetLang}/${page.kind}/${page.slug}` : getSeoPagePath(page, targetLang);
+  const alternateLang: Lang = lang === "zh" ? "en" : "zh";
+  const languageHref = routePrefix ? `${routePrefix}/${alternateLang}/${page.kind}/${page.slug}` : getSeoPagePath(page, alternateLang);
 
   return (
     <main className="relative min-h-screen overflow-hidden px-5 pb-20 pt-28">
@@ -18,35 +18,7 @@ export default function SeoDetailPage({ page, lang, routePrefix = "" }: { page: 
         <div className="grid-plane absolute inset-0" />
       </div>
 
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-          <Link href={homePath} className="flex items-center gap-3">
-            <span className="relative h-10 w-24 overflow-hidden rounded-xl border border-cyan/15 bg-white shadow-sm">
-              <Image src="/logo/md.jpg" alt="MicroDetect Logo" fill sizes="96px" className="object-cover" priority />
-            </span>
-            <span className="text-sm font-semibold text-white md:text-base">
-              {lang === "zh" ? "析微探物" : "MicroDetect"}
-            </span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link href={routePrefix ? `${routePrefix}/insights` : "/insights"} className="hidden text-sm font-medium text-slate-300 transition hover:text-cyan sm:inline">
-              {lang === "zh" ? "行业洞察" : "Insights"}
-            </Link>
-            <Link
-              href={pagePath(alternateLang)}
-              className="rounded-full border border-cyan/20 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan transition hover:bg-cyan/10"
-            >
-              {alternateLabel}
-            </Link>
-            <Link
-              href={contactPath}
-              className="scan-glow rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan transition hover:border-cyan hover:bg-cyan/15"
-            >
-              {lang === "zh" ? "联系咨询" : "Contact"}
-            </Link>
-          </div>
-        </nav>
-      </header>
+      <ContentNavigation lang={lang} active={page.kind === "products" ? "products" : "solutions"} routePrefix={routePrefix} languageHref={languageHref} />
 
       <section className="relative z-10 mx-auto grid max-w-7xl gap-10 pt-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div>

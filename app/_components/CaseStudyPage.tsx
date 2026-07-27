@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CaseStudy } from "../../lib/cases";
 import type { Lang } from "../seo";
+import ContentNavigation from "./ContentNavigation";
 
 export default function CaseStudyPage({ caseStudy, lang, routePrefix = "" }: { caseStudy: CaseStudy; lang: Lang; routePrefix?: string }) {
   const content = caseStudy[lang];
@@ -13,19 +14,7 @@ export default function CaseStudyPage({ caseStudy, lang, routePrefix = "" }: { c
   return (
     <main className="relative min-h-screen overflow-hidden px-5 pb-20 pt-28">
       <div className="pointer-events-none fixed inset-0 z-0 opacity-45"><div className="grid-plane absolute inset-0" /></div>
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-          <Link href={homePath} className="flex items-center gap-3">
-            <span className="relative h-10 w-24 overflow-hidden rounded-xl border border-cyan/15 bg-white shadow-sm"><Image src="/logo/md.jpg" alt="MicroDetect Logo" fill sizes="96px" className="object-cover" priority /></span>
-            <span className="text-sm font-semibold text-white md:text-base">{lang === "zh" ? "析微探物" : "MicroDetect"}</span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link href={casesPath} className="hidden text-sm font-medium text-slate-300 transition hover:text-cyan sm:inline">{lang === "zh" ? "工程案例" : "Case Studies"}</Link>
-            <Link href={alternatePath} className="rounded-full border border-cyan/20 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan transition hover:bg-cyan/10">{lang === "zh" ? "EN" : "中文"}</Link>
-            <Link href={`${homePath}#contact`} className="scan-glow rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan transition hover:border-cyan hover:bg-cyan/15">{lang === "zh" ? "联系咨询" : "Contact"}</Link>
-          </div>
-        </nav>
-      </header>
+      <ContentNavigation lang={lang} active="cases" routePrefix={routePrefix} languageHref={alternatePath} />
 
       <article className="relative z-10 mx-auto max-w-7xl pt-14">
         <Link href={casesPath} className="font-medium text-cyan transition hover:underline">{lang === "zh" ? "返回工程案例" : "Back to case studies"}</Link>

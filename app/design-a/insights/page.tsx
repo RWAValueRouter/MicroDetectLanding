@@ -1,5 +1,5 @@
-import InsightsPage from "../../(content)/insights/page";
+import InsightsContent from "../../_components/InsightsContent";
 
 export default function Page() {
-  return <InsightsPage routePrefix="/design-a" />;
+  return <InsightsContent routePrefix="/design-a" />;
 }
