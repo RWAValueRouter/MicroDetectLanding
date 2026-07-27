@@ -518,7 +518,7 @@ function WaveCard({ title, status }: { title: string; status: string }) {
   );
 }
 
-export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang }) {
+export default function LandingPage({ initialLang = "zh", routePrefix = "" }: { initialLang?: Lang; routePrefix?: string }) {
   const [lang, setLang] = useState<Lang>(initialLang);
   const [applicationIndex, setApplicationIndex] = useState(0);
   const [contactForm, setContactForm] = useState<ContactForm>({
@@ -532,7 +532,8 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const t = copy[lang];
-  const navItems = navItemsByLang[lang];
+  const withRoutePrefix = (path: string) => (path.startsWith("/") ? `${routePrefix}${path}` : path);
+  const navItems = navItemsByLang[lang].map((item) => ({ ...item, href: withRoutePrefix(item.href) }));
   const localizedProductLines = lang === "zh" ? productLines : productLinesEn;
   const localizedSelectorItems = lang === "zh" ? selectorItems : selectorItemsEn;
   const localizedApplications = lang === "zh" ? applications : applicationsEn;
@@ -548,7 +549,7 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
 
   function switchLanguage(nextLang: Lang) {
     const url = new URL(window.location.href);
-    url.pathname = `/${nextLang}`;
+    url.pathname = `${routePrefix}/${nextLang}`;
     url.search = "";
     window.location.href = url.toString();
   }
@@ -713,7 +714,7 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
             {localizedProductLines.map((line) => (
               <a
                 key={line.title}
-                href={line.href}
+                href={withRoutePrefix(line.href)}
                 className="hud-card scan-glow group rounded-3xl p-7 transition hover:-translate-y-1"
               >
                 <p className="font-mono text-sm text-cyan">{line.series}</p>
@@ -815,7 +816,7 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
             </div>
             <a
               key={`${lang}-${applicationIndex}`}
-              href={currentApplicationDetailPath}
+              href={withRoutePrefix(currentApplicationDetailPath)}
               className="hud-card group block rounded-[32px] p-6 transition hover:-translate-y-1 hover:border-cyan/45 md:p-8"
               aria-label={lang === "zh" ? `查看${currentApplication.name}详情` : `View ${currentApplication.name} details`}
             >
@@ -851,7 +852,7 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
             {featuredCases.map((caseStudy) => {
               const caseContent = caseStudy[lang];
               return (
-                <a key={caseStudy.slug} href={getCasePath(caseStudy, lang)} className="hud-card scan-glow group overflow-hidden rounded-[28px] p-3 transition hover:-translate-y-1 hover:border-cyan/45">
+                <a key={caseStudy.slug} href={withRoutePrefix(getCasePath(caseStudy, lang))} className="hud-card scan-glow group overflow-hidden rounded-[28px] p-3 transition hover:-translate-y-1 hover:border-cyan/45">
                   <div className="relative aspect-[16/9] overflow-hidden rounded-[22px] bg-white">
                     <Image src={caseStudy.image} alt={caseContent.title} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-[1.03]" />
                   </div>
@@ -865,7 +866,7 @@ export default function LandingPage({ initialLang = "zh" }: { initialLang?: Lang
             })}
           </div>
           <div className="mt-8 text-center">
-            <a href={`/${lang}/cases`} className="inline-flex rounded-full border border-cyan/30 bg-cyan/10 px-6 py-3 font-semibold text-cyan transition hover:bg-cyan hover:text-ink">{t.casesLink}</a>
+            <a href={withRoutePrefix(`/${lang}/cases`)} className="inline-flex rounded-full border border-cyan/30 bg-cyan/10 px-6 py-3 font-semibold text-cyan transition hover:bg-cyan hover:text-ink">{t.casesLink}</a>
           </div>
         </div>
       </section>

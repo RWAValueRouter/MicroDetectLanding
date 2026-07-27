@@ -3,12 +3,12 @@ import Link from "next/link";
 import type { CaseStudy } from "../../lib/cases";
 import type { Lang } from "../seo";
 
-export default function CaseStudyPage({ caseStudy, lang }: { caseStudy: CaseStudy; lang: Lang }) {
+export default function CaseStudyPage({ caseStudy, lang, routePrefix = "" }: { caseStudy: CaseStudy; lang: Lang; routePrefix?: string }) {
   const content = caseStudy[lang];
-  const homePath = `/${lang}`;
-  const casesPath = `/${lang}/cases`;
+  const homePath = routePrefix ? `${routePrefix}/${lang}` : `/${lang}`;
+  const casesPath = `${homePath}/cases`;
   const alternateLang: Lang = lang === "zh" ? "en" : "zh";
-  const alternatePath = `/${alternateLang}/cases/${caseStudy.slug}`;
+  const alternatePath = routePrefix ? `${routePrefix}/${alternateLang}/cases/${caseStudy.slug}` : `/${alternateLang}/cases/${caseStudy.slug}`;
 
   return (
     <main className="relative min-h-screen overflow-hidden px-5 pb-20 pt-28">

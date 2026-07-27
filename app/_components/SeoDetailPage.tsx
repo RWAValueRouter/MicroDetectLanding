@@ -3,13 +3,14 @@ import Link from "next/link";
 import type { Lang } from "../seo";
 import { getSeoPagePath, type SeoPage } from "../../lib/seo-pages";
 
-export default function SeoDetailPage({ page, lang }: { page: SeoPage; lang: Lang }) {
+export default function SeoDetailPage({ page, lang, routePrefix = "" }: { page: SeoPage; lang: Lang; routePrefix?: string }) {
   const content = page[lang];
   const alternateLang: Lang = lang === "zh" ? "en" : "zh";
   const alternateLabel = lang === "zh" ? "EN" : "中文";
-  const homePath = lang === "zh" ? "/zh" : "/en";
+  const homePath = routePrefix ? `${routePrefix}/${lang}` : lang === "zh" ? "/zh" : "/en";
   const contactPath = `${homePath}#contact`;
   const isProductImage = page.image.includes("/product/");
+  const pagePath = (targetLang: Lang) => routePrefix ? `${routePrefix}/${targetLang}/${page.kind}/${page.slug}` : getSeoPagePath(page, targetLang);
 
   return (
     <main className="relative min-h-screen overflow-hidden px-5 pb-20 pt-28">
@@ -28,11 +29,11 @@ export default function SeoDetailPage({ page, lang }: { page: SeoPage; lang: Lan
             </span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/insights" className="hidden text-sm font-medium text-slate-300 transition hover:text-cyan sm:inline">
+            <Link href={routePrefix ? `${routePrefix}/insights` : "/insights"} className="hidden text-sm font-medium text-slate-300 transition hover:text-cyan sm:inline">
               {lang === "zh" ? "行业洞察" : "Insights"}
             </Link>
             <Link
-              href={getSeoPagePath(page, alternateLang)}
+              href={pagePath(alternateLang)}
               className="rounded-full border border-cyan/20 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan transition hover:bg-cyan/10"
             >
               {alternateLabel}

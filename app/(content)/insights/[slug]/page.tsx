@@ -7,6 +7,7 @@ import { absoluteUrl, siteUrl } from "../../../seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
+  routePrefix?: string;
 };
 
 export const dynamicParams = false;
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function InsightArticlePage({ params }: PageProps) {
+export default async function InsightArticlePage({ params, routePrefix = "" }: PageProps) {
   const { slug } = await params;
   const relatedInsights = (await getAllInsights()).filter((insight) => insight.slug !== slug).slice(0, 3);
 
@@ -70,6 +71,8 @@ export default async function InsightArticlePage({ params }: PageProps) {
   }
 
   const { Component, meta } = insight;
+  const homePath = routePrefix ? `${routePrefix}/zh` : "/zh";
+  const insightsPath = routePrefix ? `${routePrefix}/insights` : "/insights";
   const articleUrl = absoluteUrl(`/insights/${slug}`);
   const structuredData = {
     "@context": "https://schema.org",
@@ -110,18 +113,18 @@ export default async function InsightArticlePage({ params }: PageProps) {
 
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-          <Link href="/zh" className="flex items-center gap-3">
+          <Link href={homePath} className="flex items-center gap-3">
             <span className="relative h-10 w-24 overflow-hidden rounded-xl border border-cyan/15 bg-white shadow-sm">
               <Image src="/logo/md.jpg" alt="析微探物 Logo" fill sizes="96px" className="object-cover" priority />
             </span>
             <span className="text-sm font-semibold text-white md:text-base">析微探物</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/insights" className="text-sm font-medium text-slate-300 transition hover:text-cyan">
+            <Link href={insightsPath} className="text-sm font-medium text-slate-300 transition hover:text-cyan">
               行业洞察
             </Link>
             <Link
-              href="/zh#contact"
+              href={`${homePath}#contact`}
               className="scan-glow rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan transition hover:border-cyan hover:bg-cyan/15"
             >
               联系咨询
@@ -131,7 +134,7 @@ export default async function InsightArticlePage({ params }: PageProps) {
       </header>
 
       <article className="relative z-10 mx-auto max-w-4xl pt-14">
-        <Link href="/insights" className="font-medium text-cyan transition hover:underline">
+        <Link href={insightsPath} className="font-medium text-cyan transition hover:underline">
           返回行业洞察
         </Link>
         <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
@@ -173,7 +176,7 @@ export default async function InsightArticlePage({ params }: PageProps) {
             {relatedInsights.map((related) => (
               <Link
                 key={related.slug}
-                href={`/insights/${related.slug}`}
+                href={`${insightsPath}/${related.slug}`}
                 className="rounded-3xl border border-white/10 bg-white/60 p-5 transition hover:border-cyan/35"
               >
                 <p className="text-sm text-cyan">{related.category}</p>

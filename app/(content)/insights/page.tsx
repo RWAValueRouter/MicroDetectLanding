@@ -36,8 +36,10 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function InsightsPage() {
+export default async function InsightsPage({ routePrefix = "" }: { routePrefix?: string }) {
   const insights = await getAllInsights();
+  const homePath = routePrefix ? `${routePrefix}/zh` : "/zh";
+  const insightsPath = routePrefix ? `${routePrefix}/insights` : "/insights";
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -70,18 +72,18 @@ export default async function InsightsPage() {
 
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-          <Link href="/zh" className="flex items-center gap-3">
+          <Link href={homePath} className="flex items-center gap-3">
             <span className="relative h-10 w-24 overflow-hidden rounded-xl border border-cyan/15 bg-white shadow-sm">
               <Image src="/logo/md.jpg" alt="析微探物 Logo" fill sizes="96px" className="object-cover" priority />
             </span>
             <span className="text-sm font-semibold text-white md:text-base">析微探物</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/zh" className="text-sm font-medium text-slate-300 transition hover:text-cyan">
+            <Link href={homePath} className="text-sm font-medium text-slate-300 transition hover:text-cyan">
               返回首页
             </Link>
             <Link
-              href="/zh#contact"
+              href={`${homePath}#contact`}
               className="scan-glow rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan transition hover:border-cyan hover:bg-cyan/15"
             >
               联系咨询
@@ -137,7 +139,7 @@ export default async function InsightsPage() {
                 </span>
               ))}
             </div>
-            <Link href={`/insights/${insight.slug}`} className="mt-7 inline-flex font-semibold text-cyan">
+            <Link href={`${insightsPath}/${insight.slug}`} className="mt-7 inline-flex font-semibold text-cyan">
               阅读文章
             </Link>
           </article>
