@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Lang } from "../seo";
+import MobileNavigationMenu from "./MobileNavigationMenu";
 
 type ContentArea = "products" | "solutions" | "cases" | "insights";
 
@@ -31,7 +32,7 @@ export default function ContentNavigation({ lang, active, routePrefix = "", lang
           <span className="relative h-10 w-24 overflow-hidden rounded-xl border border-cyan/15 bg-white shadow-sm">
             <Image src="/logo/md.jpg" alt="MicroDetect Logo" fill sizes="96px" className="object-cover" priority />
           </span>
-          <span className="text-sm font-semibold text-white md:text-base">{isZh ? "析微探物" : "MicroDetect"}</span>
+          <span className="hidden text-sm font-semibold text-white sm:inline md:text-base">{isZh ? "析微探物" : "MicroDetect"}</span>
         </Link>
         <div className="hidden items-center gap-7 md:flex">
           {navItems.map((item) => {
@@ -55,6 +56,13 @@ export default function ContentNavigation({ lang, active, routePrefix = "", lang
         <Link href={`${homePath}#contact`} className="scan-glow hidden rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2 text-sm font-medium text-cyan transition hover:border-cyan hover:bg-cyan/15 sm:inline-block">
           {isZh ? "联系咨询" : "Contact"}
         </Link>
+        <MobileNavigationMenu
+          items={navItems.map((item) => ({ ...item, active: item.key === active }))}
+          contactHref={`${homePath}#contact`}
+          contactLabel={isZh ? "联系咨询" : "Contact"}
+          menuLabel={isZh ? "打开导航" : "Open navigation"}
+          closeLabel={isZh ? "关闭导航" : "Close navigation"}
+        />
       </nav>
     </header>
   );

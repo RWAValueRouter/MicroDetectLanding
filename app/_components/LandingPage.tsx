@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { caseStudies, getCasePath } from "../../lib/cases";
+import MobileNavigationMenu from "./MobileNavigationMenu";
 
 type Lang = "zh" | "en";
 
@@ -634,7 +635,7 @@ export default function LandingPage({ initialLang = "zh", routePrefix = "" }: { 
             <span className="relative h-10 w-24 overflow-hidden rounded-xl border border-cyan/15 bg-white shadow-sm">
               <Image src="/logo/md.jpg" alt="析微探物 Logo" fill sizes="96px" className="object-cover" priority />
             </span>
-            <span className="text-sm font-semibold text-white md:text-base">{t.companyShort}</span>
+            <span className="hidden text-sm font-semibold text-white sm:inline md:text-base">{t.companyShort}</span>
           </a>
           <div className="hidden items-center gap-7 md:flex">
             {navItems.map((item) => (
@@ -663,6 +664,13 @@ export default function LandingPage({ initialLang = "zh", routePrefix = "" }: { 
           >
             {t.ctaSmall}
           </a>
+          <MobileNavigationMenu
+            items={navItems}
+            contactHref="#contact"
+            contactLabel={t.ctaSmall}
+            menuLabel={lang === "zh" ? "打开导航" : "Open navigation"}
+            closeLabel={lang === "zh" ? "关闭导航" : "Close navigation"}
+          />
         </nav>
       </header>
 
