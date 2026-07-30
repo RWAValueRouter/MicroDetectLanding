@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-30",
   "completedFiles": [
     {
       "topicId": 1,
@@ -82,6 +82,22 @@
       "title": "雷达液位计能测粉料吗？粉体与散装固体物位监测的选型和安装要点",
       "completedAt": "2026-07-23",
       "coverImage": "/insights/radar-level-meter-powders-bulk-solids.png"
+    },
+    {
+      "topicId": 8,
+      "language": "zh-CN",
+      "file": "radar-level-meter-dust-silos-warehouses.mdx",
+      "title": "雷达物位计会受粉尘影响吗？筒仓与仓库粉尘工况下的测量要点",
+      "completedAt": "2026-07-30",
+      "coverImage": "/insights/radar-level-meter-dust-silos-warehouses.png"
+    },
+    {
+      "topicId": 8,
+      "language": "en",
+      "file": "en-does-dust-affect-radar-level-measurement-silos-warehouses.mdx",
+      "title": "Does Dust Affect Radar Level Measurement in Silos and Warehouses? Practical Guidance",
+      "completedAt": "2026-07-30",
+      "coverImage": "/insights/en-does-dust-affect-radar-level-measurement-silos-warehouses.png"
     }
   ],
   "topics": [
@@ -150,7 +166,12 @@
       "id": 8,
       "zhTitle": "雷达物位计会受粉尘影响吗",
       "enTitle": "Does dust affect radar level measurement in silos and warehouses",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "radar-level-meter-dust-silos-warehouses.mdx",
+      "zhCoverImage": "/insights/radar-level-meter-dust-silos-warehouses.png",
+      "enFile": "en-does-dust-affect-radar-level-measurement-silos-warehouses.mdx",
+      "enCoverImage": "/insights/en-does-dust-affect-radar-level-measurement-silos-warehouses.png",
+      "completedAt": "2026-07-30"
     },
     {
       "id": 9,
