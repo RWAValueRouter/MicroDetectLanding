@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-07-30",
+  "updatedAt": "2026-08-06",
   "completedFiles": [
     {
       "topicId": 1,
@@ -98,6 +98,22 @@
       "title": "Does Dust Affect Radar Level Measurement in Silos and Warehouses? Practical Guidance",
       "completedAt": "2026-07-30",
       "coverImage": "/insights/en-does-dust-affect-radar-level-measurement-silos-warehouses.png"
+    },
+    {
+      "topicId": 9,
+      "language": "zh-CN",
+      "file": "hart-protocol-industrial-radar-level-meters.mdx",
+      "title": "HART 协议在工业雷达液位计中有什么作用？选型、调试与数据接入说明",
+      "completedAt": "2026-08-06",
+      "coverImage": "/insights/hart-protocol-industrial-radar-level-meters.png"
+    },
+    {
+      "topicId": 9,
+      "language": "en",
+      "file": "en-hart-protocol-industrial-radar-level-meters.mdx",
+      "title": "What Does HART Protocol Do in Industrial Radar Level Meters? Selection and Commissioning Guide",
+      "completedAt": "2026-08-06",
+      "coverImage": "/insights/en-hart-protocol-industrial-radar-level-meters.png"
     }
   ],
   "topics": [
@@ -177,7 +193,12 @@
       "id": 9,
       "zhTitle": "HART 协议在工业液位计中的作用",
       "enTitle": "The role of HART protocol in industrial radar level meters",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "hart-protocol-industrial-radar-level-meters.mdx",
+      "zhCoverImage": "/insights/hart-protocol-industrial-radar-level-meters.png",
+      "enFile": "en-hart-protocol-industrial-radar-level-meters.mdx",
+      "enCoverImage": "/insights/en-hart-protocol-industrial-radar-level-meters.png",
+      "completedAt": "2026-08-06"
     },
     {
       "id": 10,
