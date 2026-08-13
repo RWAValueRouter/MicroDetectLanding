@@ -1,0 +1,86 @@
+export const meta = {
+  title: "IP67 vs IP68 for Outdoor Radar Monitoring Devices: Selection and Installation Guide",
+  description: "Understand the practical difference between IP67 and IP68 for outdoor radar monitoring devices, including flood exposure, cable sealing, installation, and acceptance checks.",
+  coverImage: "/insights/en-ip67-vs-ip68-outdoor-radar-monitoring.png",
+  date: "2026-08-13",
+  category: "Technical Guide",
+  tags: ["IP67", "IP68", "outdoor radar", "ingress protection", "water monitoring", "device selection"],
+  readingTime: "10 min read",
+};
+
+# IP67 vs IP68 for Outdoor Radar Monitoring Devices: Selection and Installation Guide
+
+Outdoor water, drainage, and industrial monitoring projects frequently list **IP67** or **IP68** beside a radar sensor or field enclosure. It is tempting to treat IP68 as an automatic upgrade, but that is not a complete selection method. The right choice depends on the exposure the installed equipment will actually face—and on whether the complete system, not only the sensor housing, is designed for that exposure.
+
+For non-contact radar level and surface-velocity monitoring, the sensor is normally mounted above the water or material surface. In practice, rain, condensation, spray, cable entries, junction boxes, flood elevation, and mounting geometry often determine field reliability as much as the IP marking. This guide explains how to interpret IP67 and IP68 in practical engineering terms without treating either rating as a substitute for site design.
+
+## What Do IP67 and IP68 Mean?
+
+An IP code describes enclosure protection against ingress. The first digit addresses solid objects and dust; the second addresses water ingress. In both IP67 and IP68, the first digit is 6, commonly indicating a high level of dust protection. The distinction is in the water-exposure classification.
+
+IP67 is associated with temporary immersion under defined test conditions. IP68 is associated with continuous or more demanding immersion conditions, but the exact depth, duration, and limits are specified by the manufacturer. An IP68 label is therefore not a universal statement that every product can operate indefinitely in any underwater location.
+
+| Consideration | IP67 | IP68 |
+| --- | --- | --- |
+| Dust protection | First digit 6: commonly described as dust-tight | First digit 6: commonly described as dust-tight |
+| Water-exposure context | Temporary immersion under defined conditions | Continuous or more severe immersion within manufacturer-defined conditions |
+| Typical project question | Will rain, splash, brief ponding, or occasional inundation be managed? | Is recurring or prolonged immersion a credible design condition? |
+| What still needs design work | Connectors, glands, cable routing, mounting, and acceptance | The same system-level details still apply |
+
+The rating should be matched to the exposure scenario, not used as shorthand for overall station durability. A sensor in a dry control cabinet has different priorities from a field device near a drainage channel, wet well, or flood-prone bridge crossing.
+
+## Why the Sensor Rating Alone Is Not Enough
+
+A non-contact river radar may be mounted on a bridge, cantilever, or bank-side structure with its measurement beam directed at the water surface. Even when the sensor enclosure has an appropriate ingress rating, the system can still admit water through a loose cable gland, an unsealed connector, a poorly closed junction box, or a cable route that carries water toward the enclosure.
+
+A site review should cover the full sealing chain: instrument housing, connectors, mating plugs, cable glands, junction boxes, conduit entries, and unused ports. The least protected component or an incorrect field installation can become the limiting factor. A sensor’s published rating should not be assumed to transfer automatically to a completed station with third-party cables and cabinets.
+
+Mechanical exposure matters too. Positioning equipment where flood debris can strike it, where a high-pressure jet persistently hits the housing, or where a submerged cable is under tension creates risks that an ingress rating does not resolve. For radar systems, mounting also affects measurement quality: a compromised line of sight, vibration, or unstable bracket can degrade a valid measurement even if the enclosure remains dry.
+
+## When Is IP68 Worth Prioritizing?
+
+An IP68 option deserves explicit consideration when a device or critical connection may experience foreseeable extended immersion, repeated flood submergence, or installation in a persistently wet location. Examples may include low-elevation installations relative to known flood levels, wet wells, pits with sustained standing water, or locations where the owner specification requires it.
+
+Request the actual conditions behind the claim. Ask whether the rating applies to the complete product or only a housing; the test depth and duration; whether the rating is retained with the selected connector and cable; and whether field opening or rewiring changes the stated protection. Confirm the ratings of power enclosures, communications enclosures, antenna interfaces, and accessories separately.
+
+## Can an IP67 Radar Device Be Used Outdoors in Rain?
+
+When installed according to its documentation and kept within stated environmental limits, an IP67 device can be suitable for normal outdoor rain, splash, and brief water exposure. That conclusion should not be generalized to long-term flooding or conditions beyond the product’s specified immersion boundary.
+
+Site position changes the design problem. A sensor under a bridge may avoid direct rainfall but still face high humidity, wind-driven spray, and condensation. A roadside telemetry enclosure may receive direct rainfall and runoff. A drainage-channel installation may be exposed to rising water and floating debris. Each needs its own exposure assessment rather than a decision based on the IP number alone.
+
+## A Practical Selection and Installation Checklist
+
+### Define the real environmental exposure
+
+Document rain, spray, temporary or sustained immersion, dust, salt-laden air, washdown, temperature cycling, and condensation. Apply this separately to the sensor, junction box, power enclosure, and communications equipment. For river work, include historic water levels, flood paths, scour, and debris. For process sites, include cleaning practices, vapour, and corrosive exposure.
+
+### Verify the system-level sealing path
+
+Check the compatibility of housings, connectors, cable glands, junction boxes, conduit fittings, and enclosure entries. Seal unused ports as directed. Route cables with sensible bends and drip loops so water does not track into a housing. Uncontrolled field drilling, mismatched plugs, and repeated opening can undermine intended protection.
+
+### Protect measurement geometry and mechanics
+
+Leave the radar measurement path free of persistent obstructions. Design brackets for vibration, wind loading, corrosion, and safe maintenance access. A high ingress rating cannot correct a beam aimed through an obstruction or a mounting arm that moves with the structure.
+
+### Make acceptance checks traceable
+
+Do not accept a site solely by reading the nameplate. Record model, connector and seal condition, cable routing, enclosure closure, mounting photos, and stable powered operation. After maintenance requiring an enclosure to be opened, inspect seals and cable entries again.
+
+## Frequently Asked Questions
+
+### Does IP68 mean a radar device can remain completely submerged forever?
+
+No. Applicable immersion conditions—including depth, duration, and installation limits—come from manufacturer documentation. Use that information and the project specification rather than treating IP68 as blanket approval for every submerged application.
+
+### What does an IP68 rating mean for an AR-FV100 project?
+
+Where the project configuration and product documentation specify IP68, it is a relevant reference for enclosure environmental protection. A non-contact AR-FV100 surface-velocity installation must still be evaluated for mounting height, measurement range, power and communications, cable sealing, and flood conditions.
+
+### If the enclosure has a high IP rating, are surge protection and grounding unnecessary?
+
+No. IP ratings concern solids and water ingress; they do not define lightning, surge, shielding, or grounding performance. Outdoor stations should apply the project’s electrical-protection, grounding, and surge-control requirements.
+
+## Conclusion
+
+IP67 and IP68 are meaningful inputs to outdoor radar-monitoring selection, but neither is a complete field-reliability plan. Identify whether the real risk is rain, splash, temporary ponding, or sustained immersion. Then verify the sensor, connections, mounting, and electrical installation as one system.

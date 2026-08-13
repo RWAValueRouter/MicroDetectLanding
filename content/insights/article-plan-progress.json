@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-08-06",
+  "updatedAt": "2026-08-13",
   "completedFiles": [
     {
       "topicId": 1,
@@ -114,6 +114,36 @@
       "title": "What Does HART Protocol Do in Industrial Radar Level Meters? Selection and Commissioning Guide",
       "completedAt": "2026-08-06",
       "coverImage": "/insights/en-hart-protocol-industrial-radar-level-meters.png"
+    },
+    {
+      "topicId": null,
+      "language": "zh-CN",
+      "file": "ip67-vs-ip68-outdoor-radar-monitoring.mdx",
+      "title": "IP67 和 IP68 防护等级有什么区别？户外雷达监测设备选型与安装说明",
+      "completedAt": "2026-08-13"
+    },
+    {
+      "topicId": null,
+      "language": "en",
+      "file": "en-ip67-vs-ip68-outdoor-radar-monitoring.mdx",
+      "title": "IP67 vs IP68 for Outdoor Radar Monitoring Devices: Selection and Installation Guide",
+      "completedAt": "2026-08-13"
+    },
+    {
+      "topicId": 10,
+      "language": "zh-CN",
+      "file": "ip67-vs-ip68-outdoor-radar-monitoring.mdx",
+      "title": "IP67 和 IP68 防护等级有什么区别？户外雷达监测设备选型与安装说明",
+      "completedAt": "2026-08-13",
+      "coverImage": "/insights/ip67-vs-ip68-outdoor-radar-monitoring.png"
+    },
+    {
+      "topicId": 10,
+      "language": "en",
+      "file": "en-ip67-vs-ip68-outdoor-radar-monitoring.mdx",
+      "title": "IP67 vs IP68 for Outdoor Radar Monitoring Devices: Selection and Installation Guide",
+      "completedAt": "2026-08-13",
+      "coverImage": "/insights/en-ip67-vs-ip68-outdoor-radar-monitoring.png"
     }
   ],
   "topics": [
@@ -204,7 +234,12 @@
       "id": 10,
       "zhTitle": "IP67 和 IP68 防护等级有什么区别",
       "enTitle": "IP67 vs IP68 protection ratings for outdoor radar monitoring devices",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "ip67-vs-ip68-outdoor-radar-monitoring.mdx",
+      "zhCoverImage": "/insights/ip67-vs-ip68-outdoor-radar-monitoring.png",
+      "enFile": "en-ip67-vs-ip68-outdoor-radar-monitoring.mdx",
+      "enCoverImage": "/insights/en-ip67-vs-ip68-outdoor-radar-monitoring.png",
+      "completedAt": "2026-08-13"
     },
     {
       "id": 11,
