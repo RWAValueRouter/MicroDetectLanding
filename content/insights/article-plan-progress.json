@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-08-13",
+  "updatedAt": "2026-08-20",
   "completedFiles": [
     {
       "topicId": 1,
@@ -144,6 +144,22 @@
       "title": "IP67 vs IP68 for Outdoor Radar Monitoring Devices: Selection and Installation Guide",
       "completedAt": "2026-08-13",
       "coverImage": "/insights/en-ip67-vs-ip68-outdoor-radar-monitoring.png"
+    },
+    {
+      "topicId": 11,
+      "language": "zh-CN",
+      "file": "explosion-proof-radar-level-meter-selection.mdx",
+      "title": "防爆雷达液位计选型需要注意什么？危险区域储罐测量的核对要点",
+      "completedAt": "2026-08-20",
+      "coverImage": "/insights/explosion-proof-radar-level-meter-selection.png"
+    },
+    {
+      "topicId": 11,
+      "language": "en",
+      "file": "en-explosion-proof-radar-level-meter-selection.mdx",
+      "title": "How to Select an Explosion-Proof Radar Level Meter: A Practical Guide for Hazardous-Area Tanks",
+      "completedAt": "2026-08-20",
+      "coverImage": "/insights/en-explosion-proof-radar-level-meter-selection.png"
     }
   ],
   "topics": [
@@ -245,7 +261,12 @@
       "id": 11,
       "zhTitle": "防爆雷达液位计选型需要注意什么",
       "enTitle": "How to select explosion-proof radar level meters",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "explosion-proof-radar-level-meter-selection.mdx",
+      "enFile": "en-explosion-proof-radar-level-meter-selection.mdx",
+      "zhCoverImage": "/insights/explosion-proof-radar-level-meter-selection.png",
+      "enCoverImage": "/insights/en-explosion-proof-radar-level-meter-selection.png",
+      "completedAt": "2026-08-20"
     },
     {
       "id": 12,
