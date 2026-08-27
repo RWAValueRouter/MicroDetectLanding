@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-08-20",
+  "updatedAt": "2026-08-27",
   "completedFiles": [
     {
       "topicId": 1,
@@ -160,6 +160,22 @@
       "title": "How to Select an Explosion-Proof Radar Level Meter: A Practical Guide for Hazardous-Area Tanks",
       "completedAt": "2026-08-20",
       "coverImage": "/insights/en-explosion-proof-radar-level-meter-selection.png"
+    },
+    {
+      "topicId": 12,
+      "language": "zh-CN",
+      "file": "structural-monitoring-radar-bridge-deflection.mdx",
+      "title": "结构监测雷达能测桥梁挠度吗？桥梁位移监测的适用边界与部署要点",
+      "completedAt": "2026-08-27",
+      "coverImage": "/insights/structural-monitoring-radar-bridge-deflection.png"
+    },
+    {
+      "topicId": 12,
+      "language": "en",
+      "file": "en-can-structural-monitoring-radar-measure-bridge-deflection.mdx",
+      "title": "Can Structural Monitoring Radar Measure Bridge Deflection? Deployment and Interpretation Guide",
+      "completedAt": "2026-08-27",
+      "coverImage": "/insights/en-can-structural-monitoring-radar-measure-bridge-deflection.png"
     }
   ],
   "topics": [
@@ -272,7 +288,12 @@
       "id": 12,
       "zhTitle": "结构监测雷达能测桥梁挠度吗",
       "enTitle": "Can structural monitoring radar measure bridge deflection",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "structural-monitoring-radar-bridge-deflection.mdx",
+      "zhCoverImage": "/insights/structural-monitoring-radar-bridge-deflection.png",
+      "enFile": "en-can-structural-monitoring-radar-measure-bridge-deflection.mdx",
+      "enCoverImage": "/insights/en-can-structural-monitoring-radar-measure-bridge-deflection.png",
+      "completedAt": "2026-08-27"
     },
     {
       "id": 13,
