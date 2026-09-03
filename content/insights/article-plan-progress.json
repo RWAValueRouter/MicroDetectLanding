@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-08-27",
+  "updatedAt": "2026-09-03",
   "completedFiles": [
     {
       "topicId": 1,
@@ -176,6 +176,22 @@
       "title": "Can Structural Monitoring Radar Measure Bridge Deflection? Deployment and Interpretation Guide",
       "completedAt": "2026-08-27",
       "coverImage": "/insights/en-can-structural-monitoring-radar-measure-bridge-deflection.png"
+    },
+    {
+      "topicId": 13,
+      "language": "zh-CN",
+      "file": "slope-displacement-radar-reflectors.mdx",
+      "title": "边坡位移监测雷达需要安装反射板吗？目标选择、基准与现场部署说明",
+      "completedAt": "2026-09-03",
+      "coverImage": "/insights/slope-displacement-radar-reflectors.png"
+    },
+    {
+      "topicId": 13,
+      "language": "en",
+      "file": "en-does-slope-displacement-radar-require-reflectors.mdx",
+      "title": "Does Slope Displacement Radar Require Reflectors? Target Selection and Deployment Guide",
+      "completedAt": "2026-09-03",
+      "coverImage": "/insights/en-does-slope-displacement-radar-require-reflectors.png"
     }
   ],
   "topics": [
@@ -299,7 +315,12 @@
       "id": 13,
       "zhTitle": "边坡位移监测雷达需要安装反射板吗",
       "enTitle": "Does slope displacement radar require reflectors",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "slope-displacement-radar-reflectors.mdx",
+      "zhCoverImage": "/insights/slope-displacement-radar-reflectors.png",
+      "enFile": "en-does-slope-displacement-radar-require-reflectors.mdx",
+      "enCoverImage": "/insights/en-does-slope-displacement-radar-require-reflectors.png",
+      "completedAt": "2026-09-03"
     },
     {
       "id": 14,
