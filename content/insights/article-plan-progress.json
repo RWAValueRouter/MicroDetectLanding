@@ -5,7 +5,7 @@
   "weeklyBatchSize": 2,
   "weeklyBatchRule": "Each scheduled run should create one Chinese MDX file and one English MDX file for the next incomplete topic, unless only one MDX slot remains before targetTotalMdxFiles.",
   "contentDirectory": "content/insights",
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-09-04",
   "completedFiles": [
     {
       "topicId": 1,
@@ -192,6 +192,22 @@
       "title": "Does Slope Displacement Radar Require Reflectors? Target Selection and Deployment Guide",
       "completedAt": "2026-09-03",
       "coverImage": "/insights/en-does-slope-displacement-radar-require-reflectors.png"
+    },
+    {
+      "topicId": 14,
+      "language": "zh-CN",
+      "file": "solar-power-unattended-radar-monitoring.mdx",
+      "title": "太阳能供电能否支持长期无人值守雷达监测？容量核算与现场部署指南",
+      "completedAt": "2026-09-04",
+      "coverImage": "/insights/solar-power-unattended-radar-monitoring.png"
+    },
+    {
+      "topicId": 14,
+      "language": "en",
+      "file": "en-can-solar-power-support-unattended-radar-monitoring.mdx",
+      "title": "Can Solar Power Support Long-Term Unattended Radar Monitoring Stations? Design and Deployment Guide",
+      "completedAt": "2026-09-04",
+      "coverImage": "/insights/en-can-solar-power-support-unattended-radar-monitoring.png"
     }
   ],
   "topics": [
@@ -326,7 +342,12 @@
       "id": 14,
       "zhTitle": "太阳能供电能否支持长期无人值守雷达监测",
       "enTitle": "Can solar power support long-term unattended radar monitoring stations",
-      "status": "pending"
+      "status": "completed",
+      "zhFile": "solar-power-unattended-radar-monitoring.mdx",
+      "enFile": "en-can-solar-power-support-unattended-radar-monitoring.mdx",
+      "zhCoverImage": "/insights/solar-power-unattended-radar-monitoring.png",
+      "enCoverImage": "/insights/en-can-solar-power-support-unattended-radar-monitoring.png",
+      "completedAt": "2026-09-04"
     },
     {
       "id": 15,

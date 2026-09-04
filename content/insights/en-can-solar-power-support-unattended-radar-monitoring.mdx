@@ -1,0 +1,81 @@
+export const meta = {
+  title: "Can Solar Power Support Long-Term Unattended Radar Monitoring Stations? Design and Deployment Guide",
+  description: "Can solar power reliably operate unattended radar monitoring stations for rivers, drainage, slopes, and remote infrastructure? This guide covers load budgets, battery autonomy, site design, and operational resilience.",
+  coverImage: "/insights/en-can-solar-power-support-unattended-radar-monitoring.png",
+  date: "2026-09-04",
+  category: "Technical Guide",
+  tags: ["solar power", "unattended monitoring station", "millimeter-wave radar", "hydrological monitoring", "remote telemetry", "battery autonomy"],
+  readingTime: "9 min read"
+};
+
+# Can Solar Power Support Long-Term Unattended Radar Monitoring Stations?
+
+Remote river channels, drainage assets, slopes, bridge crossings, and industrial sites do not always have practical grid access. That leads to a common project question: **can solar power support a long-term unattended radar monitoring station?**
+
+In many cases, yes. A properly engineered solar system can power non-contact radar monitoring for extended periods. The qualification matters: reliable operation does not come from adding a panel to a sensor. It comes from matching the entire station’s energy demand to local solar availability, battery autonomy, installation constraints, and a defined low-power operating strategy.
+
+This is especially important in hydrological and warning applications. Storms and prolonged cloud cover can coincide with the periods when flow, level, or movement data is most valuable. A design that works only under typical sunny conditions is not necessarily suitable for an unattended monitoring duty.
+
+## Start with the complete station load
+
+A non-contact millimeter-wave radar is only one part of a field station. The energy budget may also include an RTU or data logger, cellular or LoRa communications, other sensors, a rain gauge, a level sensor, antenna equipment, enclosure electronics, and DC/DC conversion losses. Cameras, heaters, and anti-condensation accessories can be material additional loads.
+
+For a device class such as the AR-FV100 radar flow velocity meter, project documentation may reference 7–28 V DC supply, 24 GHz operation, and project-configurable RS485, RS232, or 4–20 mA outputs. Those descriptors do not by themselves establish a solar design. The project team needs the operating current, peak current, sampling cycle, communications schedule, and any sleep mode from applicable product documentation or measurement.
+
+| Load category | Questions to resolve | Why it matters |
+| --- | --- | --- |
+| Radar and sensors | Continuous operation or timed wake-up? Average and peak current? | Establishes the baseline daily energy requirement. |
+| Logger and communications | How often is data transmitted? What happens in weak coverage? | Retries and radio transmission can create large variable loads. |
+| Battery | What usable capacity remains after depth-of-discharge and temperature limits? | Determines autonomy through poor-weather periods. |
+| PV array | What is the lowest-season effective solar resource after shading? | Determines whether the system can recover charge. |
+| Wiring and enclosure | Are voltage drop, surge protection, sealing, and grounding addressed? | Affects stable, safe field operation. |
+
+## Design around daily energy and autonomy—not panel nameplate watts
+
+The initial calculation should convert all loads into daily energy. For each device, estimate average power multiplied by hours of operation, then total the result in Wh/day. Include conversion loss, cable loss, temperature effects, aging margin, and a realistic communications duty cycle.
+
+Battery capacity is then selected against an agreed autonomy period: the time the station must continue operating with little or no useful solar input. The PV array must be checked against the site’s conservative seasonal solar resource, not its best summer-day output. Local topography, bridge geometry, vegetation, dirt accumulation, and future construction can all reduce received energy.
+
+For flood warning or urban drainage, the adverse case should include the monitoring and upload behavior required during extended rain. It is risky to assume that the station can simply reduce all measurement when energy becomes scarce, because that may be the precise interval in which the project needs data most.
+
+### Battery autonomy is a performance requirement
+
+More battery is not automatically better. A battery must be sized for usable—not nominal—capacity, expected temperature, permissible discharge depth, service life, and replacement logistics. An undersized battery produces repeated low-voltage events; an oversized one can add unnecessary cost, weight, and maintenance burden.
+
+The controller should log battery voltage, charging state, and low-energy events and expose them to the monitoring platform. These health indicators help operators distinguish a true process condition from missing data caused by power or communications problems.
+
+## Treat installation as part of the power design
+
+Panel placement must balance solar access, safe maintenance access, wind loading, security, and the radar’s view of its target. A panel should avoid persistent shade from bridges, trees, terrain, or seasonal vegetation. At the same time, changing the mounting arrangement for ideal solar orientation must not compromise a stable radar measurement angle or obstruct the view of the water, slope, or structure.
+
+Place batteries, controllers, and communications hardware in an appropriately protected enclosure. Use sealed cable entries and drip loops, and verify the complete station for surge exposure, grounding, flood elevation, salt or corrosive atmosphere, and condensation. An enclosure rating on one device does not demonstrate that connectors, junction boxes, antennas, mounts, and cable interfaces are equally protected.
+
+## Use power-aware operating modes deliberately
+
+Unattended operation does not require every subsystem to run at its highest rate all day. A sensible strategy may collect at a normal interval in stable conditions and increase reporting when water level changes quickly or an approved alert threshold is met. In a low-energy state, it may prioritize radar measurement, timekeeping, data storage, and essential alarms while deferring non-critical imagery or bulk historical uploads.
+
+Every mode change should be logged. Otherwise, a data gap or reduced upload interval can be mistaken for a real field anomaly. Communications deserves particular attention: repeated connection attempts in poor cellular coverage can deplete a battery faster than the sensor itself. Local buffering, batch transfer, antenna optimization, and, where justified, alternate communications can reduce that waste.
+
+## Commissioning checklist for a solar radar station
+
+1. Build the energy model from measured or vendor-confirmed current values, not supply voltage alone.
+2. Document the assumed worst-season solar resource, shading allowance, autonomy days, conversion losses, and load profile.
+3. Inspect panel orientation, structural mounting, radar line of sight, wiring voltage drop, earthing, surge protection, and sealed cable entries on site.
+4. Exercise low-voltage, charging recovery, communications-loss, and data-recovery cases before handover.
+5. Publish battery, charging, online status, and sensor quality indicators alongside the monitoring data.
+
+## Frequently asked questions
+
+### Can a solar-powered radar station operate through several rainy days?
+
+It can if the battery autonomy, daily load, and energy-saving behavior were designed for that condition. A full battery on a sunny day is not sufficient evidence; validate the station against the site’s poor-weather and low-solar design case.
+
+### How large should the solar panel and battery be?
+
+There is no defensible fixed size without a load profile and location. Calculate Wh/day for the radar, logger, communications, and accessories, then account for efficiency losses, shading, temperature, aging, and the required autonomy period.
+
+### Does solar power affect radar measurement accuracy?
+
+Solar generation does not change the measurement principle directly. However, low voltage, restarts, communication reconnection, or movement of an inadequately designed mount can affect data continuity and interpretation. Stable supply and recorded device health are therefore part of long-term data quality.
+
+Solar power is a viable route to long-term unattended radar monitoring when it is designed as an integrated power and telemetry system. Conservative energy modelling, site-specific installation, and observable operating states provide a stronger basis for reliable field data than a panel-and-battery specification alone.
